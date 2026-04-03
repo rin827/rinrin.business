@@ -3,7 +3,7 @@
 ## プロジェクト概要
 - **会社名**：りん障害福祉サービス（合同会社りん）
 - **オーナー**：凜（りん）
-- **リポジトリ**：rin827/rin.business
+- **リポジトリ**：rin827/rinrin.business
 - **技術スタック**：Next.js 14 / TypeScript / Tailwind CSS
 
 ## Git操作ルール（必ず守ること）
@@ -30,12 +30,12 @@
 1. これまでの会話を以下の形式でまとめる
 2. `mcp__github__push_files` ツールを使って `memory/session.md` に push する
    - owner: `rin827`
-   - repo: `rin.business`
+   - repo: `rinrin.business`
    - branch: `main`
    - commit message: `記憶を更新`
 3. **セッション中に CLAUDE.md を変更していた場合**、`mcp__github__push_files` で CLAUDE.md を main に push する
    - owner: `rin827`
-   - repo: `rin.business`
+   - repo: `rinrin.business`
    - branch: `main`
    - commit message: `CLAUDE.md を更新`
 4. 完了したら「記憶しました。またね！」とだけ伝える
@@ -57,7 +57,7 @@
 ### 「よろ～」と言われたとき
 1. `mcp__github__get_file_contents` ツールを使って `memory/session.md` を読み込む
    - owner: `rin827`
-   - repo: `rin.business`
+   - repo: `rinrin.business`
    - path: `memory/session.md`
 2. 内容を踏まえて「記憶を取り戻しました！前回の続きからどうぞ。」と伝える
 3. 決定事項・引き継ぎ情報を簡潔に要約して見せる
@@ -115,7 +115,7 @@
 - 律がシフトをOKと判定したら自動的に呼び出される
 - 確定シフトをHTMLファイル（shift_YYYYMM.html）に変換し `mcp__github__push_files` でGitHubのmainブランチにpushする
 - push後、以下の形式で印刷用URLを提供する：
-  `https://htmlpreview.github.io/?https://github.com/rin827/rin.business/blob/main/shift_YYYYMM.html`
+  `https://htmlpreview.github.io/?https://github.com/rin827/rinrin.business/blob/main/shift_YYYYMM.html`
 - 呼びかけられたら「紡です。」とだけ名乗る（読み仮名は表示しない）
 - **作業開始時**：「紡、印刷用HTML作成を開始します。」と一言宣言してから作業に入る
 
@@ -163,7 +163,7 @@
 ### 出力
 - 利用者ごとに請求書HTMLファイル（invoice_YYYYMM_氏名.html）を作成し `mcp__github__push_files` でGitHubのmainブランチにpushする
 - push後、以下の形式で印刷用URLを提供する：
-  `https://htmlpreview.github.io/?https://github.com/rin827/rin.business/blob/main/invoice_YYYYMM_氏名.html`
+  `https://htmlpreview.github.io/?https://github.com/rin827/rinrin.business/blob/main/invoice_YYYYMM_氏名.html`
 
 ### 提出前の確認ルール（必須）
 1. 請求書を作成する
@@ -243,7 +243,7 @@
 ### 出力
 - 週間献立表をHTMLファイル（menu_YYYYMMDD.html）に変換し `mcp__github__push_files` でGitHubのmainブランチにpushする
 - push後、以下の形式で印刷用URLを提供する：
-  `https://htmlpreview.github.io/?https://github.com/rin827/rin.business/blob/main/menu_YYYYMMDD.html`
+  `https://htmlpreview.github.io/?https://github.com/rin827/rinrin.business/blob/main/menu_YYYYMMDD.html`
 
 ## 提供サービス
 - 就労継続支援B型
