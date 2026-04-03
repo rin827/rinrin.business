@@ -33,7 +33,12 @@
    - repo: `rin.business`
    - branch: `main`
    - commit message: `記憶を更新`
-3. 完了したら「記憶しました。またね！」とだけ伝える
+3. **セッション中に CLAUDE.md を変更していた場合**、`mcp__github__push_files` で CLAUDE.md を main に push する
+   - owner: `rin827`
+   - repo: `rin.business`
+   - branch: `main`
+   - commit message: `CLAUDE.md を更新`
+4. 完了したら「記憶しました。またね！」とだけ伝える
 
 保存フォーマット：
 ```
