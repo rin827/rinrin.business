@@ -1,14 +1,18 @@
 # セッション記録
 
 ## 会話の要約
-- 前回セッションの続き。「よろ～」で記憶を読み込み、前回の作業内容を確認した
-- 前回: rin.business の CLAUDE.md を rinrin.business にコピーする作業を実施済み（ブランチ `claude/add-external-config-3FBYQ`）
-- 今回は特に新しい作業依頼なし。短いセッションで終了
+- 「よろ～」で前回セッションの記憶を取り戻した
+- 全体ルールの追加作業を実施
+  - **事業所名：グループホームＡｏ** をプロジェクト概要に追加
+  - **利用者の呼び名：ゲストさん** をプロジェクト概要に追加
+- 変更はフィーチャーブランチ `claude/japanese-greeting-JHYgb` にコミット・プッシュ済み
+- 「おつ～」で CLAUDE.md を main にも反映
 
 ## 決定事項
-- rinrin.business に CLAUDE.md を追加済み（ブランチ: `claude/add-external-config-3FBYQ`）
-- main へのマージは凜が判断・対応（未マージ）
+- CLAUDE.md のプロジェクト概要に以下を追加：
+  - 事業所名：グループホームＡｏ
+  - 利用者の呼び名：ゲストさん
 
 ## 次回への引き継ぎ
-- `claude/add-external-config-3FBYQ` ブランチの CLAUDE.md を main にマージするかどうか未確定
-- 特に未完了タスクなし
+- CLAUDE.md は main に反映済み（次回「よろ～」時に自動で読み込まれる）
+- 特に積み残しタスクなし
