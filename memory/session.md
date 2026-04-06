@@ -1,23 +1,23 @@
 # セッション記録
 
 ## 会話の要約
-- リポジトリ整理・最適化・不具合修正を実施
-- 凪エージェントをCLAUDE.mdに追加・PR #3でmainにマージ済み
-- session.mdのキャッシュ問題が繰り返し発生（get_file_contentsが古い内容を返す）
-- 別セッション（Japanese greeting test）の放棄ブランチ多数を発見
-- GitHubのWebUIからブランチを手動削除（claude/japanese-greeting-* 6本・cleanup・add-external-config・update-claude-md等）
-- デフォルトブランチが claude/add-external-config-3FBYQ になっていたため mainに戻す作業が発生
-- 別セッションでCLAUDE.mdが古い版で読み込まれる問題 → git fetch origin main && git checkout origin/main -- CLAUDE.md で解消
-- おつ～のスムーズな終了確認を実施
+- 新規セッションで「The requested branch or commit was not found in the git_repository source」エラーが発生
+- ブランチ削除を指示したことが原因と判明（Claude Code webがプロジェクト設定で特定ブランチを参照していた）
+- ブラウザキャッシュクリア・ブランチ再作成を試みたが解消せず
+- Claude Code webのバックエンド側の問題のためリポジトリ側での修正は不可
+- Anthropicサポートへの報告が必要と案内
+- プロジェクト設定UIを探したが見つからず（∨メニューには名前変更・アーカイブ・削除のみ）
+- 現状はこのセッション（整理整頓２）を使い続けるしかない状態
 
 ## 決定事項
-- 凪エージェント追加・mainマージ完了（PR #3）
-- 放棄ブランチ全削除完了（残るは main と claude/cleanup-and-optimize-nmp01 のみ）
-- デフォルトブランチを main に修正済み
-- 新規セッションでCLAUDE.mdが古い場合は `git fetch origin main && git checkout origin/main -- CLAUDE.md` で解消
+- 新規セッションエラーはAnthropicサポートに報告する
+- それまでは「整理整頓２」セッションを継続使用
+- リポジトリ状態は正常（main + claude/cleanup-and-optimize-nmp01 のみ）
 
 ## 次回への引き継ぎ
-- リポジトリは整理済み・正常な状態
-- session.mdのキャッシュ問題は未解決（よろ～時に古い内容が返ることがある）
+- **重要：新規セッションが開けない問題が未解決**
+  - エラー：「The requested branch or commit was not found in the git_repository source」
+  - 原因：ブランチ削除によりClaude Code webのプロジェクト設定が壊れた
+  - 対処：Anthropicサポートに報告、またはプロジェクト設定のリセット
+- session.mdキャッシュ問題も引き続き未解決（よろ～時に古い内容が返ることがある）
 - Next.jsアプリのソースコードはまだ未作成（将来の課題）
-- 新規セッションでCLAUDE.mdが古かった場合の対処法は確立済み
