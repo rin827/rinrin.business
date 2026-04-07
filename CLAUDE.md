@@ -9,15 +9,18 @@
 ## Git操作ルール（必ず守ること）
 - **mainブランチへの `git push` は絶対禁止**
 - mainへのファイル書き込みは必ず `mcp__github__push_files` を使う
-- `git push` はフィーチャーブランチへのpushのみ許可
+- **フィーチャーブランチへのpushは必ず `git push`（bashコマンド）を使う**
+  - `mcp__github__push_files` をフィーチャーブランチに使うのは禁止（タイムアウトの原因）
+  - 手順：`git add` → `git commit` → `git push -u origin ブランチ名`
+- mainへのマージはPRを作成して `mcp__github__merge_pull_request` で行う
 
 ## CLAUDE.md 更新ルール（必ず守ること）
 - **セッション中に CLAUDE.md を main に push しない**
   - セッションが切断されるため
 - CLAUDE.md の変更は必ずフィーチャーブランチ（例: `update-claude-md`）に push する
 - 「おつ～」で記憶を保存した**後**、以下の手順で main にマージする：
-  1. `mcp__github__push_files` で CLAUDE.md をフィーチャーブランチに push（済みの場合はスキップ）
-  2. プルリクエストを作成 or 直接 main にマージ
+  1. `git add` → `git commit` → `git push -u origin ブランチ名` でフィーチャーブランチに push（済みの場合はスキップ）
+  2. `mcp__github__create_pull_request` でPR作成 → `mcp__github__merge_pull_request` でマージ
   3. そのままセッション終了
 - 次回「よろ～」のときに新しい CLAUDE.md が自動で読み込まれた状態でスタートする
 
