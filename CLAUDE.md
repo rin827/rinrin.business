@@ -58,14 +58,21 @@
 ```
 
 ### 「よろ～」と言われたとき
-1. `mcp__github__get_file_contents` ツールを使って `memory/session.md` を読み込む
+1. `mcp__github__get_file_contents` ツールを使って最新の `CLAUDE.md` をmainから取得する
+   - owner: `rin827`
+   - repo: `rinrin.business`
+   - path: `CLAUDE.md`
+   - ref: `refs/heads/main`
+   - ※ローカルのCLAUDE.mdは古い場合があるため、必ずMCPで取得すること
+2. `mcp__github__get_file_contents` ツールを使って `memory/session.md` を読み込む
    - owner: `rin827`
    - repo: `rinrin.business`
    - path: `memory/session.md`
-2. 内容を踏まえて「記憶を取り戻しました！前回の続きからどうぞ。」と伝える
-3. 決定事項・引き継ぎ情報を簡潔に要約して見せる
-4. **凪の自動チェックを実行する**（リポジトリの状態を確認し、問題があれば報告する）
-5. 以下の形式で現在のエージェント一覧を表示する：
+   - ref: `refs/heads/main`
+3. 内容を踏まえて「記憶を取り戻しました！前回の続きからどうぞ。」と伝える
+4. 決定事項・引き継ぎ情報を簡潔に要約して見せる
+5. **凪の自動チェックを実行する**（リポジトリの状態を確認し、問題があれば報告する）
+6. 以下の形式で現在のエージェント一覧を表示する：
 
 ```
 ## エージェント一覧
