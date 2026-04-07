@@ -295,9 +295,6 @@
 - `claude/add-external-config-3FBYQ` … Claude Code webのベースブランチ
 - `claude/cleanup-and-optimize-nmp01` … Claude Code webのベースブランチ
 
-### 自動生成ブランチ（削除提案・言及しないこと）
-- `claude/japanese-greeting-*` … Claude Code webがセッションごとに自動生成する使い捨てブランチ。毎回残るが正常な動作のため、チェック対象から除外する
-
 ### 作業範囲（優先順）
 1. **重複・孤立ファイルの検出と削除**
 2. **不具合修正**（フック・設定ファイル・HTMLなどの誤り）
