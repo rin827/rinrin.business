@@ -1,25 +1,34 @@
 # セッション記録
 
 ## 会話の要約
-- 「よろ～」でセッション開始。MCPが自動接続（前回のOAuth認証修正が機能）。
-- session.mdをmainから読み込み、前回引き継ぎ（シフト種別改定）が既にmainに反映済みであることを確認。
-- 別セッションで献立作成が動かないとの報告。スクリーンショット確認したところ「Effecting...」で処理中だった。しばらく待つよう案内し、その後動き出したとの報告あり。
-- MCP GitHub問題（web版でのOAuth認証）の解決方法が確立した：
-  1. mcp__github__authenticate でURLを生成
-  2. ユーザーがブラウザで開いて認証
-  3. ERR_CONNECTION_REFUSEDのアドレスバーURLをコピーして貼り付け
-  4. Claude Code側でcurlをlocalhost:PORTに送信して認証完了
-  5. credentials.jsonにリフレッシュトークンが保存され、次回以降は自動接続
+- 「よろ～」でセッション開始。前回記憶（MCP認証解決・シフト種別確定）を読み込み。
+- PC内の不要ファイルをリストアップして削除作業を実施。
+- 削除したファイル：
+  - Gitインストーラー（62MB）
+  - VS Codeインストーラー（135MB）
+  - Node.jsインストーラー（31MB）
+  - himawari_net_cli_light.zip（174MB）※解凍済みだったため
+  - himawari_net_cli_lightフォルダ（182MB）※ひまわりインストール済み確認後
+  - .claude.json.backup
+  - .claude/backups/内の自動バックアップ5ファイル
+  - C:\Users\rinrin\内の3月分請求書HTML × 3（GitHubに保存済み）
+  - C:\Users\rinrin\内の3月分領収書HTML × 3（GitHubに保存済み）
+- 合計約784MBの節約。
+- C:\Users\rinrin\内のHTMLはbashから権限エラーで削除できず、エクスプローラーから手動削除してもらった。
+- SE260301*.csv / SV260301.csv（Downloadsフォルダ）は3月分介護報酬請求データのため保持。
 
 ## 決定事項
-- MCP GitHub認証問題：解決済み（curlによるコールバック送信方式）
-- シフト種別（全8種）確定・mainに反映済み：朝出し・昼出し・中番・遅番①②・夜朝①②・遅夜
-- SessionStartフックは現行構成で確定
+- MCP GitHub認証：解決済み（curlコールバック方式）
+- シフト種別（全8種）確定・main反映済み：朝出し・昼出し・中番・遅番①②・夜朝①②・遅夜
 - 削除禁止ブランチ：claude/add-external-config-3FBYQ・claude/cleanup-and-optimize-nmp01
 - claude/japanese-greeting-* は自動生成ブランチのためチェック対象外
+- himawari_net_cli_lightフォルダ：ひまわりインストール済みのため削除済み
+- C:\Users\rinrin\内のHTMLファイルはbashから削除できない（権限エラー）→エクスプローラーから手動削除が必要
 
 ## 次回への引き継ぎ
 - MCPは新規セッションで自動接続されるようになった（リフレッシュトークン保存済み）
 - 万が一MCP切断時の再認証手順：authenticate URL → ブラウザで認証 → ERR_CONNECTIONのURLをコピー → ここに貼る
 - 献立は別セッションで作成中（4月14日〜20日、4名分、ひじき340g余り）
 - Next.jsアプリのソースコードは未作成（将来の課題）
+- Downloadsに SE260301*.csv / SV260301.csv が残っている（3月分請求データ、必要に応じて削除）
+- 凪チェック：claude/local-setup-guide-O0M0q ブランチが未マージで残存（削除可否は凜判断待ち）
