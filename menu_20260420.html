@@ -40,16 +40,13 @@
       text-align: center;
       font-size: 12px;
     }
-    tr:nth-child(even) td {
-      background: #f5faf6;
-    }
     .day-label {
       font-weight: bold;
       text-align: center;
       white-space: nowrap;
     }
-    .gohan { background: #fff8e1 !important; }
-    .pan { background: #e8f4fd !important; }
+    .gohan td { background: #fff8e1; }
+    .pan td { background: #e8f4fd; }
     .badge {
       display: inline-block;
       font-size: 10px;
@@ -60,10 +57,23 @@
     }
     .badge-gohan { background: #f9a825; color: #fff; }
     .badge-pan { background: #1e88e5; color: #fff; }
+    .egg-badge {
+      display: inline-block;
+      font-size: 10px;
+      padding: 1px 4px;
+      border-radius: 3px;
+      background: #e53935;
+      color: #fff;
+      margin-left: 4px;
+    }
     .note {
       font-size: 11px;
       color: #c0392b;
       margin-top: 3px;
+    }
+    .sub-note {
+      font-size: 10px;
+      color: #888;
     }
     .section-title {
       font-size: 14px;
@@ -72,14 +82,9 @@
       padding-left: 8px;
       margin: 16px 0 8px;
     }
-    .carry {
-      font-size: 12px;
-      color: #555;
-    }
     @media print {
-      body { padding: 10px; font-size: 12px; }
-      h1 { font-size: 16px; }
-      button { display: none; }
+      body { padding: 10px; font-size: 11px; }
+      h1 { font-size: 15px; }
     }
   </style>
 </head>
@@ -91,83 +96,91 @@
   <table>
     <thead>
       <tr>
-        <th style="width:90px">日付</th>
-        <th style="width:130px">主食</th>
-        <th style="width:90px">汁物</th>
+        <th style="width:85px">日付</th>
+        <th style="width:110px">主食</th>
+        <th style="width:75px">汁物</th>
         <th>おかず①</th>
         <th>おかず②</th>
-        <th style="width:180px">齋藤様 個別対応</th>
+        <th>おかず③</th>
+        <th style="width:175px">齋藤様 個別対応</th>
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <td class="day-label gohan">4/20（月）<span class="badge badge-gohan">ご飯</span></td>
-        <td class="gohan">白飯</td>
-        <td class="gohan">味噌汁</td>
-        <td class="gohan">目玉焼き</td>
-        <td class="gohan">ひじき</td>
-        <td class="gohan" style="color:#555;font-size:11px">全員同じ</td>
+      <tr class="gohan">
+        <td class="day-label">4/20（月）<span class="badge badge-gohan">ご飯</span></td>
+        <td>白飯</td>
+        <td>味噌汁</td>
+        <td>目玉焼き<span class="egg-badge">卵</span></td>
+        <td>ひじき</td>
+        <td>納豆</td>
+        <td style="color:#555;font-size:11px">全員同じ</td>
       </tr>
-      <tr>
-        <td class="day-label pan">4/21（火）<span class="badge badge-pan">パン</span></td>
-        <td class="pan">食パン</td>
-        <td class="pan">スープ</td>
-        <td class="pan">ハム<br><span style="font-size:10px;color:#888">※余り使用</span></td>
-        <td class="pan">ポテトサラダ</td>
-        <td class="pan">
+      <tr class="pan">
+        <td class="day-label">4/21（火）<span class="badge badge-pan">パン</span></td>
+        <td>食パン</td>
+        <td>スープ</td>
+        <td>ハム<span class="sub-note"><br>※余り使用</span></td>
+        <td>ポテトサラダ</td>
+        <td>目玉焼き<span class="egg-badge">卵</span></td>
+        <td>
           <div class="note">白飯 ＋ 味噌汁に変更</div>
-          <div style="font-size:11px;color:#555">おかずは同じ</div>
+          <div class="sub-note">おかずは同じ</div>
         </td>
       </tr>
-      <tr>
-        <td class="day-label gohan">4/22（水）<span class="badge badge-gohan">ご飯</span></td>
-        <td class="gohan">白飯</td>
-        <td class="gohan">味噌汁</td>
-        <td class="gohan">卵焼き</td>
-        <td class="gohan">納豆</td>
-        <td class="gohan">
+      <tr class="gohan">
+        <td class="day-label">4/22（水）<span class="badge badge-gohan">ご飯</span></td>
+        <td>白飯</td>
+        <td>味噌汁</td>
+        <td>卵焼き<span class="egg-badge">卵</span></td>
+        <td>納豆</td>
+        <td>ベーコン</td>
+        <td>
           <div class="note">おかず①：目玉焼きに変更</div>
         </td>
       </tr>
-      <tr>
-        <td class="day-label pan">4/23（木）<span class="badge badge-pan">パン</span></td>
-        <td class="pan">食パン</td>
-        <td class="pan">スープ</td>
-        <td class="pan">ウインナー<br><span style="font-size:10px;color:#888">※余り使い切り</span></td>
-        <td class="pan">ゴボウサラダ</td>
-        <td class="pan">
+      <tr class="pan">
+        <td class="day-label">4/23（木）<span class="badge badge-pan">パン</span></td>
+        <td>食パン</td>
+        <td>スープ</td>
+        <td>ウインナー<span class="sub-note"><br>※余り使い切り</span></td>
+        <td>ゴボウサラダ</td>
+        <td>ゆで卵<span class="egg-badge">卵</span></td>
+        <td>
           <div class="note">白飯 ＋ 味噌汁に変更</div>
-          <div style="font-size:11px;color:#555">おかずは同じ</div>
+          <div class="sub-note">おかずは同じ</div>
         </td>
       </tr>
-      <tr>
-        <td class="day-label gohan">4/24（金）<span class="badge badge-gohan">ご飯</span></td>
-        <td class="gohan">白飯</td>
-        <td class="gohan">味噌汁</td>
-        <td class="gohan">スクランブルエッグ</td>
-        <td class="gohan">ひじき</td>
-        <td class="gohan">
+      <tr class="gohan">
+        <td class="day-label">4/24（金）<span class="badge badge-gohan">ご飯</span></td>
+        <td>白飯</td>
+        <td>味噌汁</td>
+        <td>スクランブルエッグ<span class="egg-badge">卵</span></td>
+        <td>ひじき</td>
+        <td>納豆</td>
+        <td>
           <div class="note">おかず①：目玉焼きに変更</div>
         </td>
       </tr>
-      <tr>
-        <td class="day-label pan">4/25（土）<span class="badge badge-pan">パン</span></td>
-        <td class="pan">食パン</td>
-        <td class="pan">スープ</td>
-        <td class="pan">ベーコン</td>
-        <td class="pan">ポテトサラダ</td>
-        <td class="pan">
+      <tr class="pan">
+        <td class="day-label">4/25（土）<span class="badge badge-pan">パン</span></td>
+        <td>食パン</td>
+        <td>スープ</td>
+        <td>ベーコン</td>
+        <td>ポテトサラダ</td>
+        <td>ゆで卵<span class="egg-badge">卵</span></td>
+        <td>
           <div class="note">白飯 ＋ 味噌汁に変更</div>
-          <div style="font-size:11px;color:#555">おかずは同じ</div>
+          <div class="sub-note">おかずは同じ</div>
         </td>
       </tr>
-      <tr>
-        <td class="day-label gohan">4/26（日）<span class="badge badge-gohan">ご飯</span></td>
-        <td class="gohan">白飯</td>
-        <td class="gohan">味噌汁</td>
-        <td class="gohan">ゆで卵</td>
-        <td class="gohan">納豆</td>
-        <td class="gohan" style="color:#555;font-size:11px">全員同じ</td>
+      <tr class="gohan">
+        <td class="day-label">4/26（日）<span class="badge badge-gohan">ご飯</span></td>
+        <td>白飯</td>
+        <td>味噌汁</td>
+        <td>ゆで卵<span class="egg-badge">卵</span></td>
+        <td>納豆</td>
+        <td>ハム</td>
+        <td style="color:#555;font-size:11px">全員同じ</td>
       </tr>
     </tbody>
   </table>
@@ -182,17 +195,17 @@
       </tr>
     </thead>
     <tbody>
-      <tr><td>ハム</td><td>4枚</td><td>余り4枚と合わせて4名分（8枚）　火21使用</td></tr>
-      <tr><td>ウインナー</td><td>2本</td><td>余り10本と合わせて4名分（12本）　木23使用（24日期限）</td></tr>
-      <tr><td>卵</td><td>約22個（2パック）</td><td>目玉焼き4個・卵焼き6個＋齋藤様1個・スクランブルエッグ6個＋齋藤様1個・ゆで卵4個</td></tr>
+      <tr><td>卵</td><td>約34個（約3パック）</td><td>目玉焼き12個・卵焼き6個＋齋藤様1個・スクランブルエッグ6個＋齋藤様1個・ゆで厇12個</td></tr>
+      <tr><td>ハム</td><td>12枚</td><td>火21用：余り4枚＋購入4枚（8枚）　日26用：8枚（2枚×4名）</td></tr>
+      <tr><td>ウインナー</td><td>2本</td><td>余り10本＋購入2本（12本）　木23使用（24日期限）</td></tr>
+      <tr><td>ベーコン</td><td>16枚</td><td>水22：2枚×4名　土25：2枚×4名</td></tr>
       <tr><td>食パン</td><td>9枚（約1本）</td><td>パン食3日×3名分（齋藤様は白飯のためカウント外）</td></tr>
       <tr><td>味噌汁</td><td>19個</td><td>ご飯食4日×4名＝16個　＋　齋藤様パン食3日＝3個</td></tr>
       <tr><td>スープ</td><td>9個</td><td>パン食3日×3名（齋藤様除く）</td></tr>
-      <tr><td>納豆</td><td>8個</td><td>水22・日26　各4名分</td></tr>
-      <tr><td>ベーコン</td><td>8枚</td><td>土25：2枚×4名</td></tr>
-      <tr><td>ポテトサラダ</td><td>1袋（1kg）</td><td>火21・土25の2回使用　400g×2=800g消費　残200g来週持越し</td></tr>
-      <tr><td>ひじき</td><td>1袋（1kg）</td><td>月20・金24の2回使用　400g×2=800g消費　残200g来週持越し</td></tr>
-      <tr><td>ゴボウサラダ</td><td>1袋（1kg）</td><td>木23の1回使用　400g消費　残600g来週持越し（来週優先使用）</td></tr>
+      <tr><td>納豆</td><td>12個</td><td>月20・水22・金24・日26　各4名分（3日分）　＋日26の4名分</td></tr>
+      <tr><td>ポテトサラダ</td><td>1袋（1kg）</td><td>火21・土25の2回使用　800g消費　残200g来週持越し</td></tr>
+      <tr><td>ひじき</td><td>1袋（1kg）</td><td>月20・金24の2回使用　800g消費　残200g来週持越し</td></tr>
+      <tr><td>ゴボウサラダ</td><td>1袋（1kg）</td><td>木23の1回使用　400g消費　残600g来週持越し（来週優先）</td></tr>
       <tr><td>お米</td><td>約3kg</td><td>4名×4日＋齋藤様パン食3日分の白飯</td></tr>
     </tbody>
   </table>
@@ -214,7 +227,7 @@
   </table>
 
   <div style="margin-top:16px;font-size:11px;color:#888;text-align:right">
-    作成：グループホームＡｏ　杏
+    作成：グループホームＡｏ　杏（卵マークは卵料理必須日）
   </div>
 
 </body>
