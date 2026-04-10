@@ -3,232 +3,108 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>週間献立表 2026年4月20日〜26日 | グループホームAo</title>
+  <title>週間献立表 2026年4月20日～26日</title>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
       font-family: 'Hiragino Kaku Gothic ProN', 'Meiryo', sans-serif;
       font-size: 13px;
-      color: #222;
+      color: #000;
       background: #fff;
       padding: 20px;
+      max-width: 720px;
+      margin: 0 auto;
     }
-    h1 {
+    .page-title {
       text-align: center;
-      font-size: 18px;
-      margin-bottom: 4px;
-    }
-    .subtitle {
-      text-align: center;
-      font-size: 13px;
-      color: #555;
-      margin-bottom: 16px;
-    }
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-bottom: 20px;
-    }
-    th, td {
-      border: 1px solid #aaa;
-      padding: 6px 8px;
-      vertical-align: top;
-    }
-    th {
-      background: #4a7c59;
-      color: #fff;
-      text-align: center;
-      font-size: 12px;
-    }
-    .day-label {
-      font-weight: bold;
-      text-align: center;
-      white-space: nowrap;
-    }
-    .gohan td { background: #fff8e1; }
-    .pan td { background: #e8f4fd; }
-    .badge {
-      display: inline-block;
-      font-size: 10px;
-      padding: 1px 5px;
-      border-radius: 3px;
-      margin-left: 4px;
-      font-weight: bold;
-    }
-    .badge-gohan { background: #f9a825; color: #fff; }
-    .badge-pan { background: #1e88e5; color: #fff; }
-    .egg-badge {
-      display: inline-block;
-      font-size: 10px;
-      padding: 1px 4px;
-      border-radius: 3px;
-      background: #e53935;
-      color: #fff;
-      margin-left: 4px;
-    }
-    .note {
-      font-size: 11px;
-      color: #c0392b;
-      margin-top: 3px;
-    }
-    .sub-note {
-      font-size: 10px;
-      color: #888;
-    }
-    .section-title {
       font-size: 14px;
+      margin-bottom: 18px;
+      line-height: 1.6;
+    }
+    .day-block {
+      border: 1.5px solid #000;
+      margin-bottom: 14px;
+      padding: 14px 18px 50px 18px;
+    }
+    .date {
+      font-size: 19px;
       font-weight: bold;
-      border-left: 4px solid #4a7c59;
-      padding-left: 8px;
-      margin: 16px 0 8px;
+      margin-bottom: 10px;
+    }
+    .meal-label {
+      font-weight: bold;
+      font-size: 13px;
+      margin-bottom: 8px;
+    }
+    .menu {
+      font-weight: bold;
+      font-size: 14px;
+      margin-bottom: 12px;
+      line-height: 1.7;
+    }
+    .shokuzai {
+      font-size: 11.5px;
+      color: #222;
+      line-height: 1.7;
     }
     @media print {
-      body { padding: 10px; font-size: 11px; }
-      h1 { font-size: 15px; }
+      body { padding: 10px; max-width: 100%; }
+      .day-block { page-break-inside: avoid; margin-bottom: 10px; }
     }
   </style>
 </head>
 <body>
 
-  <h1>週間献立表</h1>
-  <div class="subtitle">グループホームＡｏ　2026年4月20日（月）〜4月26日（日）　4名分</div>
+<div class="page-title">グループホームＡｏ　週間朝食献立表　2026年4月20日（月）～4月26日（日）　4名分</div>
 
-  <table>
-    <thead>
-      <tr>
-        <th style="width:85px">日付</th>
-        <th style="width:110px">主食</th>
-        <th style="width:75px">汁物</th>
-        <th>おかず①</th>
-        <th>おかず②</th>
-        <th>おかず③</th>
-        <th style="width:175px">齋藤様 個別対応</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr class="gohan">
-        <td class="day-label">4/20（月）<span class="badge badge-gohan">ご飯</span></td>
-        <td>白飯</td>
-        <td>味噌汁</td>
-        <td>目玉焼き<span class="egg-badge">卵</span></td>
-        <td>ひじき</td>
-        <td>納豆</td>
-        <td style="color:#555;font-size:11px">全員同じ</td>
-      </tr>
-      <tr class="pan">
-        <td class="day-label">4/21（火）<span class="badge badge-pan">パン</span></td>
-        <td>食パン</td>
-        <td>スープ</td>
-        <td>ハム<span class="sub-note"><br>※余り使用</span></td>
-        <td>ポテトサラダ</td>
-        <td>目玉焼き<span class="egg-badge">卵</span></td>
-        <td>
-          <div class="note">白飯 ＋ 味噌汁に変更</div>
-          <div class="sub-note">おかずは同じ</div>
-        </td>
-      </tr>
-      <tr class="gohan">
-        <td class="day-label">4/22（水）<span class="badge badge-gohan">ご飯</span></td>
-        <td>白飯</td>
-        <td>味噌汁</td>
-        <td>卵焼き<span class="egg-badge">卵</span></td>
-        <td>納豆</td>
-        <td>ベーコン</td>
-        <td>
-          <div class="note">おかず①：目玉焼きに変更</div>
-        </td>
-      </tr>
-      <tr class="pan">
-        <td class="day-label">4/23（木）<span class="badge badge-pan">パン</span></td>
-        <td>食パン</td>
-        <td>スープ</td>
-        <td>ウインナー<span class="sub-note"><br>※余り使い切り</span></td>
-        <td>ゴボウサラダ</td>
-        <td>ゆで卵<span class="egg-badge">卵</span></td>
-        <td>
-          <div class="note">白飯 ＋ 味噌汁に変更</div>
-          <div class="sub-note">おかずは同じ</div>
-        </td>
-      </tr>
-      <tr class="gohan">
-        <td class="day-label">4/24（金）<span class="badge badge-gohan">ご飯</span></td>
-        <td>白飯</td>
-        <td>味噌汁</td>
-        <td>スクランブルエッグ<span class="egg-badge">卵</span></td>
-        <td>ひじき</td>
-        <td>納豆</td>
-        <td>
-          <div class="note">おかず①：目玉焼きに変更</div>
-        </td>
-      </tr>
-      <tr class="pan">
-        <td class="day-label">4/25（土）<span class="badge badge-pan">パン</span></td>
-        <td>食パン</td>
-        <td>スープ</td>
-        <td>ベーコン</td>
-        <td>ポテトサラダ</td>
-        <td>ゆで卵<span class="egg-badge">卵</span></td>
-        <td>
-          <div class="note">白飯 ＋ 味噌汁に変更</div>
-          <div class="sub-note">おかずは同じ</div>
-        </td>
-      </tr>
-      <tr class="gohan">
-        <td class="day-label">4/26（日）<span class="badge badge-gohan">ご飯</span></td>
-        <td>白飯</td>
-        <td>味噌汁</td>
-        <td>ゆで卵<span class="egg-badge">卵</span></td>
-        <td>納豆</td>
-        <td>ハム</td>
-        <td style="color:#555;font-size:11px">全員同じ</td>
-      </tr>
-    </tbody>
-  </table>
+<div class="day-block">
+  <div class="date">2026年4月20日　（月）</div>
+  <div class="meal-label">》朝食「</div>
+  <div class="menu">ご飯、みそ汁、目玉焼き、ひじき、納豆</div>
+  <div class="shokuzai">食材：みそ汁4、目玉焼き（卵 4）、ひじき 200g（1名 50g）、納豆4個</div>
+</div>
 
-  <div class="section-title">購入リスト</div>
-  <table>
-    <thead>
-      <tr>
-        <th style="width:150px">食材</th>
-        <th style="width:100px">数量</th>
-        <th>備考</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr><td>卵</td><td>約34個（約3パック）</td><td>目玉焼き12個・卵焼き6個＋齋藤様1個・スクランブルエッグ6個＋齋藤様1個・ゆで厇12個</td></tr>
-      <tr><td>ハム</td><td>12枚</td><td>火21用：余り4枚＋購入4枚（8枚）　日26用：8枚（2枚×4名）</td></tr>
-      <tr><td>ウインナー</td><td>2本</td><td>余り10本＋購入2本（12本）　木23使用（24日期限）</td></tr>
-      <tr><td>ベーコン</td><td>16枚</td><td>水22：2枚×4名　土25：2枚×4名</td></tr>
-      <tr><td>食パン</td><td>9枚（約1本）</td><td>パン食3日×3名分（齋藤様は白飯のためカウント外）</td></tr>
-      <tr><td>味噌汁</td><td>19個</td><td>ご飯食4日×4名＝16個　＋　齋藤様パン食3日＝3個</td></tr>
-      <tr><td>スープ</td><td>9個</td><td>パン食3日×3名（齋藤様除く）</td></tr>
-      <tr><td>納豆</td><td>12個</td><td>月20・水22・金24・日26　各4名分（3日分）　＋日26の4名分</td></tr>
-      <tr><td>ポテトサラダ</td><td>1袋（1kg）</td><td>火21・土25の2回使用　800g消費　残200g来週持越し</td></tr>
-      <tr><td>ひじき</td><td>1袋（1kg）</td><td>月20・金24の2回使用　800g消費　残200g来週持越し</td></tr>
-      <tr><td>ゴボウサラダ</td><td>1袋（1kg）</td><td>木23の1回使用　400g消費　残600g来週持越し（来週優先）</td></tr>
-      <tr><td>お米</td><td>約3kg</td><td>4名×4日＋齋藤様パン食3日分の白飯</td></tr>
-    </tbody>
-  </table>
+<div class="day-block">
+  <div class="date">2026年4月21日　（火）</div>
+  <div class="meal-label">》朝食「</div>
+  <div class="menu">食パン（齋藤白米）、スープ、目玉焼き、ハム、ポテトサラダ</div>
+  <div class="shokuzai">食材：パン3、スープ3（鬼・菅・4）、みそ汁1（齋藤）、目玉焼き（卵 4）、ハム 8枚（1名 2枚）※余り使用、ポテトサラダ 200g（1名 50g）</div>
+</div>
 
-  <div class="section-title">来週の持ち越し食材</div>
-  <table>
-    <thead>
-      <tr>
-        <th style="width:150px">食材</th>
-        <th style="width:100px">残量</th>
-        <th>来週の優先度</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr><td>ポテトサラダ</td><td>200g</td><td>来週中に使い切る（2週間ルール）</td></tr>
-      <tr><td>ひじき</td><td>200g</td><td>来週中に使い切る（2週間ルール）</td></tr>
-      <tr><td>ゴボウサラダ</td><td>600g</td><td>★優先使用（来週2回使用で使い切り）</td></tr>
-    </tbody>
-  </table>
+<div class="day-block">
+  <div class="date">2026年4月22日　（水）</div>
+  <div class="meal-label">》朝食「</div>
+  <div class="menu">ご飯、みそ汁、卵焼き（鬼・菅・4）、目玉焼（齋）、納豆、ベーコン</div>
+  <div class="shokuzai">食材：みそ汁4、卵焼き（卵 3）、目玉焼（卵 1）、納豆4個、ベーコン 8枚（1名 2枚）</div>
+</div>
 
-  <div style="margin-top:16px;font-size:11px;color:#888;text-align:right">
-    作成：グループホームＡｏ　杏（卵マークは卵料理必須日）
-  </div>
+<div class="day-block">
+  <div class="date">2026年4月23日　（木）</div>
+  <div class="meal-label">》朝食「</div>
+  <div class="menu">食パン（齋藤白米）、スープ、ウインナー、ゴボウサラダ、ゆで卵</div>
+  <div class="shokuzai">食材：パン3、スープ3（鬼・菅・4）、みそ汁1（齋藤）、ウインナー 8本（1名 2本）※余り使用（24日期限）、ゴボウサラダ 200g（1名 50g）、ゆで卵（卵 4）</div>
+</div>
+
+<div class="day-block">
+  <div class="date">2026年4月24日　（金）</div>
+  <div class="meal-label">》朝食「</div>
+  <div class="menu">ご飯、みそ汁、スクランブルエッグ（鬼・菅・4）、目玉焼（齋）、ひじき、納豆</div>
+  <div class="shokuzai">食材：みそ汁4、スクランブルエッグ（卵 3）、目玉焼（卵 1）、ひじき 200g（1名 50g）、納豆4個</div>
+</div>
+
+<div class="day-block">
+  <div class="date">2026年4月25日　（土）</div>
+  <div class="meal-label">》朝食「</div>
+  <div class="menu">食パン（齋藤白米）、スープ、ベーコン、ポテトサラダ、ゆで卵</div>
+  <div class="shokuzai">食材：パン3、スープ3（鬼・菅・4）、みそ汁1（齋藤）、ベーコン 8枚（1名 2枚）、ポテトサラダ 200g（1名 50g）、ゆで卵（卵 4）</div>
+</div>
+
+<div class="day-block">
+  <div class="date">2026年4月26日　（日）</div>
+  <div class="meal-label">》朝食「</div>
+  <div class="menu">ご飯、みそ汁、ゆで卵、納豆、ハム</div>
+  <div class="shokuzai">食材：みそ汁4、ゆで卵（卵 4）、納豆4個、ハム 8枚（1名 2枚）</div>
+</div>
 
 </body>
 </html>
