@@ -78,13 +78,13 @@
 ## エージェント一覧
 | 名前 | 役割 | スキル・ツール |
 |------|------|---------------|
-| 黒流 | CEOエージェント。経営相談・提案のヒアリング・判断 | 全スキル利用可 |
+| 黒流 | CEOエージェント。経営相談・提案のヒアリング・判断 | 全スキル利用可（gstack・doc-coauthoring・internal-comms＋全エージェントスキル統合） |
 | 司 | シフト作成。毎月のシフト表を作成する | xlsx |
-| 律 | 品質確認。全エージェントの成果物を黒流に渡す前に確認する | — |
+| 律 | 品質確認。全エージェントの成果物を黒流に渡す前に確認する | pdf・xlsx・docx・pptx・playwright |
 | 紡 | 印刷用URL作成。完成したシフト表をHTMLにしてGitHub経由で印刷用URLを提供する | html2pdf |
 | 杏 | 献立作成。グループホーム朝食の週間献立を作成する | xlsx |
 | 月詠 | 請求書作成。グループホーム利用者の月次利用料請求書を作成する | invoice-mcp・xlsx・pdf |
-| 凪 | 作業環境全体（リポジトリ・GitHub・PC・Obsidian）の整理・最適化・不具合修正 | — |
+| 凪 | 作業環境全体（リポジトリ・GitHub・PC・Obsidian）の整理・最適化・不具合修正 | git-workflow・audit-website・insecure-defaults・ln-012/013/014・simplify |
 | 葵 | 利用者様用書類作成（レク・イベント告知・ルール・時間割等） | docx・pptx・pdf |
 ```
 
@@ -108,8 +108,9 @@
 | 月詠（請求書） | `invoice-mcp` MCP、`anthropic-skills:xlsx`、`anthropic-skills:pdf` | PDF請求書生成、請求データのExcel管理 |
 | 杏（献立作成） | `anthropic-skills:xlsx` | 献立表・買い物リストをExcel形式でも出力可能に |
 | 葵（書類作成） | `anthropic-skills:docx`、`anthropic-skills:pptx`、`anthropic-skills:pdf` | Word・PowerPoint・PDFでの書類作成 |
-| 凪（リポジトリ） | — | 既存ツールで対応 |
-| 黒流（CEO） | 全スキル利用可 | 全エージェントの監督・確認に必要なスキルを随時使用 |
+| 律（品質確認） | `anthropic-skills:pdf`、`anthropic-skills:xlsx`、`anthropic-skills:docx`、`anthropic-skills:pptx`、`playwright` MCP | 全成果物の内容・計算・レイアウト・表示確認 |
+| 凪（リポジトリ） | `git-workflow`・`audit-website`・`insecure-defaults`・`ln-012-mcp-configurator`・`ln-013-config-syncer`・`ln-014-agent-instructions-manager`・`simplify` | ブランチ管理・HTML監査・設定ファイル安全確認・MCP設定・CLAUDE.md監査・コード品質確認 |
+| 黒流（CEO） | **【CEO専用】** `gstack`（plan-ceo-review・autoplan・review・office-hours・cso・retro）、`anthropic-skills:doc-coauthoring`、`anthropic-skills:internal-comms` **【全エージェント統合】** `anthropic-skills:pdf`・`xlsx`・`docx`・`pptx`（律と共通）、`anthropic-skills:xlsx`（司・杏・月詠と共通）、`git-workflow`・`audit-website`・`insecure-defaults`・`ln-012/013/014`・`simplify`（凪と共通）、`invoice-mcp` MCP・`html2pdf` MCP（月詠・紡と共通）、`playwright` MCP（全体共通） | 全エージェントの最終承認・経営判断・CEO視点での多層品質確認 |
 
 ### MCPサーバー一覧（.mcp.json）
 
