@@ -2,37 +2,40 @@
 
 ## 会話の要約
 
-### 「よろ～」でセッション開始
-- 凪の自動チェック実施
-- `invoice_202603_*.html` と `receipt_202603_*.html` が同月（3月）で共存していることを再確認（前回からの未対処案件）
-- 4月シフト（shift_202604.html）はリポジトリ未存在（未作成）
-- `menu_20260420.html` / `shopping_20260420.html` は作成済み（4/20週分）
+### Obsidian修正（最優先タスク完了）
+- `workspace.json` から `bases` タブ（無題のファイル 1.base）を除去してフリーズを解消
+- `lastOpenFiles` からも `.base` ファイルを除去
+- Obsidian正常起動を確認
 
-### Obsidian不具合調査（凪）
-- 「昨日（4/13）の更新でObsidianが止まっている」と凜から相談
-- `.obsidian` フォルダを調査した結果、以下の問題を特定：
-  1. **workspace.json に Bases タブが開いた状態で保存されている**
-     - `"type": "bases"` で `無題のファイル 1.base` を開いたまま保存
-     - アップデート後に起動すると Bases タブの復元でフリーズする
-  2. **app.json・appearance.json が空（`{}`）**
-     - アップデート時に設定がリセット・上書きされた形跡
-  3. **2026-04-13.md（昨日のデイリーノート）が空**
-     - 止まったタイミングと一致
-- 対処法として「`workspace.json` を削除してから再起動」を提案
-- 凜から「完全に接続し動作実行確認ののち実装してください」と指示
-- 実装を開始しようとしたところ **MCPサーバーが全断**（filesystem・github・playwright・html2pdf すべて切断）
-- 凜がClaude Codeを再起動してMCPが復旧
-- 「おつ～」で終了 → workspace.json の修正は**未実施のまま次回へ持ち越し**
+### Activity Logger・Dataview・Templaterプラグイン設定
+- Activity Loggerは既にインストール済みだったが、自動タイムスタンプ非対応（v0.1.0）と判明
+- Dataviewプラグインをfilesystem MCPで直接インストール（v0.5.70）
+- Templaterプラグインも導入済みを確認
+- デイリーノートにDataviewクエリ（今日の活動ログ自動表示）を追加
+- `Templates/デイリーテンプレート.md` を作成し、今後のデイリーノートに自動適用
+- `daily-notes.json` を作成してテンプレートを設定
+- Obsidianで「今日の活動ログ」（ファイル名＋更新時刻）が自動表示されることを確認
+
+### 重複ファイル・フォルダの整理（凪）
+- PC直下の `menu_20260420.html`・`shopping_20260420.html` を削除（GitHubに同じものあり）
+- PC直下の `templates/` フォルダを削除（GitHubに同じものあり）
+- `Obsidian Vault/` の全ノートを `凜保管/業務管理/` に移行
+  - 01_ダッシュボード / 02_請求書・領収書 / 03_献立・買い物 / 04_テンプレート / 05_システム設定
+- `Obsidian Vault/`・`rin/`・`Personal Vault.lnk` を削除
+- `.mcp.json` の filesystem パスを `Obsidian Vault` → `凜保管` に変更
+- 次回セッション開始時に Claude Code の再起動が必要（MCPの変更を反映するため）
+
+### フィードバック（記憶済み）
+- Obsidianのファイル操作は今後こちらが直接行う（UI案内不要）
 
 ## 決定事項
-- Obsidianの修正方法は特定済み：`C:\Users\rinrin\凜保管\.obsidian\workspace.json` を削除
-- 次回セッション開始時に即座に修正・動作確認を実施する
-- `invoice_202603_*.html` と `receipt_202603_*.html` の共存問題は引き続き未対処（凜への確認待ち）
+- Obsidianの保管庫は `凜保管` に一本化
+- filesystem MCPは `凜保管` を参照するよう変更済み
+- デイリーノートには `Templates/デイリーテンプレート.md` が自動適用される
+- `invoice_202603_*.html`（請求書）と `receipt_202603_*.html`（領収書）の共存問題は引き続き未確認（凜への確認待ち）
 
 ## 次回への引き継ぎ
-- **最優先タスク：Obsidian修正**
-  1. `C:\Users\rinrin\凜保管\.obsidian\workspace.json` を削除
-  2. Obsidianを起動して正常に動くか確認
-  3. 動作確認後に報告
+- **最初にClaude Codeを再起動**（.mcp.jsonの変更をfilesystem MCPに反映するため）
 - **確認待ち案件**：`invoice_202603_*.html`（請求書）と `receipt_202603_*.html`（領収書）が3名分ずつ共存 → 両方必要か、どちらか削除するか凜に確認
 - 4月シフトはまだ作成されていない（必要な場合は司に依頼）
+- 無題のファイル（.base × 2、.canvas × 3）がObsidian内に残っている → 削除確認が未完了
