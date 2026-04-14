@@ -1,38 +1,35 @@
 # セッション記録
 
 ## 会話の要約
+- 「よろ～」でセッション開始。前回記憶を復元（ローカルのmemory/session.mdから）。
+- 凪の自動チェックを実行。GitHub MCPが未設定・settings.jsonのobsidianパスが`C:\Users\ghaok\...`の問題を確認。
+- `gh` コマンドが使えない問題の原因究明・解決を実施。
 
-### 前回セッションの設定が完璧に反映されているか確認
-- 新規セッションを立ち上げ「よろ～」で記憶を取り戻した
-- CLAUDE.md のローカルには前回の変更が反映済みだったが、GitHub main には未反映だった
-- 原因：前回セッションが途中で止まり「おつ～」によるmain反映が実行できなかった
+### gh CLI インストール・認証
+- **原因**：`gh`（GitHub CLI）がPCに未インストールだった
+- **対応**：
+  - winget で `gh` v2.89.0 をインストール
+  - `~/.bashrc` にPATH追記（`/c/Program Files/GitHub CLI`）
+  - playwrightのデバイスフローで `rin827` として認証完了
+- **結果**：`gh auth status` で `rin827` ログイン確認済み
 
-### CLAUDE.md を GitHub main に反映（完了）
-- ローカル `C:\Users\rinrin\CLAUDE.md`（最新）をリポジトリ `C:\Users\rinrin\rinrin.business\CLAUDE.md` にコピー
-- フィーチャーブランチ `update-claude-md-v2` を作成して push
-- GitHub API で PR #28 を作成 → merge
-- main に以下の変更が完全に反映済み：
-  - 律：シフト専任 → 全エージェント品質確認エージェントに拡張
-  - 律の確認ルール：全エージェント中で最も厳格・3回確認
-  - 黒流：他エージェントからの報告受領ルールを律よりもさらに厳格に（3回確認）
-  - 黒流：動作確認が必要な作業は完全に動作するまで凜への報告をしないルールを追加
-  - 凪：リポジトリ専任 → GitHub・PC内・Obsidian・全体に拡張
-  - 各エージェントの提出先を「律に報告（律→黒流→凜）」に統一
-
-### MCPツール状況
-- `mcp__github__push_files` が利用不可のため、git コマンド + GitHub API（curl）で代替
-- `gh` CLI は利用不可
-- git credential manager からトークンを取得して GitHub API 呼び出しが可能なことを確認
+### PR作成・マージ
+- ブランチ `update-agent-skills` のPR（#29）を `gh` で作成・マージ完了
+- ブランチ削除済み
 
 ## 決定事項
-- CLAUDE.md の全変更が GitHub main に反映済み（PR #28 マージ完了）
-- GitHub MCP ツールが使えない場合は git + GitHub API（curl）で代替する
-- `mcp__github__push_files` の代替手順：git commit → git push → curl で PR 作成 → curl でマージ
+- `gh` CLI インストール・認証完了（keyringに保存済み）
+- `~/.bashrc` にPATH設定済み
+- PR #29 マージ完了（エージェントスキル設定）
+- Google関連スキルは引き続き保留
+- 献立（4/14〜20、4名分）は凜のタイミングで指示
 
 ## 次回への引き継ぎ
-- **孤立ブランチ削除**：`claude/japanese-greeting-*` 14本・`claude/local-setup-guide-O0M0q`・`update-claude-md`・`update-skills-config` が未処理
-- **献立**：4月21日以降未作成（4月14〜20日分は完成済み）
-- **Obsidian 保管庫切り替え確認**：「Obsidian Vault」を開いているか確認要
-- **MCPサーバー動作確認**：invoice-mcp・html2pdf が正常動作するか確認要
-- **Next.jsアプリ開発**：着手未
-- **`mcp__github__` ツールが使えない場合**：git + GitHub API（curl）で代替可能
+### 次回セッションの作業順（確定）
+1. **未スキル化エージェントのスキル設定**：司・紡・杏・月詠・葵（律・凪・黒流は完了済み）
+2. **settings.jsonのobsidianパス修正**：`C:\Users\ghaok\...` → `C:\Users\rinrin\...`
+
+### その他引き継ぎ
+- `gh` CLI は次回から使用可能（bashrc読み込みでPATH自動設定）
+- 献立（4/14〜20、4名分、ひじき340g余り）は凜の指示待ち
+- インストール済みスキルは `.agents\skills\` に保存済み
