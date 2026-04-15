@@ -2,48 +2,51 @@
 
 ## 会話の要約
 
-### update-aoi-skills ブランチのマージ
-- 前回セッションで未完了だった `update-aoi-skills` ブランチをmainにマージ
-- 内容：葵に `frontend-design`・`canvas-design`・`theme-factory` の3スキルを追加したCLAUDE.md更新
-- PR #33 を作成 → squashマージで完了
-- ブランチは凜の判断で残したまま（削除せず）
+### 献立Excel作成（杏）
+- 4/27〜5/3の朝食献立を3名分作成
+- おかず3品/日（納豆は水曜まで、なめたけは木曜以降）
+- 元ファイル（業務スーパー活用献立案.xlsx）がOneDriveロックのため別名保存
+- 保存先：デスクトップ `献立_買い出し_4月27日-5月3日.xlsx`
+- シート `R8.4.27~5.3`：原本朝食フォーマット準拠（MS明朝・行高25.5・A:Fセル結合・7行/日構成）
+- シート `R8.4.27~5.3 買い出し`：購入品・在庫品・要確認品の3セクション構成
+- 凜から「素晴らしい！！感動した」と好評
 
-### Obsidian Vault セットアップ（凜用に変換・実装）
-- 他人用のプロンプトを凜の環境に合わせて変換・実装
-- 既存の `業務管理/`・`Templates/` フォルダは維持
-- 新規作成フォルダ：`00-inbox/`・`01-daily/`・`02-knowledge/`（各README付き）
-- `HOME.md`（Vaultダッシュボード）を Vault直下に作成
-- MOC 3件作成：`01-daily/MOC-デイリー.md`・`02-knowledge/MOC-知識ベース.md`・`業務管理/MOC-業務管理.md`
-- `.obsidian/daily-notes.json`：デイリーノートの保存先を `01-daily/` に設定
-- `.obsidian/app.json`：`userIgnoreFilters` で `05_システム設定/` と `Templates/` を除外
-- 今日のデイリーノート `01-daily/2026-04-15.md` を作成
+### 献立Excelの運用ルール確定
+- 今後もデスクトップの `業務スーパー活用献立案.xlsx` に週ごとの新シートを追加
+- フォーマットは常に原本朝食シート準拠
+- 買い出しリストも同ファイルの別シートに作成
+- メモリに保存済み（project_kondate_excel.md）
 
-### Claude Code フック・設定実装（竜の設定レポートを凜用に変換）
-- 実装した項目（1〜7）：
-  1. `effortLevel: "max"` → `C:\Users\ghaok\.claude\settings.json` に追加
-  2. `protect-files.sh`（PreToolUse hook）→ CLAUDE.mdへの直接Edit/Write書き込みをブロック。exit 2で動作確認済み
-  3. `reinject-context.sh`（PostCompact hook）→ 圧縮後にプロジェクト情報・エージェントルールを再注入
-  4. `notification.sh`（Notification hook）→ PowerShellバルーン通知「凜、入力を待っています」
-  5. `cleanup-screenshots`（SessionStart）→ session-start.sh に追加。ルート直下の一時画像を削除
-  6. Anti-rationalization Gate（Stop hook・promptタイプ）→ 完了確認・先送りパターン検出（律→黒流フロー・活動ログ記録も確認対象）
-  7. `skipDangerousModePermissionPrompt: true` → `ghaok/.claude/settings.json` に追加
-- フック設定は `C:\Users\rinrin\.claude\settings.json` に記載
-- 次回セッションから有効
+### リマインド設定（月詠）
+- 毎月1日 朝9時：請求書作成リマインド（タスクID: monthly-invoice-reminder）
+- これで3つのリマインドが揃った：
+  - シフト作成：毎月20日 朝9時
+  - 献立・買い出し：毎週火曜 朝9時
+  - 請求書作成：毎月1日 朝9時
 
 ## 決定事項
-- `update-aoi-skills` ブランチはmainにマージ済み（ブランチは残す）
-- Obsidian Vault に `00-inbox/`・`01-daily/`・`02-knowledge/` を追加
-- デイリーノートの保存先を `01-daily/` に統一（今後の新規ノートから適用）
-- Claude Code に7つのフック・設定を追加（次回セッションから有効）
-- protect-files.sh の保護対象は現在 `CLAUDE.md` のみ
+- 献立ExcelはデスクトップのファイルにシートをWeeklyで追加していく
+- 買い出しリストも同Excelに毎週追加
+- 請求書リマインドは毎月1日 朝9時
+- 納豆は毎週水曜まで・なめたけは木曜以降のローテーション
+- 伊藤維様は入居保留のため献立から除外（利用者は鬼島・菅原・齋藤の3名）
 
 ## 次回への引き継ぎ
 
-### 残作業（前回から持ち越し）
-1. **gstack に不要ファイル69個**：`C:\Users\rinrin\.claude\skills\gstack\` に SKILL.md 以外の不要ファイルが69個。削除してクリーンアップ必要
-2. **CLAUDE.md の凪チェック記述が古い**：「`.agents/skills/ と .claude/skills/ の重複検出`」という記述があるが `.agents/skills/` はもう存在しない。実態に合わせて更新必要
-3. **`skills-lock.json` が旧システムのまま**：`/c/Users/rinrin/skills-lock.json` は旧スキルシステムのファイル。整理検討
+### 未完了タスク（前セッションから持ち越し）
+- `feature/shift-auto-calc` ブランチのCLAUDE.md変更をmainにマージ
+  - JS自動計算スニペット追加
+  - シフトHTMLレイアウト仕様追加
+  - 納豆/なめたけルール追加
+  - 伊藤維様除外の注記追加
+- `fix-nagi-check-description` ブランチのCLAUDE.md変更をmainにマージ
+  - 凪チェックの `.agents/skills/` 記載削除
 
-### 今回追加の引き継ぎ
-- `2026-04-14.md`（旧デイリーノート）がVaultルート直下に残っている。必要なら手動で `01-daily/` に移動
-- Claude Code フックは次回セッションから有効になる（今回のセッションには未適用）
+### 献立の次回作成
+- 次週（5/4〜5/10）の献立・買い出しリストを火曜リマインド後に作成
+- 持ち越し食材：ハム2枚・ひじき100g・ポテサラ400g・ゴボウサラダ400g
+- 来週分からなめたけをローテーションに加える
+
+### デスクトップExcelについて
+- 元ファイル `業務スーパー活用献立案.xlsx` が開きっぱなしだった場合の対応：
+  テンポラリにコピー → 加工 → 別名でデスクトップ保存 → 統合は手動
