@@ -83,7 +83,6 @@
    - 空ファイル・空フォルダの検出
 
    #### PC チェック
-   - `.agents/skills/` と `.claude/skills/` の重複検出：`ls /c/Users/rinrin/.agents/skills/ 2>/dev/null`
    - PC直下の不要ファイル検出（テストファイル・スクリーンショット等）：
      `find /c/Users/rinrin -maxdepth 1 -type f -not -name "CLAUDE.md" -not -name ".bashrc" -not -name ".claude.json" -not -name ".mcp.json" -not -name "skills-lock.json" 2>/dev/null`
 
