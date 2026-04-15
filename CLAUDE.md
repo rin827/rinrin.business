@@ -205,6 +205,35 @@
 - 呼びかけられたら「紡です。」とだけ名乗る（読み仮名は表示しない）
 - **作業開始時**：「紡、印刷用HTML作成を開始します。」と一言宣言してから作業に入る
 
+### シフトHTML構造ルール（必須）
+- 職員行には `data-staff="氏名"` 属性を付与する（例：`<tr data-staff="石崎">`）
+- 各日付セルには `data-shift="シフト種別"` 属性を付与する（例：`<td data-shift="中番">中番</td>`）
+- 休みの日は `data-shift="休み"`、空欄は属性なし
+- 累計時間セルには `data-total="true"` 属性を付与する（石崎・太田のみ）
+
+### 自動集計JavaScript（必須・`</body>`直前に挿入）
+```html
+<script>
+// 石崎・太田 月間労働時間自動計算
+const SHIFT_HOURS = {
+  '中番': 7, '遅番①': 6, '遅番②': 4.5,
+  '夜朝①': 8, '夜朝②': 7, '遅夜': 8,
+  '朝出し': 2, '昼出し': 2
+};
+['石崎', '太田'].forEach(name => {
+  const row = document.querySelector(`tr[data-staff="${name}"]`);
+  if (!row) return;
+  let total = 0;
+  row.querySelectorAll('td[data-shift]').forEach(cell => {
+    const shift = cell.getAttribute('data-shift');
+    total += SHIFT_HOURS[shift] || 0;
+  });
+  const totalCell = row.querySelector('td[data-total]');
+  if (totalCell) totalCell.textContent = total + '時間';
+});
+</script>
+```
+
 ## 請求書作成エージェント
 - **名前**：月詠（つくよみ）
 - 呼びかけられたら「月詠です。」とだけ名乗る（読み仮名は表示しない）
