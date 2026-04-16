@@ -2,64 +2,69 @@
 
 ## 会話の要約
 
-### 持ち越しブランチのマージ（凪）
-- `feature/shift-auto-calc`（PR #34）→ mainにマージ済み
-  - シフトHTML構造ルール（data属性）追加
-  - 石崎・太田の月間労働時間自動計算JSスニペット追加
-  - シフト表HTMLレイアウト仕様追加（職員並び順・集計列・下部凡例）
-- `fix-nagi-check-description`（PR #35）→ mainにマージ済み
-  - 凪チェックから `.agents/skills/` 重複検出行を削除
+### Stop hookのループ問題解消（凪）
+- `Stop` フックが私の返答のたびに発火し「Stop hook feedback: No stderr output」がループしていた
+- `settings.json` から Stop フックを削除して解消
+- stop-check.sh の3チェック（未コミット変更・デイリーノート・活動ログ）はおつ～プロトコルに移行
+- `update-otsu-protocol` ブランチ・`update-claude-md-0416` ブランチにCLAUDE.md変更を反映済み
 
-### ゴミ箱の中身を削除
-- Windowsリサイクルビンを空にした
-- `kondate_tmp.xlsx` / `kondate_updated.xlsx` はPC直下に残存（意図的に保留）
+### マージ済みブランチ（凪チェックで検出）
+- `feature/shift-auto-calc`（PR #34）・`fix-nagi-check-description`（PR #35）がマージ済みで残存
+- 削除未対応（次回凪チェック時に対処）
 
-### Google Sheets API 連携設定（黒流・途中）
-- **目的**：献立・シフト・請求書・領収書をGoogleスプレッドシートに直接書き込めるようにする
-- **完了した作業**：
-  - Google Cloud SDK（gcloud）インストール済み（`C:\Users\ghaok\AppData\Local\Google\Cloud SDK`）
-  - GCPプロジェクト `rinrin-business`（ID: rinrin-business）作成済み
-  - サービスアカウント `rinrin-sheets@rinrin-business.iam.gserviceaccount.com` 作成済み
-  - 認証JSONキー → `C:\Users\rinrin\gcp-credentials.json` に保存済み
-  - Google Sheets API・Google Drive API 有効化済み
-  - Pythonパッケージ（google-auth・google-api-python-client）インストール済み
-  - 献立シート（業務スーパー活用献立案）への接続テスト → 成功
-  - 献立スプレッドシートをサービスアカウントと共有済み
-  - シフトフォルダ・請求書フォルダをサービスアカウントと共有済み
-- **未完了・次回やること**：
-  - シフト表と請求書ファイルが **Excelファイル（.xlsx）形式** のため、Google Sheets APIが使えない
-  - → GoogleドライブでExcelファイルを「Googleスプレッドシートとして保存」に変換が必要
-  - 対象ファイル：
-    - シフト表（`17NBYY_NTaF9PGMUAxesvt4B6Ye1A-ZT8` / `1l7V2pLFN4XP25gdc9EjgUClM7olBSIpR`）
-    - 請求書（`1W7WuO5bdHnRDhf0QK06F1Cgncd7ocM9H`）
-  - 変換後、各エージェント（杏・司・月詠）がスプレッドシートに直接書き込む仕組みを実装する
-  - CLAUDE.mdにGoogle Sheets連携のルールを追記する
+### 4/27〜5/3 週間献立作成（杏）
+- 利用者：4/27〜5/1は3名（鬼島・菅原・齋藤）、5/2〜5/3は4名（柿岡大介様が追加）
+- 持ち越し食材（今週用）：ハム8枚・ベーコン4枚
+- 献立：ご飯↔パン交互・卵料理毎日必須・おかず3品
+- GoogleスプレッドシートのID：`1F4TsJ4zGMI1rYltyR9Um1Tq8lHmt7E-9MjKkYhHrehg`
+  - 献立シート「R8.4.27~5.3」に原本朝食書式（1日7行）で書き込み完了
+  - 買い出しシート「R8.4.27~5.3 買い出し」に買い出しリスト原本書式で書き込み完了
+- 出力先をHTMLからGoogleスプレッドシートに正式変更
 
-### スプレッドシート情報（確認済み）
-| シート名 | スプレッドシートID | 状態 |
-|----------|-------------------|------|
-| 業務スーパー活用献立案 | `1F4TsJ4zGMI1rYltyR9Um1Tq8lHmt7E-9MjKkYhHrehg` | Googleスプレッドシート・接続OK |
-| R8 GH シフト表 | `17NBYY_NTaF9PGMUAxesvt4B6Ye1A-ZT8` | Excel形式・変換必要 |
-| GH シフト表 原本 | `1l7V2pLFN4XP25gdc9EjgUClM7olBSIpR` | Excel形式・変換必要 |
-| R8年度 請求書 | `1W7WuO5bdHnRDhf0QK06F1Cgncd7ocM9H` | Excel形式・変換必要 |
+### CLAUDE.md更新内容（update-claude-md-0416ブランチ、mainへのマージはおつ～後）
+- 柿岡 大介様を利用者に追加（固定費はデフォルト値、アレルギーなし・個別対応なし）
+- 献立ルール：おかず3品・卵料理毎日必須に変更
+- 齋藤様ルール：パン食→白飯変更のみ（卵制限を削除）
+- なめたけ（1名50g）をローテ食材・分量テーブル・賞味期限ルール・パン食不可に追加
+- 杏の出力先をGoogleスプレッドシートに変更（スプレッドシートID・認証情報・書式ルール記載）
+- 「原本朝食」書式・「買い出しリスト原本」書式準拠を明記
+- おつ～プロトコルに事前3チェックを追加
+
+### 新規入居者確定
+- **柿岡 大介様**（5/2〜入居、アレルギーなし、個別対応なし）
 
 ## 決定事項
-- Google Sheets APIで直接スプレッドシートに書き込む方向で進める（HTMLの代わり）
-- サービスアカウント：`rinrin-sheets@rinrin-business.iam.gserviceaccount.com`
-- 認証ファイル：`C:\Users\rinrin\gcp-credentials.json`
-- 請求書はフォルダごと共有する（利用者が増えても自動でアクセス可能）
+- Stop hookは削除（ループ問題のため）、おつ～時の手動チェックに移行
+- 献立・買い出しリストはGoogleスプレッドシートに直接書き込む
+- 書式：献立は「原本朝食」シート準拠、買い出しは「買い出しリスト原本」シート準拠
+- 献立ルール：おかず3品・卵料理毎日必須・なめたけOK（パン食日は不可）
+- 齋藤様：パン食→白飯変更のみ・おかずは全員と同じ
+- 柿岡大介様：5/2〜正式入居・4名体制
 
 ## 次回への引き継ぎ
 
-### 最優先タスク（Google Sheets連携の続き）
-1. シフト表・請求書のExcelファイルをGoogleスプレッドシート形式に変換してもらう
-   - GoogleドライブでExcelファイルを右クリック→「アプリで開く」→「Googleスプレッドシート」→「Googleスプレッドシートとして保存」
-2. 変換後の新しいスプレッドシートIDを取得する
-3. 各エージェント（杏・司・月詠）がスプレッドシートに直接書き込むPythonスクリプトを作成
-4. CLAUDE.mdにGoogle Sheets連携ルールを追記
-5. MCPに組み込んで各エージェントから使えるようにする
+### マージすべきブランチ（おつ～直後に実施）
+- `update-claude-md-0416`：CLAUDE.md全更新（柿岡追加・献立ルール・杏出力先変更等）
+- `update-otsu-protocol`：おつ～プロトコル事前チェック追加（update-claude-md-0416に同内容含まれているため、どちらか一方のみマージでOK）
 
-### その他
-- `kondate_tmp.xlsx` / `kondate_updated.xlsx`（PC直下）の扱いを確認する
-- 献立の次回作成：5/4〜5/10分（持ち越し食材：ハム2枚・ひじき100g・ポテサラ400g・ゴボウサラダ400g）
-- 利用者は鬼島・菅原・齋藤の3名（伊藤維様は入居保留）
+### 削除すべきブランチ（凪チェック対応）
+- `feature/shift-auto-calc`（マージ済み）
+- `fix-nagi-check-description`（マージ済み）
+
+### PC直下ファイルの扱い確認
+- `kondate_tmp.xlsx` / `kondate_updated.xlsx`（保留中）
+- `gcp-credentials.json`（意図的保持）
+
+### 翌週（5/4〜5/10）献立への持ち越し食材
+- マカロニサラダ：約300g
+- なめたけ：約200g
+- ハム：2枚
+- 卵：約7個
+- 利用者は4名（鬼島・菅原・齋藤・柿岡）
+- 次回作成時：柿岡様の名前確認は不要（確定済み）
+
+### Google Sheets連携情報
+- スプレッドシートID：`1F4TsJ4zGMI1rYltyR9Um1Tq8lHmt7E-9MjKkYhHrehg`
+- 認証ファイル：`C:\Users\rinrin\gcp-credentials.json`
+- サービスアカウント：`rinrin-sheets@rinrin-business.iam.gserviceaccount.com`
+- シフト表・請求書はExcel形式のためGoogleスプレッドシート変換が未完了（次回対応）
