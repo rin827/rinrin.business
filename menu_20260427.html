@@ -9,7 +9,6 @@
     body { font-family: 'Meiryo', 'MS PGothic', sans-serif; font-size: 13px; color: #333; padding: 20px; }
     h1 { text-align: center; font-size: 18px; margin-bottom: 4px; }
     .subtitle { text-align: center; font-size: 12px; color: #666; margin-bottom: 20px; }
-    /* メイン献立表 */
     .menu-table { width: 100%; border-collapse: collapse; margin-bottom: 28px; }
     .menu-table th { background: #5c8a6e; color: #fff; padding: 7px 10px; text-align: center; border: 1px solid #4a7360; }
     .menu-table td { border: 1px solid #ccc; padding: 8px 10px; vertical-align: top; }
@@ -19,16 +18,14 @@
     .type-cell { text-align: center; font-weight: bold; }
     .count-cell { text-align: center; }
     .new-guest { color: #c62828; font-weight: bold; font-size: 11px; }
-    .individual { font-size: 11px; background: #f3e5f5; border-radius: 4px; padding: 5px 7px; margin-top: 4px; }
-    .individual b { color: #6a1b9a; }
-    /* 購入リスト */
+    .saito { font-size: 11px; background: #f3e5f5; border-radius: 4px; padding: 5px 7px; margin-top: 6px; }
+    .saito b { color: #6a1b9a; }
+    .egg { color: #e65100; font-weight: bold; }
     h2 { font-size: 15px; border-left: 4px solid #5c8a6e; padding-left: 8px; margin-bottom: 10px; margin-top: 24px; }
     .buy-table { width: 100%; border-collapse: collapse; margin-bottom: 20px; }
     .buy-table th { background: #5c8a6e; color: #fff; padding: 6px 10px; text-align: left; border: 1px solid #4a7360; }
     .buy-table td { border: 1px solid #ccc; padding: 6px 10px; }
-    .carry { color: #888; }
     .no-buy { color: #2e7d32; font-weight: bold; }
-    /* 持ち越し */
     .carry-list { background: #f9f9f9; border: 1px solid #ddd; border-radius: 6px; padding: 12px 16px; }
     .carry-list li { margin-bottom: 4px; }
     .footer { font-size: 10px; color: #aaa; text-align: right; margin-top: 24px; }
@@ -46,8 +43,7 @@
         <th style="width:11%">日付</th>
         <th style="width:9%">食種</th>
         <th style="width:7%">人数</th>
-        <th style="width:38%">献立（共通）</th>
-        <th style="width:35%">個別対応</th>
+        <th style="width:73%">献立（共通）・個別対応</th>
       </tr>
     </thead>
     <tbody>
@@ -58,12 +54,8 @@
         <td class="type-cell">🍚 ご飯</td>
         <td class="count-cell">3名</td>
         <td>
-          白飯（150g）・味噌汁<br>
-          目玉焼き（卵1個）<br>
-          ウインナー（3本）<br>
-          納豆（1個）
+          白飯（150g）・味噌汁　おかず：<span class="egg">目玉焼き（卵1個）</span>・ウインナー（3本）・納豆（1個）
         </td>
-        <td><span style="font-size:11px;color:#888">個別対応なし</span></td>
       </tr>
 
       <!-- 4/28 火 パン食 -->
@@ -72,16 +64,8 @@
         <td class="type-cell">🍞 パン</td>
         <td class="count-cell">3名</td>
         <td>
-          食パン（1枚）・スープ<br>
-          スクランブルエッグ（卵2個）<br>
-          ハム（2枚）
-        </td>
-        <td>
-          <div class="individual">
-            <b>【齋藤様】</b><br>
-            白飯（150g）・味噌汁に変更<br>
-            目玉焼き（卵1個）・ウインナー（3本）
-          </div>
+          食パン（1枚）・スープ　おかず：<span class="egg">スクランブルエッグ（卵2個）</span>・ハム（2枚）・ウインナー（3本）
+          <div class="saito"><b>【齋藤様】</b>白飯（150g）・味噌汁に変更（おかずは全員と同じ）</div>
         </td>
       </tr>
 
@@ -91,12 +75,8 @@
         <td class="type-cell">🍚 ご飯</td>
         <td class="count-cell">3名</td>
         <td>
-          白飯（150g）・味噌汁<br>
-          ゆで卵（卵1個）<br>
-          ポテトサラダ（100g）<br>
-          ウインナー（3本）
+          白飯（150g）・味噌汁　おかず：<span class="egg">ゆで卵（卵1個）</span>・ポテトサラダ（100g）・なめたけ（50g）
         </td>
-        <td><span style="font-size:11px;color:#888">個別対応なし</span></td>
       </tr>
 
       <!-- 4/30 木 パン食 -->
@@ -105,16 +85,8 @@
         <td class="type-cell">🍞 パン</td>
         <td class="count-cell">3名</td>
         <td>
-          食パン（1枚）・スープ<br>
-          スクランブルエッグ（卵2個）<br>
-          ハム（2枚）
-        </td>
-        <td>
-          <div class="individual">
-            <b>【齋藤様】</b><br>
-            白飯（150g）・味噌汁に変更<br>
-            目玉焼き（卵1個）・ウインナー（3本）
-          </div>
+          食パン（1枚）・スープ　おかず：<span class="egg">目玉焼き（卵1個）</span>・ウインナー（3本）・ポテトサラダ（100g）
+          <div class="saito"><b>【齋藤様】</b>白飯（150g）・味噌汁に変更（おかずは全員と同じ）</div>
         </td>
       </tr>
 
@@ -124,12 +96,8 @@
         <td class="type-cell">🍚 ご飯</td>
         <td class="count-cell">3名</td>
         <td>
-          白飯（150g）・味噌汁<br>
-          目玉焼き（卵1個）<br>
-          マカロニサラダ（100g）<br>
-          ウインナー（3本）
+          白飯（150g）・味噌汁　おかず：<span class="egg">卵焼き（卵2個）</span>・マカロニサラダ（100g）・なめたけ（50g）
         </td>
-        <td><span style="font-size:11px;color:#888">個別対応なし</span></td>
       </tr>
 
       <!-- 5/2 土 パン食 4名 -->
@@ -138,16 +106,8 @@
         <td class="type-cell">🍞 パン</td>
         <td class="count-cell">3名<br><span class="new-guest">+1名★</span></td>
         <td>
-          食パン（1枚）・スープ<br>
-          卵焼き（卵2個）<br>
-          ウインナー（3本）
-        </td>
-        <td>
-          <div class="individual">
-            <b>【齋藤様】</b><br>
-            白飯（150g）・味噌汁に変更<br>
-            ゆで卵（卵1個）・ウインナー（3本）
-          </div>
+          食パン（1枚）・スープ　おかず：<span class="egg">スクランブルエッグ（卵2個）</span>・ウインナー（3本）・マカロニサラダ（100g）
+          <div class="saito"><b>【齋藤様】</b>白飯（150g）・味噌汁に変更（おかずは全員と同じ）</div>
         </td>
       </tr>
 
@@ -157,16 +117,7 @@
         <td class="type-cell">🍚 ご飯</td>
         <td class="count-cell">3名<br><span class="new-guest">+1名★</span></td>
         <td>
-          白飯（150g）・味噌汁<br>
-          卵焼き（卵2個）<br>
-          ベーコン（1枚）<br>
-          ポテトサラダ（100g）
-        </td>
-        <td>
-          <div class="individual">
-            <b>【齋藤様】</b><br>
-            ゆで卵（卵1個）に変更
-          </div>
+          白飯（150g）・味噌汁　おかず：<span class="egg">ゆで卵（卵1個）</span>・ベーコン（1枚）・ポテトサラダ（100g）
         </td>
       </tr>
 
@@ -189,34 +140,34 @@
         <td>卵</td>
         <td>33個</td>
         <td>4パック（40個）</td>
-        <td>約7個</td>
-        <td></td>
+        <td>7個</td>
+        <td>4/27:目玉焼き3・4/28:スクラン6・4/29:ゆで卵3・4/30:目玉焼き3・5/1:卵焼き6・5/2:スクラン8・5/3:ゆで卵4</td>
       </tr>
       <tr>
         <td>ウインナー</td>
-        <td>36本</td>
-        <td>3袋（12本入り×3）</td>
-        <td>0本</td>
-        <td></td>
+        <td>39本</td>
+        <td>4袋（12本入り×4）</td>
+        <td>9本</td>
+        <td>4/27:9本・4/28:9本・4/30:9本・5/2:12本</td>
       </tr>
       <tr>
         <td>食パン</td>
         <td>7枚</td>
         <td>1袋</td>
         <td>残分</td>
-        <td>4/28・4/30各2枚、5/2は3枚</td>
+        <td>4/28:2枚・4/30:2枚・5/2:3枚</td>
       </tr>
       <tr>
         <td>インスタントスープ</td>
         <td>7個</td>
         <td>1箱</td>
         <td>残分</td>
-        <td></td>
+        <td>4/28:2個・4/30:2個・5/2:3個</td>
       </tr>
       <tr>
         <td>味噌汁</td>
         <td>16個</td>
-        <td>1箱（20個入り等）</td>
+        <td>1箱</td>
         <td>残分</td>
         <td></td>
       </tr>
@@ -228,31 +179,38 @@
         <td></td>
       </tr>
       <tr>
+        <td>なめたけ</td>
+        <td>300g（4/29:150g・5/1:150g）</td>
+        <td>1甁（500g程度）</td>
+        <td>約200g</td>
+        <td>2週間で使い切ること</td>
+      </tr>
+      <tr>
         <td>ポテトサラダ</td>
-        <td>700g（4/29:300g＋5/3:400g）</td>
+        <td>1,000g（4/29:300g・4/30:300g・5/3:400g）</td>
+        <td>1袋（1kg）</td>
+        <td>0（使い切り）</td>
+        <td>1袋ちょうど使い切り</td>
+      </tr>
+      <tr>
+        <td>マカロニサラダ</td>
+        <td>700g（5/1:300g・5/2:400g）</td>
         <td>1袋（1kg）</td>
         <td>300g</td>
         <td>2週間で使い切ること</td>
       </tr>
-      <tr>
-        <td>マカロニサラダ</td>
-        <td>300g（5/1）</td>
-        <td>1袋（1kg）</td>
-        <td>700g</td>
-        <td>2週間で使い切ること</td>
-      </tr>
-      <tr class="carry">
+      <tr style="color:#888">
         <td>ハム</td>
-        <td>8枚（4/28・4/30 各2枚×2名）</td>
+        <td>6枚（4/28 3名×2枚）</td>
         <td class="no-buy">購入不要</td>
-        <td>0枚（使い切り）</td>
-        <td>持ち越し8枚を使い切り</td>
+        <td>2枚</td>
+        <td>持ち越し8枚から6枚使用</td>
       </tr>
-      <tr class="carry">
+      <tr style="color:#888">
         <td>ベーコン</td>
-        <td>4枚（5/3 1枚×4名）</td>
+        <td>4枚（5/3 4名×1枚）</td>
         <td class="no-buy">購入不要</td>
-        <td>0枚（使い切り）</td>
+        <td>0（使い切り）</td>
         <td>持ち越し4枚を使い切り</td>
       </tr>
     </tbody>
@@ -260,15 +218,14 @@
 
   <h2>📋 翌週（5/4〜）への持ち越し食材</h2>
   <ul class="carry-list">
-    <li>ポテトサラダ：約300g</li>
-    <li>マカロニサラダ：約700g</li>
-    <li>卵：約7個</li>
-    <li>ハム：0枚（使い切り）</li>
-    <li>ベーコン：0枚（使い切り）</li>
+    <li>マカロニサラダ：300g（2週間内に使い切り）</li>
+    <li>なめたけ：約200g（2週間内に使い切り）</li>
+    <li>ハム：2枚</li>
+    <li>卵：7個</li>
   </ul>
 
   <div class="footer">
-    ★ 5/2〜 新規ゲスト様1名追加（計4名）｜グループホームAo｜作成：杏
+    ★ 5/2〜 新規ゲスト様1名追加（合咈4名）｜グループホームAo｜作成：杏
   </div>
 
 </body>
