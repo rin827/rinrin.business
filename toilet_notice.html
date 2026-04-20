@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>トイレ注意書き</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Kaisei+Decol:wght@400;700&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    width: 210mm;
+    min-height: 297mm;
+    background: #fffbf0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Kaisei Decol', 'Hiragino Maru Gothic Pro', 'Rounded Mplus 1c', sans-serif;
+    padding: 20mm;
+  }
+
+  .card {
+    width: 100%;
+    background: white;
+    border-radius: 24px;
+    border: 4px solid #4fc3f7;
+    padding: 40px 36px;
+    position: relative;
+    box-shadow: 6px 6px 0px #b3e5fc;
+  }
+
+  /* 手書き風の斜め線で背景装飾 */
+  .card::before {
+    content: '';
+    position: absolute;
+    top: 10px; left: 10px; right: 10px; bottom: 10px;
+    border: 2px dashed #b3e5fc;
+    border-radius: 18px;
+    pointer-events: none;
+  }
+
+  .header {
+    text-align: center;
+    margin-bottom: 28px;
+  }
+
+  .emoji-big {
+    font-size: 64px;
+    display: block;
+    margin-bottom: 8px;
+  }
+
+  .title {
+    font-size: 30px;
+    font-weight: 700;
+    color: #0288d1;
+    line-height: 1.4;
+    text-shadow: 2px 2px 0px #b3e5fc;
+  }
+
+  .subtitle {
+    font-size: 14px;
+    color: #80deea;
+    margin-top: 6px;
+    letter-spacing: 2px;
+  }
+
+  .divider {
+    border: none;
+    border-top: 3px dotted #4fc3f7;
+    margin: 24px 0;
+  }
+
+  .message-box {
+    background: #e1f5fe;
+    border-radius: 16px;
+    padding: 20px 24px;
+    margin-bottom: 24px;
+    position: relative;
+  }
+
+  .message-box .label {
+    font-size: 13px;
+    font-weight: 700;
+    color: #0288d1;
+    background: white;
+    border: 2px solid #4fc3f7;
+    border-radius: 20px;
+    padding: 2px 12px;
+    display: inline-block;
+    margin-bottom: 10px;
+  }
+
+  .message-box p {
+    font-size: 17px;
+    color: #37474f;
+    line-height: 1.9;
+  }
+
+  .rule-list {
+    list-style: none;
+    margin-bottom: 24px;
+  }
+
+  .rule-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    background: #f9fbe7;
+    border-left: 5px solid #aed581;
+    border-radius: 0 12px 12px 0;
+    padding: 14px 18px;
+    margin-bottom: 14px;
+    font-size: 17px;
+    color: #37474f;
+    line-height: 1.7;
+  }
+
+  .rule-list li .icon {
+    font-size: 28px;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .rule-list li .text strong {
+    color: #558b2f;
+    display: block;
+    font-size: 18px;
+    margin-bottom: 4px;
+  }
+
+  .footer {
+    text-align: center;
+    background: #fff9c4;
+    border-radius: 16px;
+    padding: 18px;
+    border: 2px solid #fff176;
+  }
+
+  .footer p {
+    font-size: 16px;
+    color: #f57f17;
+    line-height: 1.8;
+  }
+
+  .footer .big {
+    font-size: 22px;
+    font-weight: 700;
+    display: block;
+    margin-bottom: 4px;
+  }
+
+  .stars {
+    font-size: 20px;
+    letter-spacing: 6px;
+    color: #ffca28;
+    display: block;
+    margin-top: 10px;
+  }
+
+  @media print {
+    body { padding: 0; background: white; }
+    .card { box-shadow: none; }
+  }
+</style>
+</head>
+<body>
+<div class="card">
+
+  <div class="header">
+    <span class="emoji-big">🚽✨</span>
+    <div class="title">トイレをきれいに<br>使ってくださいっ！</div>
+    <div class="subtitle">〜 スタッフのみなさまへ 〜</div>
+  </div>
+
+  <hr class="divider">
+
+  <div class="message-box">
+    <span class="label">💬 ひとこと</span>
+    <p>
+      ここは男女共用のスタッフトイレです。<br>
+      使った後もピカピカにしてくれると<br>
+      みんなが気持ちよく使えます🌟<br>
+      ちょっとの心がけで、大きな差が出ます！
+    </p>
+  </div>
+
+  <ul class="rule-list">
+    <li>
+      <span class="icon">🪣</span>
+      <div class="text">
+        <strong>使ったら便器を拭こう！</strong>
+        トイレットペーパーや備え付けのシートで、<br>
+        便座・便器まわりをサッと一拭き。<br>
+        <span style="color:#78909c; font-size:15px;">「自分は汚してないから大丈夫」→ それが積み重なります😅</span>
+      </div>
+    </li>
+    <li>
+      <span class="icon">💦</span>
+      <div class="text">
+        <strong>飛び散りに注意！</strong>
+        床や便器のまわりが濡れていたら<br>
+        さっと拭いてから出てくれると助かります🙏<br>
+        <span style="color:#78909c; font-size:15px;">次に使う人のためにも、よろしくです！</span>
+      </div>
+    </li>
+    <li>
+      <span class="icon">🌀</span>
+      <div class="text">
+        <strong>流し忘れはナシで！</strong>
+        使用後はしっかり水を流してください。<br>
+        <span style="color:#78909c; font-size:15px;">「あれ？流した？」ってなったらもう一度確認を👍</span>
+      </div>
+    </li>
+  </ul>
+
+  <div class="footer">
+    <span class="big">みんなで使う場所だから、<br>みんなで守ろう！💪</span>
+    <p>ご協力ありがとうございます🎉<br>きれいなトイレは、みんなの笑顔につながります😊</p>
+    <span class="stars">★ ★ ★ ★ ★</span>
+  </div>
+
+</div>
+</body>
+</html>
