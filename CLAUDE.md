@@ -41,11 +41,8 @@
    - repo: `rinrin.business`
    - branch: `main`
    - commit message: `記憶を更新`
-3. **セッション中に CLAUDE.md を変更していた場合**、`mcp__github__push_files` で CLAUDE.md を main に push する
-   - owner: `rin827`
-   - repo: `rinrin.business`
-   - branch: `main`
-   - commit message: `CLAUDE.md を更新`
+3. **セッション中に CLAUDE.md を変更していた場合**、フィーチャーブランチ `update-claude-md` のPRをmainにマージする
+   - `mcp__github__create_pull_request` でPR作成 → `mcp__github__merge_pull_request` でマージ
 4. 完了したら「記憶しました。またね！」とだけ伝える
 
 保存フォーマット：
@@ -360,7 +357,7 @@ const SHIFT_HOURS = {
 | なめたけ | 50g |
 
 ### 利用者個別対応（現在）
-  - **齋藤様**：パン食の日は白飯＋味噌汁に変更。おかずは全員と同じ
+  - **齋藤様**：パン食の日は白飯＋味噌汁に変更。卵料理はゆで卵・目玉焼きのみ可（スクランブルエッグ・卵焼きは不可）。全員共通のおかずがスクランブルエッグ・卵焼きの場合も、齋藤様だけゆで卵または目玉焼きに変更して個別対応欄に明記する
 
 ### 出力
 - Googleスプレッドシート「業務スーパー活用献立案」に直接書き込む
