@@ -6,157 +6,148 @@
 <title>トイレ注意書き</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Kaisei+Decol:wght@400;700&display=swap');
-
   * { margin: 0; padding: 0; box-sizing: border-box; }
-
   body {
     width: 210mm;
     min-height: 297mm;
-    background: #fffbf0;
+    background: #e0f7fa;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-family: 'Kaisei Decol', 'Hiragino Maru Gothic Pro', 'Rounded Mplus 1c', sans-serif;
-    padding: 20mm;
+    font-family: 'Kaisei Decol', 'Hiragino Maru Gothic Pro', sans-serif;
+    padding: 15mm;
   }
-
   .card {
     width: 100%;
     background: white;
-    border-radius: 24px;
-    border: 4px solid #4fc3f7;
-    padding: 40px 36px;
+    border-radius: 28px;
+    border: 5px solid #29b6f6;
+    padding: 32px 32px;
     position: relative;
-    box-shadow: 6px 6px 0px #b3e5fc;
+    box-shadow: 8px 8px 0px #0288d1;
   }
-
   .card::before {
     content: '';
     position: absolute;
-    top: 10px; left: 10px; right: 10px; bottom: 10px;
-    border: 2px dashed #b3e5fc;
-    border-radius: 18px;
+    top: 8px; left: 8px; right: 8px; bottom: 8px;
+    border: 3px dashed #81d4fa;
+    border-radius: 22px;
     pointer-events: none;
   }
-
   .header {
     text-align: center;
-    margin-bottom: 28px;
+    margin-bottom: 20px;
   }
-
-  .emoji-big {
-    font-size: 64px;
-    display: block;
+  .header-img {
+    width: 100px;
     margin-bottom: 8px;
   }
-
   .title {
-    font-size: 30px;
+    font-size: 28px;
     font-weight: 700;
-    color: #0288d1;
+    color: #0277bd;
     line-height: 1.4;
-    text-shadow: 2px 2px 0px #b3e5fc;
+    text-shadow: 3px 3px 0px #b3e5fc;
   }
-
   .subtitle {
-    font-size: 14px;
-    color: #80deea;
+    font-size: 13px;
+    color: #4dd0e1;
     margin-top: 6px;
-    letter-spacing: 2px;
+    letter-spacing: 3px;
   }
-
-  .divider {
-    border: none;
-    border-top: 3px dotted #4fc3f7;
-    margin: 24px 0;
-  }
-
-  .message-box {
+  .intro {
     background: #e1f5fe;
     border-radius: 16px;
-    padding: 20px 24px;
-    margin-bottom: 24px;
-  }
-
-  .message-box .label {
-    font-size: 13px;
-    font-weight: 700;
-    color: #0288d1;
-    background: white;
-    border: 2px solid #4fc3f7;
-    border-radius: 20px;
-    padding: 2px 12px;
-    display: inline-block;
-    margin-bottom: 10px;
-  }
-
-  .message-box p {
-    font-size: 17px;
+    padding: 16px 20px;
+    margin-bottom: 18px;
+    font-size: 16px;
     color: #37474f;
     line-height: 1.9;
+    text-align: center;
+    border: 2px solid #81d4fa;
   }
-
-  .rule-list {
+  .intro .small {
+    font-size: 13px;
+    color: #90a4ae;
+    margin-top: 6px;
+    display: block;
+  }
+  .rules {
     list-style: none;
-    margin-bottom: 24px;
+    margin-bottom: 18px;
   }
-
-  .rule-list li {
+  .rules li {
     display: flex;
     align-items: flex-start;
-    gap: 12px;
-    background: #f9fbe7;
-    border-left: 5px solid #aed581;
-    border-radius: 0 12px 12px 0;
-    padding: 14px 18px;
-    margin-bottom: 14px;
-    font-size: 17px;
+    gap: 14px;
+    padding: 14px 16px;
+    margin-bottom: 12px;
+    border-radius: 16px;
+    font-size: 16px;
     color: #37474f;
-    line-height: 1.7;
+    line-height: 1.75;
+    position: relative;
   }
-
-  .rule-list li .icon {
-    font-size: 28px;
+  .rules li:nth-child(1) { background: #f3e5f5; border-left: 6px solid #ce93d8; }
+  .rules li:nth-child(2) { background: #fff3e0; border-left: 6px solid #ffb74d; }
+  .rules li:nth-child(3) { background: #e8f5e9; border-left: 6px solid #81c784; }
+  .rules li:nth-child(4) { background: #fce4ec; border-left: 6px solid #f48fb1; }
+  .rules li .illo {
+    width: 64px;
     flex-shrink: 0;
-    margin-top: 2px;
+    text-align: center;
   }
-
-  .rule-list li .text strong {
-    color: #558b2f;
+  .rules li .illo img {
+    width: 58px;
+    height: 58px;
+    object-fit: contain;
+  }
+  .rules li .text strong {
     display: block;
-    font-size: 18px;
+    font-size: 17px;
+    font-weight: 700;
     margin-bottom: 4px;
   }
-
+  .rules li:nth-child(1) .text strong { color: #7b1fa2; }
+  .rules li:nth-child(2) .text strong { color: #e65100; }
+  .rules li:nth-child(3) .text strong { color: #2e7d32; }
+  .rules li:nth-child(4) .text strong { color: #c2185b; }
+  .rules li .text .joke {
+    font-size: 13px;
+    color: #90a4ae;
+    margin-top: 4px;
+    display: block;
+    font-style: italic;
+  }
   .footer {
-    text-align: center;
     background: #fff9c4;
     border-radius: 16px;
-    padding: 18px;
+    padding: 16px 20px;
     border: 2px solid #fff176;
+    text-align: center;
   }
-
-  .footer p {
-    font-size: 16px;
-    color: #f57f17;
-    line-height: 1.8;
+  .footer-inner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
   }
-
-  .footer .big {
-    font-size: 22px;
+  .footer img {
+    width: 70px;
+  }
+  .footer-text .big {
+    font-size: 19px;
     font-weight: 700;
+    color: #f57f17;
     display: block;
+    line-height: 1.5;
     margin-bottom: 4px;
   }
-
-  .stars {
-    font-size: 20px;
-    letter-spacing: 6px;
-    color: #ffca28;
-    display: block;
-    margin-top: 10px;
+  .footer-text p {
+    font-size: 14px;
+    color: #795548;
+    line-height: 1.7;
   }
-
   @media print {
     body { padding: 0; background: white; }
     .card { box-shadow: none; }
@@ -167,65 +158,77 @@
 <div class="card">
 
   <div class="header">
-    <span class="emoji-big">🚽✨</span>
-    <div class="title">トイレをきれいに<br>使ってくださいっ！</div>
-    <div class="subtitle">〜 スタッフのみなさまへ 〜</div>
+    <img class="header-img" src="https://4.bp.blogspot.com/-Q8R5HaW1P7o/VQHODFsn7bI/AAAAAAAAs1E/02OHb-ksJTM/s400/cleaning_toilet.png" alt="トイレ掃除" onerror="this.style.display='none'">
+    <div class="title">🚽 トイレの使い方、<br>少しだけ意識して！🚽</div>
+    <div class="subtitle">〜 スタッフのみなさまへ（主に男性陣に） 〜</div>
   </div>
 
-  <hr class="divider">
-
-  <div class="message-box">
-    <span class="label">💬 ひとこと</span>
-    <p>
-      ここは男女共用のスタッフトイレです。<br>
-      使った後もピカピカにしてくれると<br>
-      みんなが気持ちよく使えます🌟<br>
-      ちょっとの心がけで、大きな差が出ます！
-    </p>
+  <div class="intro">
+    ここは男女共用トイレです。<br>
+    <strong>「自分は汚してない」の積み重ねが、実は最も怖いのです。</strong><br>
+    <span class="small">…ダレを言っているわけじゃないですが😅</span>
   </div>
 
-  <ul class="rule-list">
+  <ul class="rules">
+
     <li>
-      <span class="icon">🪣</span>
+      <div class="illo">
+        <img src="https://2.bp.blogspot.com/-Qc4HxqJFoJM/VIB5KqUbFCI/AAAAAAAApdY/WsrPfMp7gZ0/s400/toilet_man.png" alt="男性トイレ" onerror="this.style.fontSize='40px'; this.outerHTML='<span style=\'font-size:46px\'>🦦</span>'"/>
+      </div>
       <div class="text">
-        <strong>使ったら便器を拭こう！</strong>
-        トイレットペーパーや備え付けのシートで、<br>
-        便座・便器まわりをサッと一拭き。<br>
-        <span style="color:#78909c; font-size:15px;">「自分は汚してないから大丈夫」→ それが積み重なります😅</span>
+        <strong>🪣 便器の表・裸・床を必ず拭こう！</strong>
+        使った後は便座・便器まわり・床を<br>
+        トイレットペーパーでサッと一拭き。<br>
+        <span class="joke">「便器の裸側」は特に要注意！見えないところにこそ神がいます。</span>
       </div>
     </li>
+
     <li>
-      <span class="icon">💦</span>
+      <div class="illo">
+        <img src="https://4.bp.blogspot.com/-4YWXQ6F8lSM/VIB5L0IdpkI/AAAAAAAApd0/P0B8NpEPm5s/s400/toilet_flush.png" alt="流す" onerror="this.outerHTML='<span style=\'font-size:46px\'>💦</span>'"/>
+      </div>
       <div class="text">
-        <strong>便器の裏側まで要チェック！</strong>
-        尿は便器の裏や床にも飛び散っています。<br>
-        裏側もしっかり確認して拭いてください🙏<br>
-        <span style="color:#78909c; font-size:15px;">「見えないところ」こそ要注意ポイントです！</span>
+        <strong>💦 尿の飛び散り問題、御存知ですか？</strong>
+        尿は思ったより遠くに飛びます。<br>
+        床・便器まわり・裸側をセットで拭いて！<br>
+        <span class="joke">「気のせい」ってことはまずないですよ？😅</span>
       </div>
     </li>
+
     <li>
-      <span class="icon">💧</span>
+      <div class="illo">
+        <img src="https://2.bp.blogspot.com/-PXaS27X-OPo/VIB5Kq9GRQI/AAAAAAAApdc/GlXlWxKCeC0/s400/cleaning_man.png" alt="掃除男性" onerror="this.outerHTML='<span style=\'font-size:46px\'>🧹</span>'"/>
+      </div>
       <div class="text">
-        <strong>床・まわりの飛び散りにも注意！</strong>
-        床や便器のまわりが濡れていたら<br>
-        さっと拭いてから出てくれると助かります🙌<br>
-        <span style="color:#78909c; font-size:15px;">次に使う人のためにも、よろしくです！</span>
+        <strong>🧹 拭きたら「使った人」がわかります！</strong>
+        ゴールは「次に使う人が気持ちよくなれる」こと。<br>
+        拭くだけで対外的に好印象アップ！<br>
+        <span class="joke">「デキルスタッフ」はここでもわかります😊</span>
       </div>
     </li>
+
     <li>
-      <span class="icon">🌀</span>
+      <div class="illo">
+        <img src="https://3.bp.blogspot.com/-rEdT0j-jqaE/VIB5LcKVqGI/AAAAAAAApdo/z9O9aq6yXlk/s400/toilet_flow.png" alt="流す" onerror="this.outerHTML='<span style=\'font-size:46px\'>🌀</span>'"/>
+      </div>
       <div class="text">
-        <strong>流し忘れはナシで！</strong>
+        <strong>🌀 流し忘れはナシ！必ず流して！</strong>
         使用後はしっかり水を流してください。<br>
-        <span style="color:#78909c; font-size:15px;">「あれ？流した？」ってなったらもう一度確認を👍</span>
+        <span class="joke">「流したかな」と曙昧なときは「流してなかった」と思って。👍</span>
       </div>
     </li>
+
   </ul>
 
   <div class="footer">
-    <span class="big">みんなで使う場所だから、<br>みんなで守ろう！💪</span>
-    <p>ご協力ありがとうございます🎉<br>きれいなトイレは、みんなの笑顔につながります😊</p>
-    <span class="stars">★ ★ ★ ★ ★</span>
+    <div class="footer-inner">
+      <img src="https://2.bp.blogspot.com/-fhpvSbkjpSY/VIB5KXnfmkI/AAAAAAAApdU/L-JCbSuYSaE/s400/cleaning_woman.png" alt="女性" onerror="this.style.display='none'"/>
+      <div class="footer-text">
+        <span class="big">👊 トイレはその人のマナーが出る場所。<br>きれいに使ってカッコいい！</span>
+        <p>ご協力ありがとうございます🎉<br>みんなが快適に使えるトイレを一緒に守りましょう😊</p>
+      </div>
+      <img src="https://4.bp.blogspot.com/-Q8R5HaW1P7o/VQHODFsn7bI/AAAAAAAAs1E/02OHb-ksJTM/s400/cleaning_toilet.png" alt="掃除" onerror="this.style.display='none'"/>
+    </div>
   </div>
 
 </div>
