@@ -58,7 +58,6 @@
   .btn-del { background: #333; color: #888; font-size: 16px; padding: 6px 9px; opacity: 0.6; }
   .btn-del:active { opacity: 1; }
 
-  /* 名前追加エリア */
   .add-area {
     margin: 4px 12px 12px;
     display: flex;
@@ -135,23 +134,19 @@ const BASE_NAMES = [
 let names    = [...BASE_NAMES];
 let statuses = new Array(names.length).fill(0);
 
-// URLハッシュ形式: base64(JSON({n:[追加名前...], s:[0,1,2...]}))
 function loadFromHash() {
   const hash = location.hash.slice(1);
   if (!hash) return;
   try {
     const obj = JSON.parse(atob(hash));
-    // 追加名前を反映
     if (Array.isArray(obj.n)) {
       names = [...BASE_NAMES, ...obj.n];
     }
-    // ステータスを反映
     if (Array.isArray(obj.s)) {
       statuses = new Array(names.length).fill(0);
       obj.s.forEach((v, i) => { if (i < statuses.length && v >= 0 && v <= 3) statuses[i] = v; });
     }
   } catch(e) {
-    // 旧形式(数字列)との互換
     try {
       const decoded = atob(hash);
       for (let i = 0; i < names.length && i < decoded.length; i++) {
@@ -166,7 +161,7 @@ function encodeState() {
   const extra = names.slice(BASE_NAMES.length);
   const obj = { s: statuses };
   if (extra.length > 0) obj.n = extra;
-  return btoa(JSON.stringify(obj));
+  return btoa(unescape(encodeURIComponent(JSON.stringify(obj))));
 }
 
 function render() {
@@ -219,7 +214,6 @@ function addName() {
   render();
   history.replaceState(null, '', '#' + encodeState());
   showToast(`「${name}」を追加しました！`);
-  // 追加した行までスクロール
   setTimeout(() => {
     const items = document.querySelectorAll('.item');
     if (items.length) items[items.length-1].scrollIntoView({behavior:'smooth', block:'center'});
@@ -235,7 +229,9 @@ function deleteName(i) {
 }
 
 function copyShareUrl() {
-  const url = location.origin + location.pathname + '#' + encodeState();
+  // location.href のハッシュより前の部分をベースにする（htmlpreview経由でも正しいURLになる）
+  const base = location.href.split('#')[0];
+  const url = base + '#' + encodeState();
   navigator.clipboard.writeText(url).then(() => {
     showToast('URLをコピーしました！LINEに貼り付けてね 🎉');
   }).catch(() => {
@@ -248,7 +244,7 @@ function resetAll() {
     names = [...BASE_NAMES];
     statuses = new Array(names.length).fill(0);
     render();
-    history.replaceState(null, '', location.pathname);
+    history.replaceState(null, '', location.pathname + location.search);
   }
 }
 
@@ -259,7 +255,6 @@ function showToast(msg) {
   setTimeout(() => t.classList.remove('show'), 2500);
 }
 
-// Enterキーで追加
 document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('add-input').addEventListener('keydown', e => {
     if (e.key === 'Enter') addName();
