@@ -12,61 +12,68 @@
     font-family: 'M PLUS Rounded 1c', 'Hiragino Maru Gothic Pro', sans-serif;
     background: #fff;
     color: #333;
-    font-size: 10px;
   }
+
+  /* ===== PAGE ===== */
   .page {
     width: 196mm;
+    height: 283mm;
     margin: 0 auto;
     display: flex;
     flex-direction: column;
-    gap: 4px;
+    gap: 5px;
+    page-break-after: always;
   }
+  .page:last-child { page-break-after: avoid; }
 
-  /* HEADER */
+  /* ===== HEADER ===== */
   .header {
     background: linear-gradient(135deg, #FF9DC6 0%, #FFB347 35%, #87CEEB 65%, #98FB98 100%);
     border-radius: 12px;
-    padding: 7px 14px 9px;
+    padding: 8px 14px 10px;
     text-align: center;
     position: relative;
     overflow: hidden;
+    flex-shrink: 0;
   }
-  .header::before { content: '⭐✨⭐'; position:absolute; top:4px; left:8px; font-size:12px; opacity:.6; }
-  .header::after  { content: '⭐✨⭐'; position:absolute; top:4px; right:8px; font-size:12px; opacity:.6; }
-  .facility { font-size: 9.5px; color:#fff; font-weight:700; letter-spacing:2px; text-shadow:1px 1px 2px rgba(0,0,0,.2); }
-  .main-title { font-size: 23px; font-weight:900; color:#fff; letter-spacing:3px; text-shadow:2px 2px 0 rgba(0,0,0,.12); }
+  .header::before { content: '⭐✨⭐'; position:absolute; top:5px; left:10px; font-size:13px; opacity:.6; }
+  .header::after  { content: '⭐✨⭐'; position:absolute; top:5px; right:10px; font-size:13px; opacity:.6; }
+  .facility { font-size: 10px; color:#fff; font-weight:700; letter-spacing:2px; text-shadow:1px 1px 2px rgba(0,0,0,.2); }
+  .main-title { font-size: 26px; font-weight:900; color:#fff; letter-spacing:3px; text-shadow:2px 2px 0 rgba(0,0,0,.12); }
 
-  /* MOTTO TOP */
+  /* ===== MOTTO ===== */
   .motto {
     text-align: center;
     background: #FFF9C4;
     border: 2px dashed #FFD700;
     border-radius: 18px;
-    padding: 4px 12px;
-    font-size: 11px;
+    padding: 5px 12px;
+    font-size: 12px;
     font-weight: 800;
     color: #E65100;
+    flex-shrink: 0;
   }
 
-  /* NO-BLAME BANNER */
+  /* ===== NO-BLAME BANNER ===== */
   .no-blame {
     background: linear-gradient(135deg, #E8F5E9, #F3E5F5);
     border: 2px solid #CE93D8;
     border-radius: 12px;
-    padding: 7px 16px;
+    padding: 8px 16px;
     text-align: center;
+    flex-shrink: 0;
   }
   .no-blame-title {
-    font-size: 12px;
+    font-size: 13px;
     font-weight: 900;
     color: #6A1B9A;
-    margin-bottom: 3px;
+    margin-bottom: 4px;
   }
   .no-blame-body {
-    font-size: 10.5px;
+    font-size: 11.5px;
     font-weight: 600;
     color: #555;
-    line-height: 1.8;
+    line-height: 1.9;
   }
   .no-blame-body em {
     font-style: normal;
@@ -74,13 +81,13 @@
     font-weight: 800;
   }
 
-  /* SECTION */
+  /* ===== SECTION ===== */
   .section {
-    border-radius: 9px;
+    border-radius: 10px;
     overflow: hidden;
-    border: 2px solid;
+    border: 2.5px solid;
   }
-  .section-kitchen  { border-color: #FFA726; }
+  .section-kitchen  { border-color: #FFA726; flex: 1; }
   .section-cleaning { border-color: #29B6F6; }
   .section-records  { border-color: #66BB6A; }
   .section-other    { border-color: #EC407A; }
@@ -89,11 +96,11 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 4px 10px;
-    font-size: 12px;
+    padding: 6px 10px;
+    font-size: 14px;
     font-weight: 900;
     color: #fff;
-    gap: 4px;
+    gap: 5px;
     letter-spacing: 1px;
   }
   .section-kitchen  .section-header { background: #FFA726; }
@@ -101,8 +108,12 @@
   .section-records  .section-header { background: #66BB6A; }
   .section-other    .section-header { background: #EC407A; }
 
-  /* ITEMS */
-  .items { display: flex; flex-direction: column; }
+  /* ===== ITEMS ===== */
+  .section-kitchen  .items { display: flex; flex-direction: column; height: calc(100% - 34px); justify-content: space-between; }
+  .section-cleaning .items,
+  .section-records  .items,
+  .section-other    .items { display: flex; flex-direction: column; }
+
   .section-kitchen  .item:nth-child(odd)  { background: #FFF8E1; }
   .section-kitchen  .item:nth-child(even) { background: #FFF3CD; }
   .section-cleaning .item:nth-child(odd)  { background: #E3F2FD; }
@@ -115,28 +126,36 @@
   .item {
     display: flex;
     align-items: center;
-    padding: 3.5px 8px;
-    gap: 5px;
-    border-bottom: 1px solid rgba(0,0,0,.06);
-    font-size: 10px;
-    font-weight: 600;
-    line-height: 1.35;
+    padding: 5px 10px;
+    gap: 6px;
+    border-bottom: 1px solid rgba(0,0,0,.07);
+    line-height: 1.4;
   }
   .item:last-child { border-bottom: none; }
-  .num { font-size: 8.5px; font-weight:800; color:#bbb; min-width:14px; text-align:right; }
-  .check-icon { font-size: 11px; flex-shrink: 0; }
+
+  .section-kitchen .item { font-size: 12px; font-weight: 600; }
+  .section-cleaning .item,
+  .section-records  .item,
+  .section-other    .item { font-size: 13px; font-weight: 600; padding: 8px 12px; }
+
+  .num { font-size: 10px; font-weight:800; color:#bbb; min-width:18px; text-align:right; flex-shrink:0; }
+  .check-icon { font-size: 13px; flex-shrink: 0; }
   .task { flex: 1; }
 
-  /* BADGES */
+  /* ===== BADGES ===== */
   .badge {
     display: inline-block;
-    padding: 1.5px 6px;
-    border-radius: 9px;
-    font-size: 8px;
+    padding: 2px 8px;
+    border-radius: 10px;
     font-weight: 800;
     white-space: nowrap;
     flex-shrink: 0;
   }
+  .section-kitchen .badge { font-size: 9px; }
+  .section-cleaning .badge,
+  .section-records  .badge,
+  .section-other    .badge { font-size: 10px; }
+
   .b-all     { background: #FF7043; color: #fff; }
   .b-late    { background: #7E57C2; color: #fff; }
   .b-night   { background: #3949AB; color: #fff; }
@@ -144,28 +163,30 @@
   .b-special { background: #00897B; color: #fff; }
   .b-weekday { background: #546E7A; color: #fff; }
 
-  /* FOOTER */
+  /* ===== FOOTER ===== */
   .footer-motto {
     text-align: center;
     background: linear-gradient(135deg, #FFB3C6, #FFD89B, #B3E5FC);
-    border-radius: 11px;
-    padding: 6px 12px;
+    border-radius: 12px;
+    padding: 10px 12px;
+    flex-shrink: 0;
   }
   .footer-motto p {
-    font-size: 11.5px;
+    font-size: 13px;
     font-weight: 900;
     color: #fff;
     text-shadow: 1px 1px 2px rgba(0,0,0,.18);
-    line-height: 1.8;
+    line-height: 1.9;
   }
 
   @media print {
     body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-    .page { width: 100%; }
   }
 </style>
 </head>
 <body>
+
+<!-- ===== PAGE 1: キッチン ===== -->
 <div class="page">
 
   <div class="header">
@@ -175,7 +196,6 @@
 
   <div class="motto">🌟 ワンチームで乗り越えよう！　誰でもミスや忘れることはあります。お互い助け合い大事！ 🌟</div>
 
-  <!-- 責め禁止バナー -->
   <div class="no-blame">
     <div class="no-blame-title">🙅 🚫 「なんでやってないの！」は禁止です！ 🤝</div>
     <div class="no-blame-body">
@@ -208,6 +228,16 @@
     </div>
   </div>
 
+</div>
+
+<!-- ===== PAGE 2: 清掃・記録・その他 ===== -->
+<div class="page">
+
+  <div class="header">
+    <div class="facility">グループホームＡｏ　萩荘</div>
+    <div class="main-title">✨ デイリー業務チェックリスト ✨</div>
+  </div>
+
   <div class="section section-cleaning">
     <div class="section-header">🧹 清掃関連</div>
     <div class="items">
@@ -232,6 +262,15 @@
       <div class="item"><span class="num">24</span><span class="check-icon">✅</span><span class="task">窓の鍵施錠ＯＫ？</span><span class="badge b-all">全時間</span></div>
       <div class="item"><span class="num">25</span><span class="check-icon">✅</span><span class="task">電気消し忘れてない？</span><span class="badge b-all">全時間</span></div>
       <div class="item"><span class="num">26</span><span class="check-icon">✅</span><span class="task">エアコン消した？（タイマーはＯＫ）</span><span class="badge b-all">全時間</span></div>
+    </div>
+  </div>
+
+  <div class="no-blame">
+    <div class="no-blame-title">🙅 🚫 「なんでやってないの！」は禁止です！ 🤝</div>
+    <div class="no-blame-body">
+      「やり忘れてる」を見つけたら… <em>そっとフォローしてあげるのがワンチーム👍</em><br>
+      静かに責める前に、<em>あなたも明日忘れるかも😂</em><br>
+      ミスや忘れは誰でもある！申し訳ないけど、<em>責めるのはもっとNG😅</em>
     </div>
   </div>
 
