@@ -2,35 +2,43 @@
 
 ## 会話の要約
 
-### デイリー業務チェックリスト（前回からの継続）
-- 印刷用ファイルを `C:/Users/rinrin/印刷用/デイリー業務チェックリスト.html` に保存
-- 印刷上切れ問題は `@page { margin: 0; }` + ページにpaddingを持たせる方式で解決済み
+GCPキーの誤削除から復元した前回セッションの続き。Google Drive/Sheetsへの書き込み実装を完了させた。
 
-### REY爆誕祭 参加チェックリスト（新規）
-- 凜＋他2名の計3人がDM返信を管理するためのチェックリストを作成
-- 26名のリスト：妃織・ayumu・king・Kohshi・°𝐂𝐫ᵃ・ℳ.・影虎・ZERO・いおり・こな・ごま油・さき・さつき・しゅわ・みかん・よーすけ・るな・カイン・マグ・天音・零・麗・KUM兄・cope・るるーしゅ・yuna
-- スマホのブラウザで動作（アプリ不要）
-- 参加/不参加/保留 をタップで切り替え、上部に集計表示
-- 「URLコピー」で現在の状態をURLに乗せてLINEで共有可能
-- **名前追加機能**：スマホから新しい演者名をその場で追加・削除可能。追加名もURLに含まれる
-- GitHub URL: `https://htmlpreview.github.io/?https://github.com/rin827/rinrin.business/blob/main/rey_checklist.html`
-- ローカルファイル: `C:/Users/rinrin/Downloads/rey_checklist.html`
+### Google Drive書き込みスクリプト実装
+- 請求書フォルダ（`1_DS4yhXY4jtEMt-Aoh8IC88WmqduWjqY`）のファイル構造を調査
+- 各利用者の請求書ExcelファイルID確認：
+  - 鬼島：`1GgwzBDgYUeaRKooxPHMDWzyuudJHaJHu`
+  - 菅原：`1w4hlH0DKPosLQeDnCbBy9m5-bWWQQLbq`
+  - 齋藤：`1XdRBn8ROTNE_uBmiH9Zt_nnpzZED5kro`
+- シフト表ExcelファイルID：`176QRfNbgPkDUBGGUroL5gHNEhagIuS2N`
+- 請求書Excel構造：列Z(26)=数量、列AB(28)=単価、列AF(32)=金額（IF数式で自動計算）
+- シート名パターン：`R8.N請求書（N+1月）`（Nはサービス月、N+1は支払月）
+- シフト表構造：1〜18日が行4〜12（列3〜20）、19〜30日が行14〜22（列3〜14）
 
-### 参加チェックリスト テンプレート（新規）
-- 今後の研修参加可否管理にも使えるテンプレートを作成
-- `EVENT_NAME` と `NAMES` の2箇所を変えるだけで使い回せる
-- ローカルファイル: `C:/Users/rinrin/印刷用/参加チェックリスト_テンプレート.html`
+### 作成したスクリプト
+- `C:\Users\rinrin\scripts\invoice_drive.py`：利用者請求書ExcelをDriveに書き込む
+- `C:\Users\rinrin\scripts\shift_drive.py`：シフト表Excelに新月シートを追加する
+- 両スクリプトとも動作確認済み（鬼島4月・5月でテスト成功）
 
-### フィードバック
-- 黒流の口調がたまにブレる（丁寧語・敬語が混じる）と指摘あり → タメ口を徹底するよう記憶に保存
+### CLAUDE.md更新内容
+- 「Google Drive連携スクリプト」セクション新設
+- 月詠の出力にGoogle Drive書き込み手順を追記
+- シフト作成の流れにステップ8（shift_drive.py実行）を追記
+- PCチェックリストにgcp-credentials.jsonとscripts/フォルダを許可リストに追加
+- `update-claude-md`ブランチに保存、このセッション終了時にmainへマージ
+
+### 感染対策研修チェックリスト
+- 8月ごろに凜から声がかかる予定（試験版HTML：C:\Users\rinrin\感染対策研修_参加チェック.html）
 
 ## 決定事項
-- REY爆誕祭チェックリストは `rey_checklist.html` としてGitHubに保存
-- 参加チェックリストのテンプレートは `C:/Users/rinrin/印刷用/` に保存
-- 黒流は凜に対して常にタメ口（敬語・丁寧語一切なし）
+- 請求書・シフト表のGoogle Drive書き込みはPythonスクリプト経由で実装（Sheets APIは非対応のためDrive API使用）
+- 月詠はHTML作成後に必ずinvoice_drive.pyも実行する（柿岡・伊藤はExcelファイル未作成のため対象外）
+- 司はシフト確定後にshift_drive.pyでGoogle DriveのExcelにも反映する
+- scriptsフォルダ（C:\Users\rinrin\scripts\）は正式な作業フォルダとして使用
 
 ## 次回への引き継ぎ
-- REY爆誕祭チェックリストはLINEで共有済み・好評
-- 研修参加可否にも同テンプレートを活用予定 → 「○○研修のチェック作って」で対応可能
-- 献立ルールの見直し確認がまだ未実施（memory/project_kondate_review.md 参照）
-- 黒流口調のタメ口徹底を引き続き意識すること
+- 労働者名簿・利用者名簿のGoogle Drive URLがまだ未取得（凜から提供されていない）
+- 柿岡大介・伊藤維のGoogle Drive請求書Excelファイルが未作成
+- 才木弘一の最終学歴が不明（職歴のみ記載）
+- 献立ルール見直しの話があったが詳細未確認
+- CLAUDE.mdのupdate-claude-mdブランチはマージ済み（次回よろ～時に反映済みのはず）
