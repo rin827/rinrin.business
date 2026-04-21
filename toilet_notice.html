@@ -9,26 +9,33 @@
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
-  body {
+  html, body {
     width: 210mm;
     height: 297mm;
     overflow: hidden;
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
     background: #e0f7fa;
     font-family: 'Kaisei Decol', 'Hiragino Maru Gothic Pro', sans-serif;
-    padding: 8mm;
+    position: relative;
   }
 
   .card {
-    width: 100%;
-    height: 100%;
+    position: absolute;
+    top: 8mm;
+    left: 8mm;
+    right: 8mm;
+    bottom: 8mm;
     background: white;
     border-radius: 16px;
     border: 4px solid #29b6f6;
-    padding: 14px 22px;
+    padding: 16px 24px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    position: relative;
   }
 
   .card::before {
@@ -40,83 +47,102 @@
     pointer-events: none;
   }
 
+  /* ── ヘッダー ── */
   .header { text-align: center; }
-  .header-emoji { font-size: 30px; }
+  .header-inner {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .header-side {
+    width: 70px;
+    flex-shrink: 0;
+  }
+  .header-side img { width: 70px; height: auto; }
+  .header-text { flex: 1; }
+  .header-emoji { font-size: 36px; }
   .title {
-    font-size: 22px;
+    font-size: 30px;
     font-weight: 700;
     color: #0277bd;
     line-height: 1.3;
     text-shadow: 2px 2px 0px #b3e5fc;
-    margin-top: 2px;
+    margin-top: 4px;
   }
   .subtitle {
-    font-size: 11px;
+    font-size: 16px;
     color: #4dd0e1;
-    margin-top: 3px;
+    margin-top: 5px;
     letter-spacing: 2px;
   }
 
+  /* ── 統計ボックス ── */
   .intro {
     background: #fff3e0;
     border-radius: 10px;
-    padding: 9px 14px;
-    font-size: 13px;
+    padding: 12px 18px;
+    font-size: 16px;
     color: #4e342e;
-    line-height: 1.65;
+    line-height: 1.7;
     text-align: center;
     border: 2px dashed #ffb74d;
   }
   .intro .alert {
-    font-size: 14px;
+    font-size: 22px;
     font-weight: 700;
     color: #e65100;
     display: block;
-    margin-bottom: 3px;
+    margin-bottom: 4px;
   }
   .intro .small {
-    font-size: 11px;
+    font-size: 13px;
     color: #a1887f;
-    margin-top: 3px;
+    margin-top: 5px;
     display: block;
   }
 
-  .rules { list-style: none; }
+  /* ── ルール4項目 ── */
+  .rules {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
   .rules li {
     display: flex;
     align-items: flex-start;
-    gap: 10px;
-    padding: 9px 12px;
+    gap: 12px;
+    padding: 12px 16px;
     border-radius: 10px;
-    font-size: 13px;
+    font-size: 15px;
     color: #37474f;
-    line-height: 1.6;
+    line-height: 1.65;
   }
   .rules li:nth-child(1) { background: #f3e5f5; border-left: 5px solid #ba68c8; }
   .rules li:nth-child(2) { background: #fff3e0; border-left: 5px solid #ffa726; }
   .rules li:nth-child(3) { background: #e8f5e9; border-left: 5px solid #66bb6a; }
   .rules li:nth-child(4) { background: #fce4ec; border-left: 5px solid #f06292; }
   .rules li .illo {
-    width: 38px;
+    width: 44px;
     flex-shrink: 0;
     text-align: center;
-    font-size: 30px;
+    font-size: 34px;
     line-height: 1;
     padding-top: 2px;
   }
-  .rules li .illo img { width: 34px; height: 34px; object-fit: contain; }
+  .rules li .illo img { width: 38px; height: 38px; object-fit: contain; }
   .rules li .text strong {
     display: block;
-    font-size: 14px;
+    font-size: 23px;
     font-weight: 700;
-    margin-bottom: 1px;
+    margin-bottom: 3px;
   }
   .rules li:nth-child(1) .text strong { color: #6a1b9a; }
   .rules li:nth-child(2) .text strong { color: #bf360c; }
   .rules li:nth-child(3) .text strong { color: #1b5e20; }
   .rules li:nth-child(4) .text strong { color: #880e4f; }
   .joke {
-    font-size: 11px;
+    font-size: 12px;
     color: #90a4ae;
     margin-top: 2px;
     display: block;
@@ -124,34 +150,35 @@
   }
   .highlight {
     background: #ffff8d;
-    padding: 0px 3px;
+    padding: 0 3px;
     border-radius: 3px;
     color: #37474f;
   }
 
+  /* ── フッター ── */
   .footer {
     background: linear-gradient(135deg, #e1f5fe, #f3e5f5);
     border-radius: 10px;
-    padding: 9px 14px;
+    padding: 12px 18px;
     border: 2px solid #b3e5fc;
     text-align: center;
   }
   .footer .big {
-    font-size: 14px;
+    font-size: 16px;
     font-weight: 700;
     color: #0277bd;
     display: block;
-    line-height: 1.5;
-    margin-bottom: 2px;
+    line-height: 1.6;
+    margin-bottom: 4px;
   }
   .footer p {
-    font-size: 12px;
+    font-size: 14px;
     color: #546e7a;
     line-height: 1.5;
   }
   .footer .sign {
-    margin-top: 3px;
-    font-size: 10px;
+    margin-top: 5px;
+    font-size: 12px;
     color: #b0bec5;
   }
 
@@ -165,59 +192,75 @@
 <div class="card">
 
   <div class="header">
-    <span class="header-emoji">🚽🔍</span>
-    <div class="title">「自分は汚してない」<br>←それ全員思ってますよ？</div>
-    <div class="subtitle">〜 スタッフのみなさまへ・主に男性陣にお願い 〜</div>
+    <div class="header-inner">
+      <div class="header-side">
+        <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEinCa3_I-Cu_oduFEXJgdqLfVVLTpVDzeeKvJU1P7Tmvy0-LJIQn6eLnUde-sOqyUxlU6Kmf_3nN832P3E5_MuqE_VM3ZUP598T9aA9RBjhVVPZm3OC_fuKOQA5qHw61GXMAvDTEmgmtV9n/s800/business_man1_1_smile.png"
+          alt="" onerror="this.style.display='none'">
+      </div>
+      <div class="header-text">
+        <span class="header-emoji">
+          <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg09rNzq0xgIqYlCr72PKmXqT0CPfFW7GfU4K0TYqTg6qc4X3cuMKTEAX7_F5rswaaL-hqM8u-qnRYxFXLzC-rPFT0SCdBCCjJkx0ck2zcNPT3ES_98zP8mKzwPdGbk7-5g1_3vs7N25a0/s400/toilet_danshi_kabekake.png" style="height:44px;vertical-align:middle;" alt="" onerror="this.outerHTML='🚽'">
+          <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjy82SyjmQO33_pVAksc6RE-TwF4P_glOWPZ7k-tJIhf6cW_CCM6sARnnwh28DdTge1J2v2puVFWASM13x3WEAB8epmLZSq7LJwrI8hhgInEBm2me2qrbORoV0qdD3Lr9NnClFTBfxe7SA1/s800/toilet_mark_man.png" style="height:44px;vertical-align:middle;" alt="" onerror="this.outerHTML='🚹'">
+          <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhCe4RwmYDUPUQ-3V3DoyK7X9avN5TCpkIJWUxV-JradqR2ht5CCtsQ8klfFsRnbO1SgdT_Osed6cim0zpCKpqdRyq8338XbAsCzUtS3YAZ0QS_6Eb5oLMDhMm_q6-wYNgz2_q3vnJb4kpe/s400/toilet_mark_woman.png" style="height:44px;vertical-align:middle;" alt="" onerror="this.outerHTML='🚺'">
+        </span>
+        <div class="title"><span style="font-size:38px;">「自分は汚してない」</span><br>それ、全員思ってますよ？</div>
+        <div class="subtitle">〜 スタッフのみなさまへ・主に男性陣にお願い 〜</div>
+      </div>
+      <div class="header-side">
+        <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhUielHk8qrDrtuW8Lhh5kbE0fwmNRSstAtgO9BRT8b6Cqo81aM0yYq8F979ZGi_kpeRpW8qOPdYtDG6Y0f_juJ_K0wVu3k2MXuIQojg0UVdTxAWmShgrpbNZQR_tP5ORT1FBjaZNSyWwdd/s800/business_man1_2_angry.png"
+          alt="" onerror="this.style.display='none'">
+      </div>
+    </div>
   </div>
 
   <div class="intro">
-    <span class="alert">📊 スタッフトイレ実態調査（非公式）</span>
-    「自分は汚してない」と思っている男性：<span class="highlight">推定100%</span>
-    実際に汚れが確認される日：<span class="highlight">ほぼ毎日</span><br>
-    <span class="small">🙋 悪気がないのはわかってます。でも「無意識の積み重ね」が現実を作っています。</span>
+    <span class="alert"><img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh8T5raVTaKIA9Fzju-MleYYGJmM1_cx-TyTWHW73FSYbt3WtsNQjtceu9T44lHuD6EtRMPNa85ixUItbOY8SiC_VhWcrzfVU6t-3-9UZ_9Wokiv2O2aKVy6BNJZgU-_c8gsVOfCP9osnqV/s500/whiteboard_memo_man2.png" style="height:32px;vertical-align:middle;" alt="" onerror="this.outerHTML='📊'"> スタッフトイレ実態調査（非公式）</span>
+    「自分は汚してない」と思っている男性：<span class="highlight">推定100%</span><br>
+    実際に汚れが確認される日：<span class="highlight">ほぼ毎日</span>
+    <span class="small"><img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhTgkzmUn2cbEPr2UgEfIt_j85RV97S_fIGElOd280rHk58wJeUPCdrmPZlbee9kM-4o0br2nJ2Q2cKWPOIcb_aCHCNiyqq7jQlG3_Hy8Sp9R-xHeBYVuDdVdv7B-haJ0ZKMowxeG_40iU/s800/kyosyu_man.png" style="height:28px;vertical-align:middle;" alt="" onerror="this.outerHTML='🙋'"> 悪気がないのはわかってます。でも「無意識の積み重ね」が現実を作っています。</span>
   </div>
 
   <ul class="rules">
     <li>
       <div class="illo">
-        <img src="https://2.bp.blogspot.com/-Qc4HxqJFoJM/VIB5KqUbFCI/AAAAAAAApdY/WsrPfMp7gZ0/s400/toilet_man.png"
-          alt="" onerror="this.outerHTML='<span>🦦</span>'">
+        <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiVyelDDNpFPXZeOtAoslwTrnNFIsNNNfhrzL32mI7r8ubrxvy6LH4mJIpcBJISHmSi5bzo-QHih7T5e4eLYOZDDH-gNXewtakr0SYKDV5ME9wIPW_KUBLCg3Hq4esxfQD7V3dzqcrMS-E/s400/toilet_souji.png"
+          alt="" onerror="this.outerHTML='<span>🚽</span>'">
       </div>
       <div class="text">
-        <strong>🔬 便器の裏側も「現場」です</strong>
+        <strong>便器の裏側も「現場」です</strong>
         目につきにくいだけで、汚れはしっかり蓄積中。表裏両面をペーパーで一拭き。
         <span class="joke">見えないところにこそ、マナーが出ます。</span>
       </div>
     </li>
     <li>
       <div class="illo">
-        <img src="https://4.bp.blogspot.com/-4YWXQ6F8lSM/VIB5L0IdpkI/AAAAAAAApd0/P0B8NpEPm5s/s400/toilet_flush.png"
+        <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiEA8beprcMwwYtOQrxjzE_a_yfzVTX3BM6SAuloQil-RvKwTPtze1aI02lBe_3BlxZOUex8BX0oe-sTjSur0fcF3gHL-BwfTLPzkGH7l3tusGgd8keRgbwfJw15kaaXkL_qveXjagw0137/s500/syoubenkozou.png"
           alt="" onerror="this.outerHTML='<span>💦</span>'">
       </div>
       <div class="text">
-        <strong>💦 尿は思った以上に「飛ぶ」</strong>
+        <strong>尿は思った以上に「飛ぶ」</strong>
         飛び散りは半径<span class="highlight">1m近く</span>に及ぶことも。床・まわり・<span class="highlight">裏側セット</span>で拭き取りを。
         <span class="joke">「気のせい」は科学的にあり得ません。尿に気はないので。</span>
       </div>
     </li>
     <li>
       <div class="illo">
-        <img src="https://2.bp.blogspot.com/-PXaS27X-OPo/VIB5Kq9GRQI/AAAAAAAApdc/GlXlWxKCeC0/s400/cleaning_man.png"
+        <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiHKwwhrrvSfSXe6rTZfiXsAKlGTK_qBUq2b4y6xrWeWibjP17AU9ztLvkBqt-Pn1qjosx-lZ7ybPRSiGUY0m2CA8RWiedULNX2r9Whj2LC7w6Q741i0VcJ554m950ugyVxz8SbYjX5cJDg/s852/souji_table_fuku_man.png"
           alt="" onerror="this.outerHTML='<span>🧹</span>'">
       </div>
       <div class="text">
-        <strong>🧹 拭いた後は「デキる人認定」確定</strong>
+        <strong>拭いた後は「デキる人認定」確定</strong>
         キレイに使うだけで評価がそっと上がる。拭かずに出ると「次の人」に心当たりが…
         <span class="joke">「自分が汚したのか」と疑われたらまずいですよ😅</span>
       </div>
     </li>
     <li>
       <div class="illo">
-        <img src="https://3.bp.blogspot.com/-rEdT0j-jqaE/VIB5LcKVqGI/AAAAAAAApdo/z9O9aq6yXlk/s400/toilet_flow.png"
+        <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiYk4x7kejgCfPN-HdrCuXuS1cKmg_GYFlfoUgEjoYulOTg-0xxdy77f1_9B2cpIT2EdhgXGga1zQChMKp8xJbUcAqD55A2hcDJg7fJTaQL4Vm0eF5nlMiKhjIl8ucyodySUkF07xWEatk/s400/toilet_nagasu_hand.png"
           alt="" onerror="this.outerHTML='<span>🌀</span>'">
       </div>
       <div class="text">
-        <strong>🌀 流したか曖昧なら「流してない」</strong>
+        <strong>流したか曖昧なら「流してない」</strong>
         「引いたっけ？」→「引いてない」です。もう一度引いて。<span class="highlight">流すのはタダです。</span>
         <span class="joke">流し忘れは「トイレ界の最重要違反」です。やってませんよね？</span>
       </div>
@@ -226,7 +269,10 @@
 
   <div class="footer">
     <span class="big">👊 トイレは「その人の本性」が出る場所。きれいに使って、株を上げるも良し。</span>
-    <p>拗ねてもいいです。トイレだけきっちり使ってくれるならそれでいいです😊</p>
+    <p>拗ねてもいいです。トイレだけきっちり使ってくれるならそれでいいです
+      <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhfZx2n2WZxlTg_YD4jblhWDRBcy2WqNk6vTL61N6QEYP7DvekUdiibs5LHuMZK1HFpl3oub3IpbMVI73IjoooYZByCTdGM3q_cOwWTFoE7P1eQae2DV9STy6qlAfhWi_SsMCd8U5BFNRU/s800/pose_yareyare_man.png"
+        style="height:36px;vertical-align:middle;" alt="" onerror="this.outerHTML='😊'">
+    </p>
     <div class="sign">― グループホームAo スタッフ一同 ―</div>
   </div>
 
