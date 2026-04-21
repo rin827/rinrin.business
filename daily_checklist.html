@@ -24,7 +24,7 @@
     gap: 5px;
     page-break-after: always;
   }
-  .page:last-child { page-break-after: avoid; }
+  .page:last-child { page-break-after: avoid; justify-content: space-between; gap: 0; }
 
   /* ===== HEADER ===== */
   .header {
@@ -133,7 +133,10 @@
   }
   .item:last-child { border-bottom: none; }
 
+  /* ページ1のアイテム */
   .section-kitchen .item { font-size: 12px; font-weight: 600; }
+
+  /* ページ2のアイテム */
   .section-cleaning .item,
   .section-records  .item,
   .section-other    .item { font-size: 13px; font-weight: 600; padding: 8px 12px; }
