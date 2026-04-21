@@ -6,20 +6,19 @@
 <title>トイレ注意書き</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Kaisei+Decol:wght@400;700&display=swap');
-  @page { size: A4; margin: 6mm; }
+  @page { size: A4; margin: 0; }
   * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { height: 100%; }
   body {
     width: 210mm;
     height: 297mm;
     background: #e0f7fa;
-    display: flex;
-    align-items: stretch;
-    justify-content: center;
     font-family: 'Kaisei Decol', 'Hiragino Maru Gothic Pro', sans-serif;
     padding: 6mm;
   }
   .card {
     width: 100%;
+    height: 100%;
     background: white;
     border-radius: 18px;
     border: 4px solid #29b6f6;
