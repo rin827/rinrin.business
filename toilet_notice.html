@@ -2,64 +2,72 @@
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>トイレ注意書き</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Kaisei+Decol:wght@400;700&display=swap');
   @page { size: A4; margin: 0; }
+
   * { margin: 0; padding: 0; box-sizing: border-box; }
-  html, body { height: 100%; }
+
   body {
     width: 210mm;
     height: 297mm;
+    overflow: hidden;
     background: #e0f7fa;
     font-family: 'Kaisei Decol', 'Hiragino Maru Gothic Pro', sans-serif;
-    padding: 6mm;
+    padding: 8mm;
   }
+
   .card {
     width: 100%;
     height: 100%;
     background: white;
-    border-radius: 18px;
+    border-radius: 16px;
     border: 4px solid #29b6f6;
-    padding: 16px 20px;
-    position: relative;
-    box-shadow: 5px 5px 0px #0288d1;
+    padding: 14px 20px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    position: relative;
   }
+
   .card::before {
     content: '';
     position: absolute;
     top: 6px; left: 6px; right: 6px; bottom: 6px;
     border: 2px dashed #81d4fa;
-    border-radius: 14px;
+    border-radius: 12px;
     pointer-events: none;
   }
-  .header { text-align: center; margin-bottom: 8px; }
-  .header-emoji { font-size: 30px; display: block; margin-bottom: 2px; }
+
+  /* ヘッダー */
+  .header {
+    text-align: center;
+  }
+  .header-emoji { font-size: 28px; }
   .title {
-    font-size: 20px;
+    font-size: 21px;
     font-weight: 700;
     color: #0277bd;
     line-height: 1.3;
     text-shadow: 2px 2px 0px #b3e5fc;
+    margin-top: 2px;
   }
   .subtitle {
     font-size: 10px;
     color: #4dd0e1;
-    margin-top: 3px;
+    margin-top: 2px;
     letter-spacing: 2px;
   }
+
+  /* イントロ */
   .intro {
     background: #fff3e0;
     border-radius: 10px;
-    padding: 8px 12px;
-    margin-bottom: 8px;
+    padding: 8px 14px;
     font-size: 12px;
     color: #4e342e;
-    line-height: 1.6;
+    line-height: 1.65;
     text-align: center;
     border: 2px dashed #ffb74d;
   }
@@ -76,29 +84,32 @@
     margin-top: 3px;
     display: block;
   }
-  .rules { list-style: none; margin-bottom: 8px; }
+
+  /* ルール */
+  .rules { list-style: none; }
   .rules li {
     display: flex;
     align-items: flex-start;
-    gap: 8px;
-    padding: 7px 10px;
-    margin-bottom: 6px;
+    gap: 10px;
+    padding: 8px 12px;
     border-radius: 10px;
     font-size: 12px;
     color: #37474f;
-    line-height: 1.55;
+    line-height: 1.6;
   }
   .rules li:nth-child(1) { background: #f3e5f5; border-left: 5px solid #ba68c8; }
   .rules li:nth-child(2) { background: #fff3e0; border-left: 5px solid #ffa726; }
   .rules li:nth-child(3) { background: #e8f5e9; border-left: 5px solid #66bb6a; }
   .rules li:nth-child(4) { background: #fce4ec; border-left: 5px solid #f06292; }
   .rules li .illo {
-    width: 38px;
+    width: 36px;
     flex-shrink: 0;
     text-align: center;
-    padding-top: 1px;
+    font-size: 28px;
+    line-height: 1;
+    padding-top: 3px;
   }
-  .rules li .illo img { width: 34px; height: 34px; object-fit: contain; }
+  .rules li .illo img { width: 32px; height: 32px; object-fit: contain; }
   .rules li .text strong {
     display: block;
     font-size: 13px;
@@ -112,21 +123,23 @@
   .joke {
     font-size: 10.5px;
     color: #90a4ae;
-    margin-top: 1px;
+    margin-top: 2px;
     display: block;
     font-style: italic;
   }
   .highlight {
     background: #ffff8d;
-    padding: 1px 3px;
+    padding: 0px 3px;
     border-radius: 3px;
     font-style: normal;
     color: #37474f;
   }
+
+  /* フッター */
   .footer {
     background: linear-gradient(135deg, #e1f5fe, #f3e5f5);
     border-radius: 10px;
-    padding: 8px 12px;
+    padding: 8px 14px;
     border: 2px solid #b3e5fc;
     text-align: center;
   }
@@ -136,7 +149,7 @@
     color: #0277bd;
     display: block;
     line-height: 1.5;
-    margin-bottom: 3px;
+    margin-bottom: 2px;
   }
   .footer p {
     font-size: 11px;
@@ -144,12 +157,13 @@
     line-height: 1.5;
   }
   .footer .sign {
-    margin-top: 4px;
+    margin-top: 3px;
     font-size: 10px;
     color: #b0bec5;
   }
+
   @media print {
-    body { padding: 0; background: white; }
+    body { background: #e0f7fa; }
     .card { box-shadow: none; }
   }
 </style>
@@ -171,11 +185,10 @@
   </div>
 
   <ul class="rules">
-
     <li>
       <div class="illo">
         <img src="https://2.bp.blogspot.com/-Qc4HxqJFoJM/VIB5KqUbFCI/AAAAAAAApdY/WsrPfMp7gZ0/s400/toilet_man.png"
-          alt="" onerror="this.outerHTML='<span style=\'font-size:44px\'>🦦</span>'">
+          alt="" onerror="this.outerHTML='<span>🦦</span>'">
       </div>
       <div class="text">
         <strong>🔬 便器の裏側も「現場」です</strong>
@@ -184,11 +197,10 @@
         <span class="joke">「見えないところ」こそダイレクトにマナーが出ます。デキる人は裏も拭く。</span>
       </div>
     </li>
-
     <li>
       <div class="illo">
         <img src="https://4.bp.blogspot.com/-4YWXQ6F8lSM/VIB5L0IdpkI/AAAAAAAApd0/P0B8NpEPm5s/s400/toilet_flush.png"
-          alt="" onerror="this.outerHTML='<span style=\'font-size:44px\'>💦</span>'">
+          alt="" onerror="this.outerHTML='<span>💦</span>'">
       </div>
       <div class="text">
         <strong>💦 尿は思った以上に「飛ぶ」</strong>
@@ -197,11 +209,10 @@
         <span class="joke">「気のせい」は科学的にあり得ません。尿に気はないので。</span>
       </div>
     </li>
-
     <li>
       <div class="illo">
         <img src="https://2.bp.blogspot.com/-PXaS27X-OPo/VIB5Kq9GRQI/AAAAAAAApdc/GlXlWxKCeC0/s400/cleaning_man.png"
-          alt="" onerror="this.outerHTML='<span style=\'font-size:44px\'>🧹</span>'">
+          alt="" onerror="this.outerHTML='<span>🧹</span>'">
       </div>
       <div class="text">
         <strong>🧹 拭いた後は「デキる人認定」確定</strong>
@@ -210,11 +221,10 @@
         <span class="joke">「自分が汚したのか」と疑われたらまずいですよ😅</span>
       </div>
     </li>
-
     <li>
       <div class="illo">
         <img src="https://3.bp.blogspot.com/-rEdT0j-jqaE/VIB5LcKVqGI/AAAAAAAApdo/z9O9aq6yXlk/s400/toilet_flow.png"
-          alt="" onerror="this.outerHTML='<span style=\'font-size:44px\'>🌀</span>'">
+          alt="" onerror="this.outerHTML='<span>🌀</span>'">
       </div>
       <div class="text">
         <strong>🌀 流したか曖昧なら「流してない」</strong>
@@ -223,7 +233,6 @@
         <span class="joke">流し忘れは「トイレ界の最重要第一条違反」です。やってませんよね？</span>
       </div>
     </li>
-
   </ul>
 
   <div class="footer">
