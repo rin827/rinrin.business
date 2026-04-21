@@ -138,7 +138,7 @@ function loadFromHash() {
   const hash = location.hash.slice(1);
   if (!hash) return;
   try {
-    const obj = JSON.parse(atob(hash));
+    const obj = JSON.parse(decodeURIComponent(escape(atob(hash))));
     if (Array.isArray(obj.n)) {
       names = [...BASE_NAMES, ...obj.n];
     }
@@ -229,7 +229,6 @@ function deleteName(i) {
 }
 
 function copyShareUrl() {
-  // location.href のハッシュより前の部分をベースにする（htmlpreview経由でも正しいURLになる）
   const base = location.href.split('#')[0];
   const url = base + '#' + encodeState();
   navigator.clipboard.writeText(url).then(() => {
