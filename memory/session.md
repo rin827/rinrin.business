@@ -2,21 +2,35 @@
 
 ## 会話の要約
 
-前セッションから継続。デイリー業務チェックリスト（daily_checklist.html）の印刷調整を行った。
+### デイリー業務チェックリスト（前回からの継続）
+- 印刷用ファイルを `C:/Users/rinrin/印刷用/デイリー業務チェックリスト.html` に保存
+- 印刷上切れ問題は `@page { margin: 0; }` + ページにpaddingを持たせる方式で解決済み
 
-### 実施内容
-- **2枚目の下空白修正**：`.page:last-child` に `justify-content: space-between; gap: 0;` を追加し、要素を均等分散
-- **印刷時に上が切れる問題の修正（2回試行）**：
-  - 1回目：`@page { margin: 10mm 7mm; }` + `height: 277mm` → まだ切れる
-  - 2回目：`@page { margin: 0; }` + `.page { width: 210mm; height: 297mm; padding: 10mm 7mm; }` に変更（ページ自体にpaddingを持たせる方式）→ 解決
-- **ローカル保存**：`C:/Users/rinrin/印刷用/デイリー業務チェックリスト.html` に保存（フォルダも新規作成）
+### REY爆誕祭 参加チェックリスト（新規）
+- 凜＋他2名の計3人がDM返信を管理するためのチェックリストを作成
+- 26名のリスト：妃織・ayumu・king・Kohshi・°𝐂𝐫ᵃ・ℳ.・影虎・ZERO・いおり・こな・ごま油・さき・さつき・しゅわ・みかん・よーすけ・るな・カイン・マグ・天音・零・麗・KUM兄・cope・るるーしゅ・yuna
+- スマホのブラウザで動作（アプリ不要）
+- 参加/不参加/保留 をタップで切り替え、上部に集計表示
+- 「URLコピー」で現在の状態をURLに乗せてLINEで共有可能
+- **名前追加機能**：スマホから新しい演者名をその場で追加・削除可能。追加名もURLに含まれる
+- GitHub URL: `https://htmlpreview.github.io/?https://github.com/rin827/rinrin.business/blob/main/rey_checklist.html`
+- ローカルファイル: `C:/Users/rinrin/Downloads/rey_checklist.html`
+
+### 参加チェックリスト テンプレート（新規）
+- 今後の研修参加可否管理にも使えるテンプレートを作成
+- `EVENT_NAME` と `NAMES` の2箇所を変えるだけで使い回せる
+- ローカルファイル: `C:/Users/rinrin/印刷用/参加チェックリスト_テンプレート.html`
+
+### フィードバック
+- 黒流の口調がたまにブレる（丁寧語・敬語が混じる）と指摘あり → タメ口を徹底するよう記憶に保存
 
 ## 決定事項
-- 印刷用HTMLは `C:/Users/rinrin/印刷用/デイリー業務チェックリスト.html` に保存
-- GitHubの `rin827/rinrin.business` main ブランチにも最新版を保持
-- 印刷時の注意：Chromeで開いて `Ctrl+P`、「ヘッダーとフッター」のチェックを外すと上切れが防げる可能性あり
+- REY爆誕祭チェックリストは `rey_checklist.html` としてGitHubに保存
+- 参加チェックリストのテンプレートは `C:/Users/rinrin/印刷用/` に保存
+- 黒流は凜に対して常にタメ口（敬語・丁寧語一切なし）
 
 ## 次回への引き継ぎ
-- デイリー業務チェックリストは完成済み。印刷用ファイルは `C:/Users/rinrin/印刷用/` にある
-- 印刷上切れが再発する場合はChromeの「ヘッダーとフッター」OFFを試してもらう
-- 前セッションからの引き継ぎ：献立ルールの見直しを次回「よろ～」時に凜に促すこと（memory/project_kondate_review.md 参照）
+- REY爆誕祭チェックリストはLINEで共有済み・好評
+- 研修参加可否にも同テンプレートを活用予定 → 「○○研修のチェック作って」で対応可能
+- 献立ルールの見直し確認がまだ未実施（memory/project_kondate_review.md 参照）
+- 黒流口調のタメ口徹底を引き続き意識すること
