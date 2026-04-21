@@ -2,59 +2,46 @@
 
 ## 会話の要約
 
-### セッション開始（よろ～）
-- CLAUDE.md・session.mdを読み込み、凪自動チェックを実施
-- GitHub・Obsidian・PC内の重複ファイル/フォルダを調査・報告
+### 凪チェック（よろ～時の自動チェック）
+- PC直下に `gcp-credentials.json` と複数のPDFファイルを検出
+- gcp-credentials.jsonは調査の結果、現在使用中のMCPサービスとの紐付けが確認できず念のため残すことに
+- `update-claude-md` ブランチにPRなし → 確認したところ既にmainにマージ済みだったため削除提案は見送り
 
-### 重複ファイル整理
-1. **Obsidian重複デイリーノート削除**：`凜保管/01-daily/2026-04-15.md` が重複していたため、正規ファイル（`凜保管/2026-04-15.md`）にログ2件を追記してから削除
-2. **PC直下のkondate xlsx削除**：Googleスプレッドシートが最新版であることを確認してから `C:\Users\rinrin\業務スーパー活用献立案.xlsx` を削除
-3. **update-claude-mdブランチ削除**：差分を確認し変更が反映済みであることを確認してから削除（ただし今回新たに同名ブランチでCLAUDE.md更新あり）
+### スタッフ用トイレ注意書き作成（toilet_notice.html）
+- 凜からの依頼：男性スタッフ向けトイレ注意書きをポップ・手書き風・ユーモアありで作成
+- 内容：①便器の裏側、②尿の飛び散り、③拭く習慣、④流し忘れの4項目
+- デザイン：Kaisei Decorフォント、水色テーマ、A4一枚印刷対応
+- いらすとや画像を実際のblogger.googleusercontent.com URLで取得・使用
 
-### 献立修正（Googleスプレッドシート）
-- シート「R8.4.27~5.3」のA42（5/2）・A48（5/3）の伊藤維様メモを修正
-- 修正後：`【※伊藤維様：ふりかけおにぎり（150g）1個。就労休みの日は朝食不要】`
+### 使用したいらすとや画像
+- ヘッダー左：笑顔のサラリーマン（business_man1_1_smile.png）
+- ヘッダー右：怒り顔のサラリーマン（business_man1_2_angry.png）
+- ヘッダー中央：壁掛けトイレ・男性マーク・女性マーク
+- 統計ボックス：ホワイトボードグラフ男性（whiteboard_memo_man2.png）
+- 統計ボックス小：挙手する男性（kyosyu_man.png）
+- ルール1：トイレ掃除（toilet_souji.png）
+- ルール2：小便小僧（syoubenkozou.png）※笑いポイント
+- ルール3：テーブル拭く男性（souji_table_fuku_man.png）
+- ルール4：手でトイレを流す（toilet_nagasu_hand.png）
+- フッター：やれやれポーズ男性（pose_yareyare_man.png）
 
-### CLAUDE.md更新（伊藤様個別対応ルール詳細化）
-- update-claude-mdブランチにpush → PR#39作成 → mainにマージ済み
-- 変更内容：伊藤維様の朝食ルールを詳細化
-  - 変更前：`豆腐が嫌い。基本就労日におにぎり1個のみ提供（日によって異なる）。献立表には「※伊藤様：就労日はおにぎり1個のみ（日によって異なる）」と記載し、食材数量・購入リストには含めない`
-  - 変更後：`豆腐が嫌い。朝食はふりかけおにぎり（150g）1個のみ提供。就労休みの日は朝食不要。献立表には「【※伊藤維様：ふりかけおにぎり（150g）1個。就労休みの日は朝食不要】」と記載し、食材数量・購入リストには含めない`
+### レイアウト上の問題と解決
+- A4に収まらない問題 → `.card { position: absolute; top:8mm; left:8mm; right:8mm; bottom:8mm; }` で解決
+- 空白が多い問題 → `justify-content: space-between` でheader・intro・rules・footerを均等配置
+- ルール内の空白 → `.rules { gap: 8px; }` でコンパクトに
+- htmlpreviewキャッシュ問題 → ローカルのDownloadsファイルを直接Chromeで開く方法で対応
 
-### 国保連取り込み送信V2 相談支援請求CSV
-- 厚労省仕様書（if_common.pdf・if_jigyosho.pdf）をローカルにダウンロードしpdfplumberでJ312/J321仕様を調査
-- 全6スタック（Python/Node.js・TypeScript/PHP・Laravel/Java・Spring Boot/Excel VBA/GAS）の実装コード含む11章構成のHTMLドキュメントを作成
-- html2pdf MCPでPDF変換 → `C:\Users\rinrin\Downloads\国保連CSV実装ガイド_開発者向け.pdf`（726KB）
-- HTMLソース（`kokuho_csv_spec.html`）もDownloadsに保存済み。HTMLをそのままアプリ開発担当に渡せばコードのコピペが可能
-
-### 現在の献立ルール確認
-- CLAUDE.mdの献立ルール一覧を出力（食材制限・賞味期限・個別対応・予算・出力形式）
+### 最終ファイル
+- GitHub: rin827/rinrin.business/main/toilet_notice.html
+- ローカル: C:/Users/rinrin/Downloads/toilet_notice.html
+- 印刷URL: https://htmlpreview.github.io/?https://github.com/rin827/rinrin.business/blob/main/toilet_notice.html
+- ※印刷はローカルファイルを直接Chromeで開く方が確実
 
 ## 決定事項
-
-- 伊藤維様の朝食：ふりかけおにぎり（150g）1個のみ。就労休みの日は朝食不要
-- 伊藤維様は食材数量・購入リストには含めない
-- 5/2から利用者4名→5名体制（伊藤維様入居）
-- 国保連CSV実装ガイドHTMLをアプリ開発担当に渡すことで決定（コピペ可能なため）
-- 4月分請求書作成は5/1に行う（鬼島・菅原・齋藤・柿岡の4名分）
-- 伊藤様は5/2入居なので4月分請求書は不要
+- toilet_notice.html をGitHub mainに保存済み
+- gcp-credentials.jsonは念のため残す
+- htmlpreviewキャッシュ回避のため印刷はローカルファイルを使用
 
 ## 次回への引き継ぎ
-
-### 5/1に行うこと
-- **月詠**：4月分請求書作成（鬼島・菅原・齋藤・柿岡の4名分）
-  - 伊藤維様は5/2入居のため4月分は対象外
-  - 変動費（昼食費・おにぎり・交通費・日用品費追加）を凜に確認してから作成
-
-### アプリ開発担当からの連絡待ち
-- 取り込み送信V2仕様PDFおよびHTMLをアプリ開発担当に渡し済み
-- 技術スタック確認後に実装方針を設計
-- 開発担当から連絡が来たら凜が対応を指示する予定
-
-### 5/2以降の献立について
-- 利用者5名体制での献立作成が必要（伊藤維様はおにぎり1個のみで人数に含めない）
-- 次週（5/4〜5/10）の献立作成時に5名体制を反映すること
-
-### 持ち越し食材情報（4/27〜5/3週）
-- Googleスプレッドシート「業務スーパー活用献立案」シート「R8.4.27~5.3」に記載済み
-- 翌週への持ち越し量は杏が次回献立作成時に確認すること
+- トイレ注意書きは完成・保存済み。印刷するときはC:/Users/rinrin/Downloads/toilet_notice.htmlをChromeで開いてCtrl+Pで印刷
+- いらすとや画像のURLはblogger.googleusercontent.com形式（bp.blogspot.comは古い形式で使えない）
