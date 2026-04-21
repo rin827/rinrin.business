@@ -86,7 +86,8 @@
 
    #### PC チェック
    - PC直下の不要ファイル検出（テストファイル・スクリーンショット等）：
-     `find /c/Users/rinrin -maxdepth 1 -type f -not -name "CLAUDE.md" -not -name ".bashrc" -not -name ".claude.json" -not -name ".mcp.json" -not -name "skills-lock.json" 2>/dev/null`
+     `find /c/Users/rinrin -maxdepth 1 -type f -not -name "CLAUDE.md" -not -name ".bashrc" -not -name ".claude.json" -not -name ".mcp.json" -not -name "skills-lock.json" -not -name "gcp-credentials.json" 2>/dev/null`
+   - ※ `C:\Users\rinrin\scripts\` フォルダは正常（Drive書き込みスクリプト格納場所）
 
    #### 報告形式
    - 問題なし → 「凪チェック：異常なし」と一行で報告
@@ -121,6 +122,49 @@
   - 例：`- 15:00 [月詠] — 3月分請求書を3名分作成・GitHubにpush`
 - 時刻は `date +"%H:%M"` コマンドで取得する
 - デイリーノートが存在しない場合は `Templates/デイリーテンプレート.md` をコピーして作成してから記録する
+
+## Google Drive連携スクリプト
+
+### スクリプト格納場所
+`C:\Users\rinrin\scripts\`
+
+### 認証情報
+- 認証ファイル：`C:\Users\rinrin\gcp-credentials.json`
+- サービスアカウント：`rinrin-sheets@rinrin-business.iam.gserviceaccount.com`
+- プロジェクト：`rinrin-business`
+
+### invoice_drive.py（月詠が使用）
+請求書ExcelをGoogle Driveに書き込む。
+```
+python C:\Users\rinrin\scripts\invoice_drive.py <利用者姓> <YYYY-MM> <昼食費日数> <おにぎり個数> <交通費回数> <日用品費追加>
+```
+例：`python C:\Users\rinrin\scripts\invoice_drive.py 鬼島 2026-04 9 21 0 0`
+
+利用者別ファイルID（Google Drive）：
+- 鬼島：`1GgwzBDgYUeaRKooxPHMDWzyuudJHaJHu`
+- 菅原：`1w4hlH0DKPosLQeDnCbBy9m5-bWWQQLbq`
+- 齋藤：`1XdRBn8ROTNE_uBmiH9Zt_nnpzZED5kro`
+
+### shift_drive.py（司が使用）
+シフト表ExcelにGoogle Driveで新月シートを追加する。
+```
+python C:\Users\rinrin\scripts\shift_drive.py shift_data.json
+```
+JSONフォーマット：
+```json
+{
+  "month": "2026年5月",
+  "shifts": {
+    "石崎 大典": ["遅番①", "休み", ...],
+    "太田 晴康": ["休み", "中番", ...]
+  },
+  "total_hours": {"石崎 大典": "168:00"},
+  "work_days": {"石崎 大典": 21},
+  "night_counts": {"石崎 大典": 10},
+  "rest_days": {"石崎 大典": 9}
+}
+```
+シフト表Google DriveファイルID：`176QRfNbgPkDUBGGUroL5gHNEhagIuS2N`
 
 ## スキル・ツール割り当て
 
@@ -283,6 +327,10 @@ const SHIFT_HOURS = {
 - 利用者ごとに請求書HTMLファイル（invoice_YYYYMM_氏名.html）を作成し `mcp__github__push_files` でGitHubのmainブランチにpushする
 - push後、以下の形式で印刷用URLを提供する：
   `https://htmlpreview.github.io/?https://github.com/rin827/rinrin.business/blob/main/invoice_YYYYMM_氏名.html`
+- **Google Drive書き込み（必須）**：HTMLとは別に、Google DriveのExcelファイルにも書き込む
+  - `python C:\Users\rinrin\scripts\invoice_drive.py <利用者姓> <YYYY-MM> <昼食費日数> <おにぎり個数> <交通費回数> <日用品費追加>`
+  - 例：`python C:\Users\rinrin\scripts\invoice_drive.py 鬼島 2026-04 9 21 0 0`
+  - ※ 柿岡・伊藤は現在Excelファイルが未作成のため対象外（鬼島・菅原・齋藤のみ）
 
 ### 提出前の確認ルール（必須）
 1. 請求書を作成する
@@ -455,6 +503,8 @@ const SHIFT_HOURS = {
 5. 問題あれば司が修正 → 律が再チェック
 6. 律がOK判定したら**黒流に報告** → 黒流が承認
 7. 黒流承認後、**紡**が印刷用HTMLを作成してGitHubにpush → 印刷用URLを凜に提出
+8. **司**が `shift_drive.py` でGoogle DriveのExcelシフト表にも新月シートを追加する
+   - `python C:\Users\rinrin\scripts\shift_drive.py shift_data.json`
 
 ### シフト作成指示を受けたとき（必須）
 シフト作成の指示があったら、作成前に必ず以下を確認すること：
