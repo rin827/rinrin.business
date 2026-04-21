@@ -24,8 +24,6 @@
     min-height: 100vh;
     padding-bottom: 30px;
   }
-
-  /* ヘッダー */
   .header {
     background: linear-gradient(135deg, #1a0033, #3d0068);
     padding: 18px 16px 14px;
@@ -35,140 +33,67 @@
     top: 0;
     z-index: 10;
   }
-  .header h1 {
-    font-size: 18px;
-    font-weight: 900;
-    color: #fff;
-    letter-spacing: 1px;
-    text-shadow: 0 0 12px var(--accent);
-  }
+  .header h1 { font-size: 18px; font-weight: 900; color: #fff; letter-spacing: 1px; text-shadow: 0 0 12px var(--accent); }
   .header h1 span { color: var(--accent); }
-
-  /* カウンター */
-  .counter {
-    display: flex;
-    justify-content: center;
-    gap: 12px;
-    margin-top: 10px;
-    flex-wrap: wrap;
-  }
-  .count-badge {
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    background: rgba(255,255,255,0.08);
-    border-radius: 20px;
-    padding: 4px 12px;
-    font-size: 13px;
-    font-weight: 700;
-  }
+  .counter { display: flex; justify-content: center; gap: 12px; margin-top: 10px; flex-wrap: wrap; }
+  .count-badge { display: flex; align-items: center; gap: 5px; background: rgba(255,255,255,0.08); border-radius: 20px; padding: 4px 12px; font-size: 13px; font-weight: 700; }
   .dot { width: 10px; height: 10px; border-radius: 50%; }
-  .dot-yes  { background: var(--yes); }
-  .dot-no   { background: var(--no); }
-  .dot-hold { background: var(--hold); }
-  .dot-none { background: var(--none); }
+  .dot-yes { background: var(--yes); } .dot-no { background: var(--no); } .dot-hold { background: var(--hold); } .dot-none { background: var(--none); }
 
-  /* リスト */
   .list { padding: 10px 12px; }
 
-  .item {
-    background: var(--card);
-    border-radius: 14px;
-    margin-bottom: 8px;
-    display: flex;
-    align-items: center;
-    padding: 10px 12px;
-    gap: 10px;
-    border: 1.5px solid #2a2a3e;
-    transition: border-color 0.2s;
-  }
+  .item { background: var(--card); border-radius: 14px; margin-bottom: 8px; display: flex; align-items: center; padding: 10px 12px; gap: 10px; border: 1.5px solid #2a2a3e; transition: border-color 0.2s; }
   .item.yes  { border-color: var(--yes); }
   .item.no   { border-color: var(--no); }
   .item.hold { border-color: var(--hold); }
-
-  .num {
-    font-size: 11px;
-    color: #666;
-    min-width: 20px;
-    text-align: right;
-  }
-  .name {
-    flex: 1;
-    font-size: 15px;
-    font-weight: 600;
-  }
-
-  /* ボタングループ */
-  .btns {
-    display: flex;
-    gap: 5px;
-  }
-  .btn {
-    border: none;
-    border-radius: 8px;
-    padding: 6px 10px;
-    font-size: 12px;
-    font-weight: 700;
-    cursor: pointer;
-    opacity: 0.3;
-    transition: opacity 0.15s, transform 0.1s;
-    -webkit-tap-highlight-color: transparent;
-  }
+  .num { font-size: 11px; color: #666; min-width: 20px; text-align: right; }
+  .name { flex: 1; font-size: 15px; font-weight: 600; }
+  .btns { display: flex; gap: 5px; }
+  .btn { border: none; border-radius: 8px; padding: 6px 10px; font-size: 12px; font-weight: 700; cursor: pointer; opacity: 0.3; transition: opacity 0.15s, transform 0.1s; -webkit-tap-highlight-color: transparent; }
   .btn:active { transform: scale(0.92); }
   .btn-yes  { background: var(--yes);  color: #fff; }
   .btn-no   { background: var(--no);   color: #fff; }
   .btn-hold { background: var(--hold); color: #fff; }
   .btn.active { opacity: 1; }
+  .btn-del { background: #333; color: #888; font-size: 16px; padding: 6px 9px; opacity: 0.6; }
+  .btn-del:active { opacity: 1; }
 
-  /* 共有ボタン */
-  .share-bar {
-    position: sticky;
-    bottom: 0;
-    background: var(--bg);
-    border-top: 1px solid #2a2a3e;
-    padding: 10px 16px;
+  /* 名前追加エリア */
+  .add-area {
+    margin: 4px 12px 12px;
     display: flex;
-    gap: 10px;
+    gap: 8px;
   }
-  .share-btn {
+  .add-input {
     flex: 1;
+    background: var(--card);
+    border: 1.5px solid #3a3a5e;
+    border-radius: 12px;
+    padding: 12px 14px;
+    font-size: 15px;
+    color: var(--text);
+    outline: none;
+    -webkit-appearance: none;
+  }
+  .add-input:focus { border-color: var(--accent); }
+  .add-input::placeholder { color: #555; }
+  .add-btn {
+    background: var(--accent);
     border: none;
     border-radius: 12px;
-    padding: 14px;
-    font-size: 14px;
-    font-weight: 800;
+    padding: 12px 18px;
+    font-size: 22px;
     cursor: pointer;
     -webkit-tap-highlight-color: transparent;
-  }
-  .share-btn-copy {
-    background: var(--accent);
-    color: #fff;
-    box-shadow: 0 0 16px rgba(224,64,251,0.4);
-  }
-  .share-btn-reset {
-    background: #2a2a3e;
-    color: var(--sub);
-    flex: 0 0 auto;
-    padding: 14px 16px;
+    box-shadow: 0 0 12px rgba(224,64,251,0.3);
   }
 
-  .toast {
-    position: fixed;
-    bottom: 80px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: #333;
-    color: #fff;
-    padding: 10px 22px;
-    border-radius: 20px;
-    font-size: 13px;
-    font-weight: 700;
-    opacity: 0;
-    transition: opacity 0.3s;
-    pointer-events: none;
-    white-space: nowrap;
-    z-index: 100;
-  }
+  .share-bar { position: sticky; bottom: 0; background: var(--bg); border-top: 1px solid #2a2a3e; padding: 10px 16px; display: flex; gap: 10px; }
+  .share-btn { flex: 1; border: none; border-radius: 12px; padding: 14px; font-size: 14px; font-weight: 800; cursor: pointer; -webkit-tap-highlight-color: transparent; }
+  .share-btn-copy { background: var(--accent); color: #fff; box-shadow: 0 0 16px rgba(224,64,251,0.4); }
+  .share-btn-reset { background: #2a2a3e; color: var(--sub); flex: 0 0 auto; padding: 14px 16px; }
+
+  .toast { position: fixed; bottom: 80px; left: 50%; transform: translateX(-50%); background: #333; color: #fff; padding: 10px 22px; border-radius: 20px; font-size: 13px; font-weight: 700; opacity: 0; transition: opacity 0.3s; pointer-events: none; white-space: nowrap; z-index: 100; }
   .toast.show { opacity: 1; }
 </style>
 </head>
@@ -186,6 +111,11 @@
 
 <div class="list" id="list"></div>
 
+<div class="add-area">
+  <input class="add-input" id="add-input" type="text" placeholder="名前を追加..." maxlength="30">
+  <button class="add-btn" onclick="addName()">＋</button>
+</div>
+
 <div class="share-bar">
   <button class="share-btn share-btn-copy" onclick="copyShareUrl()">📋 最新状態をURLコピー → LINEに貼り付け</button>
   <button class="share-btn share-btn-reset" onclick="resetAll()">🔄</button>
@@ -194,7 +124,7 @@
 <div class="toast" id="toast"></div>
 
 <script>
-const NAMES = [
+const BASE_NAMES = [
   '妃織','ayumu','king','Kohshi','°𝐂𝐫ᵃ','ℳ.',
   '影虎','ZERO','いおり','こな','ごま油','さき',
   'さつき','しゅわ','みかん','よーすけ','るな',
@@ -202,44 +132,68 @@ const NAMES = [
   'cope','るるーしゅ','yuna'
 ];
 
-// 0=未回答 1=参加 2=不参加 3=保留
-let statuses = new Array(NAMES.length).fill(0);
+let names    = [...BASE_NAMES];
+let statuses = new Array(names.length).fill(0);
 
+// URLハッシュ形式: base64(JSON({n:[追加名前...], s:[0,1,2...]}))
 function loadFromHash() {
   const hash = location.hash.slice(1);
   if (!hash) return;
   try {
-    const decoded = atob(hash);
-    for (let i = 0; i < NAMES.length && i < decoded.length; i++) {
-      const v = parseInt(decoded[i]);
-      if (v >= 0 && v <= 3) statuses[i] = v;
+    const obj = JSON.parse(atob(hash));
+    // 追加名前を反映
+    if (Array.isArray(obj.n)) {
+      names = [...BASE_NAMES, ...obj.n];
     }
-  } catch(e) {}
+    // ステータスを反映
+    if (Array.isArray(obj.s)) {
+      statuses = new Array(names.length).fill(0);
+      obj.s.forEach((v, i) => { if (i < statuses.length && v >= 0 && v <= 3) statuses[i] = v; });
+    }
+  } catch(e) {
+    // 旧形式(数字列)との互換
+    try {
+      const decoded = atob(hash);
+      for (let i = 0; i < names.length && i < decoded.length; i++) {
+        const v = parseInt(decoded[i]);
+        if (v >= 0 && v <= 3) statuses[i] = v;
+      }
+    } catch(e2) {}
+  }
 }
 
 function encodeState() {
-  return btoa(statuses.join(''));
+  const extra = names.slice(BASE_NAMES.length);
+  const obj = { s: statuses };
+  if (extra.length > 0) obj.n = extra;
+  return btoa(JSON.stringify(obj));
 }
 
 function render() {
   const list = document.getElementById('list');
   list.innerHTML = '';
-  NAMES.forEach((name, i) => {
+  names.forEach((name, i) => {
     const s = statuses[i];
     const cls = ['', 'yes', 'no', 'hold'][s];
+    const isExtra = i >= BASE_NAMES.length;
     const div = document.createElement('div');
     div.className = `item ${cls}`;
     div.innerHTML = `
       <span class="num">${i+1}</span>
-      <span class="name">${name}</span>
+      <span class="name">${escHtml(name)}${isExtra ? ' <span style="font-size:10px;color:var(--accent)">NEW</span>' : ''}</span>
       <div class="btns">
         <button class="btn btn-yes  ${s===1?'active':''}" onclick="setStatus(${i},1)">参加</button>
         <button class="btn btn-no   ${s===2?'active':''}" onclick="setStatus(${i},2)">不参加</button>
         <button class="btn btn-hold ${s===3?'active':''}" onclick="setStatus(${i},3)">保留</button>
+        ${isExtra ? `<button class="btn btn-del" onclick="deleteName(${i})">×</button>` : ''}
       </div>`;
     list.appendChild(div);
   });
   updateCounter();
+}
+
+function escHtml(s) {
+  return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
 }
 
 function updateCounter() {
@@ -255,6 +209,31 @@ function setStatus(i, val) {
   history.replaceState(null, '', '#' + encodeState());
 }
 
+function addName() {
+  const input = document.getElementById('add-input');
+  const name = input.value.trim();
+  if (!name) return;
+  names.push(name);
+  statuses.push(0);
+  input.value = '';
+  render();
+  history.replaceState(null, '', '#' + encodeState());
+  showToast(`「${name}」を追加しました！`);
+  // 追加した行までスクロール
+  setTimeout(() => {
+    const items = document.querySelectorAll('.item');
+    if (items.length) items[items.length-1].scrollIntoView({behavior:'smooth', block:'center'});
+  }, 100);
+}
+
+function deleteName(i) {
+  if (!confirm(`「${names[i]}」を削除しますか？`)) return;
+  names.splice(i, 1);
+  statuses.splice(i, 1);
+  render();
+  history.replaceState(null, '', '#' + encodeState());
+}
+
 function copyShareUrl() {
   const url = location.origin + location.pathname + '#' + encodeState();
   navigator.clipboard.writeText(url).then(() => {
@@ -265,8 +244,9 @@ function copyShareUrl() {
 }
 
 function resetAll() {
-  if (confirm('全員を未回答にリセットしますか？')) {
-    statuses.fill(0);
+  if (confirm('全員を未回答にリセット＆追加メンバーも削除しますか？')) {
+    names = [...BASE_NAMES];
+    statuses = new Array(names.length).fill(0);
     render();
     history.replaceState(null, '', location.pathname);
   }
@@ -278,6 +258,13 @@ function showToast(msg) {
   t.classList.add('show');
   setTimeout(() => t.classList.remove('show'), 2500);
 }
+
+// Enterキーで追加
+document.addEventListener('DOMContentLoaded', () => {
+  document.getElementById('add-input').addEventListener('keydown', e => {
+    if (e.key === 'Enter') addName();
+  });
+});
 
 loadFromHash();
 render();
