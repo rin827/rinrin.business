@@ -6,66 +6,83 @@
 <title>デイリー業務チェックリスト</title>
 <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;500;700;800;900&display=swap" rel="stylesheet">
 <style>
-  @page { size: A4 portrait; margin: 6mm; }
+  @page { size: A4 portrait; margin: 7mm; }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body {
     font-family: 'M PLUS Rounded 1c', 'Hiragino Maru Gothic Pro', sans-serif;
     background: #fff;
     color: #333;
+    font-size: 10px;
   }
   .page {
-    width: 198mm;
-    min-height: 285mm;
+    width: 196mm;
     margin: 0 auto;
     display: flex;
     flex-direction: column;
     gap: 4px;
   }
 
-  /* ===== HEADER ===== */
+  /* HEADER */
   .header {
     background: linear-gradient(135deg, #FF9DC6 0%, #FFB347 35%, #87CEEB 65%, #98FB98 100%);
-    border-radius: 14px;
-    padding: 8px 16px 10px;
+    border-radius: 12px;
+    padding: 7px 14px 9px;
     text-align: center;
     position: relative;
     overflow: hidden;
   }
-  .header::before { content: '⭐✨⭐'; position: absolute; top: 5px; left: 10px; font-size: 13px; opacity: .6; }
-  .header::after  { content: '⭐✨⭐'; position: absolute; top: 5px; right: 10px; font-size: 13px; opacity: .6; }
-  .facility { font-size: 10px; color: #fff; font-weight: 700; letter-spacing: 2px; text-shadow: 1px 1px 2px rgba(0,0,0,.2); }
-  .main-title { font-size: 26px; font-weight: 900; color: #fff; letter-spacing: 3px; text-shadow: 2px 2px 0 rgba(0,0,0,.12); }
+  .header::before { content: '⭐✨⭐'; position:absolute; top:4px; left:8px; font-size:12px; opacity:.6; }
+  .header::after  { content: '⭐✨⭐'; position:absolute; top:4px; right:8px; font-size:12px; opacity:.6; }
+  .facility { font-size: 9.5px; color:#fff; font-weight:700; letter-spacing:2px; text-shadow:1px 1px 2px rgba(0,0,0,.2); }
+  .main-title { font-size: 23px; font-weight:900; color:#fff; letter-spacing:3px; text-shadow:2px 2px 0 rgba(0,0,0,.12); }
 
-  /* ===== MOTTO ===== */
+  /* MOTTO TOP */
   .motto {
     text-align: center;
     background: #FFF9C4;
-    border: 2.5px dashed #FFD700;
-    border-radius: 20px;
-    padding: 5px 12px;
-    font-size: 12.5px;
+    border: 2px dashed #FFD700;
+    border-radius: 18px;
+    padding: 4px 12px;
+    font-size: 11px;
     font-weight: 800;
     color: #E65100;
   }
 
-  /* ===== BODY LAYOUT: 2 columns ===== */
-  .columns {
+  /* NO-BLAME BANNER */
+  .no-blame {
+    background: linear-gradient(135deg, #E8F5E9, #F3E5F5);
+    border: 2px solid #CE93D8;
+    border-radius: 12px;
+    padding: 6px 12px;
     display: flex;
-    gap: 5px;
-    flex: 1;
+    align-items: center;
+    gap: 10px;
   }
-  .col-left, .col-right {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
+  .no-blame-icon { font-size: 22px; flex-shrink: 0; }
+  .no-blame-text { flex: 1; }
+  .no-blame-title {
+    font-size: 11.5px;
+    font-weight: 900;
+    color: #6A1B9A;
+    margin-bottom: 2px;
+  }
+  .no-blame-body {
+    font-size: 10px;
+    font-weight: 600;
+    color: #555;
+    line-height: 1.55;
+  }
+  .no-blame-body em {
+    font-style: normal;
+    color: #AD1457;
+    font-weight: 800;
   }
 
-  /* ===== SECTION ===== */
+  /* SECTION */
   .section {
-    border-radius: 10px;
+    border-radius: 9px;
     overflow: hidden;
-    border: 2.5px solid;
+    border: 2px solid;
   }
   .section-kitchen  { border-color: #FFA726; }
   .section-cleaning { border-color: #29B6F6; }
@@ -76,11 +93,11 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 5px 10px;
-    font-size: 13px;
+    padding: 4px 10px;
+    font-size: 12px;
     font-weight: 900;
     color: #fff;
-    gap: 5px;
+    gap: 4px;
     letter-spacing: 1px;
   }
   .section-kitchen  .section-header { background: #FFA726; }
@@ -88,9 +105,8 @@
   .section-records  .section-header { background: #66BB6A; }
   .section-other    .section-header { background: #EC407A; }
 
-  /* ===== ITEMS ===== */
+  /* ITEMS */
   .items { display: flex; flex-direction: column; }
-
   .section-kitchen  .item:nth-child(odd)  { background: #FFF8E1; }
   .section-kitchen  .item:nth-child(even) { background: #FFF3CD; }
   .section-cleaning .item:nth-child(odd)  { background: #E3F2FD; }
@@ -103,34 +119,24 @@
   .item {
     display: flex;
     align-items: center;
-    padding: 4.5px 8px;
-    gap: 6px;
+    padding: 3.5px 8px;
+    gap: 5px;
     border-bottom: 1px solid rgba(0,0,0,.06);
-    font-size: 10.5px;
+    font-size: 10px;
     font-weight: 600;
     line-height: 1.35;
   }
   .item:last-child { border-bottom: none; }
-
-  .num {
-    font-size: 9px;
-    font-weight: 800;
-    color: #bbb;
-    min-width: 14px;
-    text-align: right;
-  }
-  .check-icon {
-    font-size: 13px;
-    flex-shrink: 0;
-  }
+  .num { font-size: 8.5px; font-weight:800; color:#bbb; min-width:14px; text-align:right; }
+  .check-icon { font-size: 11px; flex-shrink: 0; }
   .task { flex: 1; }
 
-  /* ===== BADGES ===== */
+  /* BADGES */
   .badge {
     display: inline-block;
-    padding: 2px 6px;
-    border-radius: 10px;
-    font-size: 8.5px;
+    padding: 1.5px 6px;
+    border-radius: 9px;
+    font-size: 8px;
     font-weight: 800;
     white-space: nowrap;
     flex-shrink: 0;
@@ -142,15 +148,15 @@
   .b-special { background: #00897B; color: #fff; }
   .b-weekday { background: #546E7A; color: #fff; }
 
-  /* ===== FOOTER ===== */
+  /* FOOTER */
   .footer-motto {
     text-align: center;
     background: linear-gradient(135deg, #FFB3C6, #FFD89B, #B3E5FC);
-    border-radius: 12px;
-    padding: 7px 12px;
+    border-radius: 11px;
+    padding: 6px 12px;
   }
   .footer-motto p {
-    font-size: 12px;
+    font-size: 11.5px;
     font-weight: 900;
     color: #fff;
     text-shadow: 1px 1px 2px rgba(0,0,0,.18);
@@ -173,78 +179,67 @@
 
   <div class="motto">🌟 ワンチームで乗り越えよう！　誰でもミスや忘れることはあります。お互い助け合い大事！ 🌟</div>
 
-  <div class="columns">
-    <!-- LEFT -->
-    <div class="col-left">
-
-      <div class="section section-kitchen">
-        <div class="section-header">🍳 キッチン</div>
-        <div class="items">
-          <div class="item"><span class="num">1</span><span class="check-icon">✅</span><span class="task">シンク回りはキレイ？</span><span class="badge b-all">全時間</span></div>
-          <div class="item"><span class="num">2</span><span class="check-icon">✅</span><span class="task">三角コーナーの生ごみ捨てた？</span><span class="badge b-all">全時間</span></div>
-          <div class="item"><span class="num">3</span><span class="check-icon">✅</span><span class="task">食材はラップ・袋・ジップロックに入れて保管ＯＫ？</span><span class="badge b-all">全時間</span></div>
-          <div class="item"><span class="num">4</span><span class="check-icon">✅</span><span class="task">フライパン・鍋・キッチン用具はしまった？</span><span class="badge b-all">全時間</span></div>
-          <div class="item"><span class="num">5</span><span class="check-icon">✅</span><span class="task">布巾・台布巾はハイターした？</span><span class="badge b-late">遅番</span></div>
-          <div class="item"><span class="num">6</span><span class="check-icon">✅</span><span class="task">布巾・台布巾は揉みだして干した？</span><span class="badge b-night">夜勤</span></div>
-          <div class="item"><span class="num">7</span><span class="check-icon">✅</span><span class="task">乾いた布巾・台布巾はしまった？</span><span class="badge b-all">全時間</span></div>
-          <div class="item"><span class="num">8</span><span class="check-icon">✅</span><span class="task">お米炊飯した？</span><span class="badge b-all">全時間</span></div>
-          <div class="item"><span class="num">9</span><span class="check-icon">✅</span><span class="task">お茶は作ってある？</span><span class="badge b-all">全時間</span></div>
-          <div class="item"><span class="num">10</span><span class="check-icon">✅</span><span class="task">ゴミ出し大丈夫？</span><span class="badge b-special">夜勤 or 早番</span></div>
-          <div class="item"><span class="num">11</span><span class="check-icon">✅</span><span class="task">ゲストさんにゴミの日って声掛けＯＫ？</span><span class="badge b-morning">早番（夜勤〜朝も）</span></div>
-          <div class="item"><span class="num">12</span><span class="check-icon">✅</span><span class="task">食器洗剤の補充ＯＫ？</span><span class="badge b-all">全時間</span></div>
-          <div class="item"><span class="num">13</span><span class="check-icon">✅</span><span class="task">ハンドソープの補充ＯＫ？</span><span class="badge b-all">全時間</span></div>
-          <div class="item"><span class="num">14</span><span class="check-icon">✅</span><span class="task">調味料の在庫ある？（なかったら事務に）</span><span class="badge b-all">全時間</span></div>
-          <div class="item"><span class="num">15</span><span class="check-icon">✅</span><span class="task">備品の在庫ある？（なかったら事務に）</span><span class="badge b-all">全時間</span></div>
-          <div class="item"><span class="num">16</span><span class="check-icon">✅</span><span class="task">翌日使用の冷凍もの、冷蔵庫に移勗した？</span><span class="badge b-all">全時間</span></div>
-          <div class="item"><span class="num">17</span><span class="check-icon">✅</span><span class="task">お米の在庫ある？（なくなる前に事務に）</span><span class="badge b-all">全時間</span></div>
-        </div>
+  <!-- 責め禁止バナー -->
+  <div class="no-blame">
+    <div class="no-blame-icon">🙅</div>
+    <div class="no-blame-text">
+      <div class="no-blame-title">🚫 「なんでやってないの！」は禁止です！</div>
+      <div class="no-blame-body">
+        「やり忘れてる」を見つけたら… <em>そっとフォローしてあげるのがワンチーム👍</em>　
+        静かに責める前に、<em>あなたも明日忘れるかも😂</em>　
+        ミスや忘れは誤騗！申し訳ないけど、<em>責めるのはもっと誤騗😅</em>
       </div>
-
     </div>
+    <div class="no-blame-icon">🤝</div>
+  </div>
 
-    <!-- RIGHT -->
-    <div class="col-right">
+  <div class="section section-kitchen">
+    <div class="section-header">🍳 キッチン</div>
+    <div class="items">
+      <div class="item"><span class="num">1</span><span class="check-icon">✅</span><span class="task">シンク回りはキレイ？</span><span class="badge b-all">全時間</span></div>
+      <div class="item"><span class="num">2</span><span class="check-icon">✅</span><span class="task">三角コーナーの生ごみ捨てた？</span><span class="badge b-all">全時間</span></div>
+      <div class="item"><span class="num">3</span><span class="check-icon">✅</span><span class="task">食材はラップ・袋・ジップロックに入れて保管ＯＫ？</span><span class="badge b-all">全時間</span></div>
+      <div class="item"><span class="num">4</span><span class="check-icon">✅</span><span class="task">フライパン・鍋・キッチン用具はしまった？</span><span class="badge b-all">全時間</span></div>
+      <div class="item"><span class="num">5</span><span class="check-icon">✅</span><span class="task">布巾・台布巾はハイターした？</span><span class="badge b-late">遅番</span></div>
+      <div class="item"><span class="num">6</span><span class="check-icon">✅</span><span class="task">布巾・台布巾は揉みだして干した？</span><span class="badge b-night">夜勤</span></div>
+      <div class="item"><span class="num">7</span><span class="check-icon">✅</span><span class="task">乾いた布巾・台布巾はしまった？</span><span class="badge b-all">全時間</span></div>
+      <div class="item"><span class="num">8</span><span class="check-icon">✅</span><span class="task">お米炊飯した？</span><span class="badge b-all">全時間</span></div>
+      <div class="item"><span class="num">9</span><span class="check-icon">✅</span><span class="task">お茶は作ってある？</span><span class="badge b-all">全時間</span></div>
+      <div class="item"><span class="num">10</span><span class="check-icon">✅</span><span class="task">ゴミ出し大丈夫？</span><span class="badge b-special">夜勤 or 早番</span></div>
+      <div class="item"><span class="num">11</span><span class="check-icon">✅</span><span class="task">ゲストさんにゴミの日って声掛けＯＫ？</span><span class="badge b-morning">早番（夜勤〜朝も）</span></div>
+      <div class="item"><span class="num">12</span><span class="check-icon">✅</span><span class="task">食器洗剤の補充ＯＫ？</span><span class="badge b-all">全時間</span></div>
+      <div class="item"><span class="num">13</span><span class="check-icon">✅</span><span class="task">ハンドソープの補充ＯＫ？</span><span class="badge b-all">全時間</span></div>
+      <div class="item"><span class="num">14</span><span class="check-icon">✅</span><span class="task">調味料の在庫ある？（なかったら事務に言って）</span><span class="badge b-all">全時間</span></div>
+      <div class="item"><span class="num">15</span><span class="check-icon">✅</span><span class="task">備品の在庫ある？（なかったら事務に言って）</span><span class="badge b-all">全時間</span></div>
+      <div class="item"><span class="num">16</span><span class="check-icon">✅</span><span class="task">翌日使用の冷凍もの、冷蔵庫に移勗した？</span><span class="badge b-all">全時間</span></div>
+      <div class="item"><span class="num">17</span><span class="check-icon">✅</span><span class="task">お米の在庫ある？（なくなる前に事務に言って）</span><span class="badge b-all">全時間</span></div>
+    </div>
+  </div>
 
-      <div class="section section-cleaning">
-        <div class="section-header">🧹 清掃関連</div>
-        <div class="items">
-          <div class="item"><span class="num">18</span><span class="check-icon">✅</span><span class="task">トイレ汚れてない？</span><span class="badge b-all">全時間</span></div>
-          <div class="item"><span class="num">19</span><span class="check-icon">✅</span><span class="task">掃除機・床掃除した？</span><span class="badge b-weekday">平日遅番・土日祝早番</span></div>
-          <div class="item"><span class="num">20</span><span class="check-icon">✅</span><span class="task">他に汚れてる所ない？</span><span class="badge b-all">全時間</span></div>
-        </div>
-      </div>
+  <div class="section section-cleaning">
+    <div class="section-header">🧹 清掃関連</div>
+    <div class="items">
+      <div class="item"><span class="num">18</span><span class="check-icon">✅</span><span class="task">トイレ汚れてない？</span><span class="badge b-all">全時間</span></div>
+      <div class="item"><span class="num">19</span><span class="check-icon">✅</span><span class="task">掃除機・床掃除した？</span><span class="badge b-weekday">平日遅番・土日祝早番</span></div>
+      <div class="item"><span class="num">20</span><span class="check-icon">✅</span><span class="task">他に汚れてる所ない？</span><span class="badge b-all">全時間</span></div>
+    </div>
+  </div>
 
-      <div class="section section-records">
-        <div class="section-header">📝 記録関連</div>
-        <div class="items">
-          <div class="item"><span class="num">21</span><span class="check-icon">✅</span><span class="task">各ゲストさんのケース記録・日付記入した？</span><span class="badge b-all">全時間</span></div>
-          <div class="item"><span class="num">22</span><span class="check-icon">✅</span><span class="task">特定ゲストさんにお小遣い渡してチェックＯＫ？</span><span class="badge b-special">全時間（特に夜勤〜朝）</span></div>
-          <div class="item"><span class="num">23</span><span class="check-icon">✅</span><span class="task">各ゲストさんのチェック表各種記入ＯＫ？</span><span class="badge b-all">全時間</span></div>
-        </div>
-      </div>
+  <div class="section section-records">
+    <div class="section-header">📝 記録関連</div>
+    <div class="items">
+      <div class="item"><span class="num">21</span><span class="check-icon">✅</span><span class="task">各ゲストさんのケース記録・日付記入した？</span><span class="badge b-all">全時間</span></div>
+      <div class="item"><span class="num">22</span><span class="check-icon">✅</span><span class="task">特定ゲストさんにお小遣い渡してチェックＯＫ？</span><span class="badge b-special">全時間（特に夜勤〜朝）</span></div>
+      <div class="item"><span class="num">23</span><span class="check-icon">✅</span><span class="task">各ゲストさんのチェック表各種記入ＯＫ？</span><span class="badge b-all">全時間</span></div>
+    </div>
+  </div>
 
-      <div class="section section-other">
-        <div class="section-header">🏠 その他</div>
-        <div class="items">
-          <div class="item"><span class="num">24</span><span class="check-icon">✅</span><span class="task">窓の鍵施錠ＯＫ？</span><span class="badge b-all">全時間</span></div>
-          <div class="item"><span class="num">25</span><span class="check-icon">✅</span><span class="task">電気消し忘れてない？</span><span class="badge b-all">全時間</span></div>
-          <div class="item"><span class="num">26</span><span class="check-icon">✅</span><span class="task">エアコン消した？（タイマーはＯＫ）</span><span class="badge b-all">全時間</span></div>
-        </div>
-      </div>
-
-      <!-- 凰例 -->
-      <div style="background:#F5F5F5; border-radius:10px; padding:8px 10px; font-size:9px; color:#666;">
-        <div style="font-weight:800; font-size:10px; color:#555; margin-bottom:4px;">🏷️ タイミング凰例</div>
-        <div style="display:flex; flex-wrap:wrap; gap:4px;">
-          <span style="background:#FF7043;color:#fff;padding:2px 7px;border-radius:8px;font-weight:800;font-size:8.5px;">全時間</span><span>出勤中は常に意識</span>
-          <span style="background:#7E57C2;color:#fff;padding:2px 7px;border-radius:8px;font-weight:800;font-size:8.5px;">遅番</span><span>遅番スタッフ</span>
-          <span style="background:#3949AB;color:#fff;padding:2px 7px;border-radius:8px;font-weight:800;font-size:8.5px;">夜勤</span><span>夜勤スタッフ</span>
-          <span style="background:#F57C00;color:#fff;padding:2px 7px;border-radius:8px;font-weight:800;font-size:8.5px;">早番</span><span>早番スタッフ（夜勤引き継ぎも）</span>
-          <span style="background:#00897B;color:#fff;padding:2px 7px;border-radius:8px;font-weight:800;font-size:8.5px;">特定</span><span>詳細はバッジ参照</span>
-          <span style="background:#546E7A;color:#fff;padding:2px 7px;border-radius:8px;font-weight:800;font-size:8.5px;">曜日限定</span><span>平日遅番 / 土日祝早番</span>
-        </div>
-      </div>
-
+  <div class="section section-other">
+    <div class="section-header">🏠 その他</div>
+    <div class="items">
+      <div class="item"><span class="num">24</span><span class="check-icon">✅</span><span class="task">窓の鍵施錠ＯＫ？</span><span class="badge b-all">全時間</span></div>
+      <div class="item"><span class="num">25</span><span class="check-icon">✅</span><span class="task">電気消し忘れてない？</span><span class="badge b-all">全時間</span></div>
+      <div class="item"><span class="num">26</span><span class="check-icon">✅</span><span class="task">エアコン消した？（タイマーはＯＫ）</span><span class="badge b-all">全時間</span></div>
     </div>
   </div>
 
