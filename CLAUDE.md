@@ -99,12 +99,12 @@
 | 名前 | 役割 | スキル・ツール |
 |------|------|---------------|
 | 黒流 | CEOエージェント。経営相談・提案のヒアリング・判断 | 全スキル利用可（gstack・doc-coauthoring・internal-comms＋全エージェントスキル統合） |
-| 司 | シフト作成。毎月のシフト表を作成する | xlsx |
+| 司 | シフト作成。毎月のシフト表を作成する | xlsx・google-sheets |
 | 律 | 品質確認。全エージェントの成果物を黒流に渡す前に確認する | pdf・xlsx・docx・pptx・playwright |
 | 紡 | 印刷用URL作成。完成したシフト表をHTMLにしてGitHub経由で印刷用URLを提供する | html2pdf |
-| 杏 | 献立作成。グループホーム朝食の週間献立を作成する | xlsx |
-| 月詠 | 請求書作成。グループホーム利用者の月次利用料請求書を作成する | invoice-mcp・xlsx・pdf |
-| 凪 | 作業環境全体（リポジトリ・GitHub・PC・Obsidian）の整理・最適化・不具合修正 | git-workflow・audit-website・insecure-defaults・ln-012/013/014・simplify |
+| 杏 | 献立作成。グループホーム朝食の週間献立を作成する | xlsx・google-sheets |
+| 月詠 | 請求書作成。グループホーム利用者の月次利用料請求書を作成する | invoice-mcp・xlsx・pdf・google-sheets |
+| 凪 | 作業環境全体（リポジトリ・GitHub・PC・Obsidian）の整理・最適化・不具合修正 | git-workflow・audit-website・insecure-defaults・ln-012/013/014・simplify・ln-002-session-analyzer |
 | 葵 | 利用者様用書類作成（レク・イベント告知・ルール・時間割等） | docx・pptx・pdf・frontend-design・canvas-design・theme-factory |
 ```
 
@@ -176,13 +176,13 @@ JSONフォーマット：
 
 | エージェント | 割り当てスキル・ツール | 用途 |
 |-------------|----------------------|------|
-| 司（シフト作成） | `anthropic-skills:xlsx` | シフト表をExcel形式でも出力可能に |
+| 司（シフト作成） | `anthropic-skills:xlsx`、`google-sheets` MCP | シフト表をExcel形式でも出力可能に・Google スプレッドシート直接書き込み |
 | 紡（印刷用URL） | `html2pdf` MCP | HTML→PDF変換で直接印刷用ファイル作成 |
-| 月詠（請求書） | `invoice-mcp` MCP、`anthropic-skills:xlsx`、`anthropic-skills:pdf` | PDF請求書生成、請求データのExcel管理 |
-| 杏（献立作成） | `anthropic-skills:xlsx` | 献立表・買い物リストをExcel形式でも出力可能に |
+| 月詠（請求書） | `invoice-mcp` MCP、`anthropic-skills:xlsx`、`anthropic-skills:pdf`、`google-sheets` MCP | PDF請求書生成、請求データのExcel管理・スプレッドシート直接書き込み |
+| 杏（献立作成） | `anthropic-skills:xlsx`、`google-sheets` MCP | 献立表・買い物リストをExcel形式でも出力可能に・献立スプレッドシート直接書き込み |
 | 葵（書類作成） | `anthropic-skills:docx`、`anthropic-skills:pptx`、`anthropic-skills:pdf`、`anthropic-skills:frontend-design`、`anthropic-skills:canvas-design`、`anthropic-skills:theme-factory` | Word・PowerPoint・PDF・HTMLデザイン・ポスター作成・統一テーマ適用 |
 | 律（品質確認） | `anthropic-skills:pdf`、`anthropic-skills:xlsx`、`anthropic-skills:docx`、`anthropic-skills:pptx`、`playwright` MCP | 全成果物の内容・計算・レイアウト・表示確認 |
-| 凪（リポジトリ） | `git-workflow`・`audit-website`・`insecure-defaults`・`ln-012-mcp-configurator`・`ln-013-config-syncer`・`ln-014-agent-instructions-manager`・`simplify` | ブランチ管理・HTML監査・設定ファイル安全確認・MCP設定・CLAUDE.md監査・コード品質確認 |
+| 凪（リポジトリ） | `git-workflow`・`audit-website`・`insecure-defaults`・`ln-012-mcp-configurator`・`ln-013-config-syncer`・`ln-014-agent-instructions-manager`・`simplify`・`setup-environment:ln-002-session-analyzer` | ブランチ管理・HTML監査・設定ファイル安全確認・MCP設定・CLAUDE.md監査・コード品質確認・セッション分析 |
 | 黒流（CEO） | **【CEO専用】** `gstack`（plan-ceo-review・autoplan・review・office-hours・cso・retro）、`anthropic-skills:doc-coauthoring`、`anthropic-skills:internal-comms` **【全エージェント統合】** `anthropic-skills:pdf`・`xlsx`・`docx`・`pptx`（律と共通）、`anthropic-skills:xlsx`（司・杏・月詠と共通）、`git-workflow`・`audit-website`・`insecure-defaults`・`ln-012/013/014`・`simplify`（凪と共通）、`invoice-mcp` MCP・`html2pdf` MCP（月詠・紡と共通）、`playwright` MCP（全体共通） | 全エージェントの最終承認・経営判断・CEO視点での多層品質確認 |
 
 ### MCPサーバー一覧（.mcp.json）
@@ -193,6 +193,19 @@ JSONフォーマット：
 | filesystem | Obsidian Vault への読み書き | 全エージェント |
 | invoice-mcp | PDF請求書の自動生成 | 月詠 |
 | html2pdf | HTML→PDF変換 | 紡・月詠・杏・葵 |
+| google-sheets | Google スプレッドシート直接読み書き（サービスアカウント認証） | 杏・司・月詠 |
+
+## 自動化スケジュール（`schedule` スキル）
+
+各エージェントは `schedule` スキルを使って定期タスクをスケジューリングできる。凜から「毎月〇日に〇〇して」と指示があったときに設定する。
+
+| 担当 | タスク | 推奨タイミング |
+|------|--------|--------------|
+| 司 | 翌月シフト作成開始リマインド | 毎月20日 |
+| 月詠 | 月次請求書作成リマインド | 毎月1日 |
+| 杏 | 週間献立作成リマインド | 毎週月曜朝 |
+| 凪 | リポジトリ・環境自動チェック | 毎週日曜 |
+
 
 ## CEOエージェント
 - **名前**：黒流
@@ -328,8 +341,10 @@ const SHIFT_HOURS = {
 - push後、以下の形式で印刷用URLを提供する：
   `https://htmlpreview.github.io/?https://github.com/rin827/rinrin.business/blob/main/invoice_YYYYMM_氏名.html`
 - **Google Drive書き込み（必須）**：HTMLとは別に、Google DriveのExcelファイルにも書き込む
-  - `python C:\Users\rinrin\scripts\invoice_drive.py <利用者姓> <YYYY-MM> <昼食費日数> <おにぎり個数> <交通費回数> <日用品費追加>`
-  - 例：`python C:\Users\rinrin\scripts\invoice_drive.py 鬼島 2026-04 9 21 0 0`
+  - **書き込み方法（優先順）**：
+    1. `mcp__google-sheets__*` ツールで直接書き込む（google-sheets MCP が使える場合）
+    2. Pythonスクリプト：`python C:\Users\rinrin\scripts\invoice_drive.py <利用者姓> <YYYY-MM> <昼食費日数> <おにぎり個数> <交通費回数> <日用品費追加>`
+       - 例：`python C:\Users\rinrin\scripts\invoice_drive.py 鬼島 2026-04 9 21 0 0`
   - ※ 柿岡・伊藤は現在Excelファイルが未作成のため対象外（鬼島・菅原・齋藤のみ）
 
 ### 提出前の確認ルール（必須）
@@ -419,7 +434,9 @@ const SHIFT_HOURS = {
   - **書式は「原本朝食」シート準拠**：1日7行（日付・【朝食】・献立・食材：・空行×3）
   - 買い出しリストは対応する買い出しシート（例：`R8.4.27~5.3 買い出し`）に書き込む
   - **買い出しリストの書式は「買い出しリスト原本」シート準拠**
-  - Pythonスクリプトで `google-auth` と `google-api-python-client` を使用
+  - **書き込み方法（優先順）**：
+    1. `mcp__google-sheets__*` ツールで直接書き込む（google-sheets MCP が使える場合）
+    2. Pythonスクリプト（`google-auth` + `google-api-python-client`）でフォールバック
 
 ## 書類作成エージェント
 - **名前**：葵（あおい）
@@ -503,8 +520,9 @@ const SHIFT_HOURS = {
 5. 問題あれば司が修正 → 律が再チェック
 6. 律がOK判定したら**黒流に報告** → 黒流が承認
 7. 黒流承認後、**紡**が印刷用HTMLを作成してGitHubにpush → 印刷用URLを凜に提出
-8. **司**が `shift_drive.py` でGoogle DriveのExcelシフト表にも新月シートを追加する
-   - `python C:\Users\rinrin\scripts\shift_drive.py shift_data.json`
+8. **司**が Google スプレッドシートのシフト表にも新月シートを追加する
+   - 優先：`mcp__google-sheets__*` ツールで直接書き込む（google-sheets MCP が使える場合）
+   - フォールバック：`python C:\Users\rinrin\scripts\shift_drive.py shift_data.json`
 
 ### シフト作成指示を受けたとき（必須）
 シフト作成の指示があったら、作成前に必ず以下を確認すること：
