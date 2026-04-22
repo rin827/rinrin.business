@@ -2,43 +2,40 @@
 
 ## 会話の要約
 
-GCPキーの誤削除から復元した前回セッションの続き。Google Drive/Sheetsへの書き込み実装を完了させた。
+前セッションの続きから開始。緊急連絡網の作成と細部調整を実施した。
 
-### Google Drive書き込みスクリプト実装
-- 請求書フォルダ（`1_DS4yhXY4jtEMt-Aoh8IC88WmqduWjqY`）のファイル構造を調査
-- 各利用者の請求書ExcelファイルID確認：
-  - 鬼島：`1GgwzBDgYUeaRKooxPHMDWzyuudJHaJHu`
-  - 菅原：`1w4hlH0DKPosLQeDnCbBy9m5-bWWQQLbq`
-  - 齋藤：`1XdRBn8ROTNE_uBmiH9Zt_nnpzZED5kro`
-- シフト表ExcelファイルID：`176QRfNbgPkDUBGGUroL5gHNEhagIuS2N`
-- 請求書Excel構造：列Z(26)=数量、列AB(28)=単価、列AF(32)=金額（IF数式で自動計算）
-- シート名パターン：`R8.N請求書（N+1月）`（Nはサービス月、N+1は支払月）
-- シフト表構造：1〜18日が行4〜12（列3〜20）、19〜30日が行14〜22（列3〜14）
+### 緊急連絡網_相談支援事業所Ao（create_emergency_ss.py）
+- 前セッションで書き込み済みだったスクリプトを実行して作成完了
+- 3列レイアウト：A=才木弘一（管理者）→柳沼久美（相談支援専門員）縦ライン、B=→、C=嶋川侑太（才木から横枝）
+- 柳沼からの横枝なし
 
-### 作成したスクリプト
-- `C:\Users\rinrin\scripts\invoice_drive.py`：利用者請求書ExcelをDriveに書き込む
-- `C:\Users\rinrin\scripts\shift_drive.py`：シフト表Excelに新月シートを追加する
-- 両スクリプトとも動作確認済み（鬼島4月・5月でテスト成功）
+### 緊急連絡網の調整（複数スクリプト）
+1. **矢印修正**（update_emergency_arrows.py）：↓矢印行を全列マージから列Aのみに変更→発見者→管理者のラインが縦につながるよう修正
+2. **発見者サイズ統一**（update_finder_size.py）：フォント11・行高80pxで職員セルと同サイズに
+3. **発見者位置修正**（update_finder_position.py）：発見者行のマージ解除→列Aのみ・SOLID_MEDIUMボーダーで職員と同スタイルに
+4. **横印刷バランス調整**（update_emergency_landscape.py）：GH=人物列220px×3+矢印50px×2=760px、SS=人物列270px×2+矢印60px=600px、行高さも調整
+5. **※注記追加**（update_emergency_note.py）：両シート末尾に「※次の連絡先に繋がらない場合は1人飛ばして次の方に連絡してください。」を薄黄色背景・太字・濃赤文字で追加
+6. **タイトルと発見者間スペース**（update_title_space.py）：両シートのタイトル行と発見者行の間に15px空白行を挿入
+7. **緊急連絡網_合同シート作成**（create_emergency_godo.py）：A4縦1枚に上半分GH・下半分SSをまとめたシート。灰色区切り線あり。列幅200/35/200/35/200px・19行構成
 
-### CLAUDE.md更新内容
-- 「Google Drive連携スクリプト」セクション新設
-- 月詠の出力にGoogle Drive書き込み手順を追記
-- シフト作成の流れにステップ8（shift_drive.py実行）を追記
-- PCチェックリストにgcp-credentials.jsonとscripts/フォルダを許可リストに追加
-- `update-claude-md`ブランチに保存、このセッション終了時にmainへマージ
-
-### 感染対策研修チェックリスト
-- 8月ごろに凜から声がかかる予定（試験版HTML：C:\Users\rinrin\感染対策研修_参加チェック.html）
+### 完成シート構成（労働者名簿スプレッドシート内）
+- 委員会名簿_グループホームAo
+- 委員会名簿_相談支援事業所Ao
+- 委員会名簿_合同
+- 緊急連絡網_グループホームAo（横印刷用）
+- 緊急連絡網_相談支援事業所Ao（横印刷用）
+- 緊急連絡網_合同（A4縦1枚・上GH下SS）
 
 ## 決定事項
-- 請求書・シフト表のGoogle Drive書き込みはPythonスクリプト経由で実装（Sheets APIは非対応のためDrive API使用）
-- 月詠はHTML作成後に必ずinvoice_drive.pyも実行する（柿岡・伊藤はExcelファイル未作成のため対象外）
-- 司はシフト確定後にshift_drive.pyでGoogle DriveのExcelにも反映する
-- scriptsフォルダ（C:\Users\rinrin\scripts\）は正式な作業フォルダとして使用
+- 緊急連絡網は全3シート（GH・SS・合同）を労働者名簿スプレッドシートに追加
+- GH・SSシートは横印刷想定、合同シートはA4縦1枚想定
+- ↓矢印は列Aのみ（管理者の真上に発見者が来る縦ライン）
+- 発見者セルは職員と同サイズ・同スタイルの枠
+- ※注記は薄黄色背景・太字・濃赤文字で目立つデザイン
+- タイトルと発見者の間に1行スペース
 
 ## 次回への引き継ぎ
-- 労働者名簿・利用者名簿のGoogle Drive URLがまだ未取得（凜から提供されていない）
-- 柿岡大介・伊藤維のGoogle Drive請求書Excelファイルが未作成
-- 才木弘一の最終学歴が不明（職歴のみ記載）
-- 献立ルール見直しの話があったが詳細未確認
-- CLAUDE.mdのupdate-claude-mdブランチはマージ済み（次回よろ～時に反映済みのはず）
+- 労働者名簿スプレッドシートID：`1nA8pCFHkz4Y8R0onCPtEYm2IAxIOQll_rDgr8EBkm-o`
+- 緊急連絡網の印刷確認・微調整が残っている可能性あり
+- 柿岡様・伊藤様の初回請求書作成は2026年6月1日（月詠に依頼）
+- scripts/フォルダに緊急連絡網関連スクリプト多数あり（update_*・create_emergency_*）
