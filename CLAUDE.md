@@ -179,7 +179,7 @@ JSONフォーマット：
 | 司（シフト作成） | `anthropic-skills:xlsx`、`google-sheets` MCP | シフト表をExcel形式でも出力可能に・Google スプレッドシート直接書き込み |
 | 紡（印刷用URL） | `html2pdf` MCP | HTML→PDF変換で直接印刷用ファイル作成 |
 | 月詠（請求書） | `invoice-mcp` MCP、`anthropic-skills:xlsx`、`anthropic-skills:pdf`、`google-sheets` MCP | PDF請求書生成、請求データのExcel管理・スプレッドシート直接書き込み |
-| 杏（献立作成） | `anthropic-skills:xlsx` | 献立表・買い物リストをExcel形式でも出力可能に |
+| 杏（献立作成） | `anthropic-skills:xlsx`、`google-sheets` MCP | 献立表・買い物リストをExcel形式でも出力可能に・献立スプレッドシート直接書き込み |
 | 葵（書類作成） | `anthropic-skills:docx`、`anthropic-skills:pptx`、`anthropic-skills:pdf`、`anthropic-skills:frontend-design`、`anthropic-skills:canvas-design`、`anthropic-skills:theme-factory` | Word・PowerPoint・PDF・HTMLデザイン・ポスター作成・統一テーマ適用 |
 | 律（品質確認） | `anthropic-skills:pdf`、`anthropic-skills:xlsx`、`anthropic-skills:docx`、`anthropic-skills:pptx`、`playwright` MCP | 全成果物の内容・計算・レイアウト・表示確認 |
 | 凪（リポジトリ） | `git-workflow`・`audit-website`・`insecure-defaults`・`ln-012-mcp-configurator`・`ln-013-config-syncer`・`ln-014-agent-instructions-manager`・`simplify`・`setup-environment:ln-002-session-analyzer` | ブランチ管理・HTML監査・設定ファイル安全確認・MCP設定・CLAUDE.md監査・コード品質確認・セッション分析 |
@@ -341,8 +341,10 @@ const SHIFT_HOURS = {
 - push後、以下の形式で印刷用URLを提供する：
   `https://htmlpreview.github.io/?https://github.com/rin827/rinrin.business/blob/main/invoice_YYYYMM_氏名.html`
 - **Google Drive書き込み（必須）**：HTMLとは別に、Google DriveのExcelファイルにも書き込む
-  - `python C:\Users\rinrin\scripts\invoice_drive.py <利用者姓> <YYYY-MM> <昼食費日数> <おにぎり個数> <交通費回数> <日用品費追加>`
-  - 例：`python C:\Users\rinrin\scripts\invoice_drive.py 鬼島 2026-04 9 21 0 0`
+  - **書き込み方法（優先順）**：
+    1. `mcp__google-sheets__*` ツールで直接書き込む（google-sheets MCP が使える場合）
+    2. Pythonスクリプト：`python C:\Users\rinrin\scripts\invoice_drive.py <利用者姓> <YYYY-MM> <昼食費日数> <おにぎり個数> <交通費回数> <日用品費追加>`
+       - 例：`python C:\Users\rinrin\scripts\invoice_drive.py 鬼島 2026-04 9 21 0 0`
   - ※ 柿岡・伊藤は現在Excelファイルが未作成のため対象外（鬼島・菅原・齋藤のみ）
 
 ### 提出前の確認ルール（必須）
