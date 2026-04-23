@@ -2,41 +2,32 @@
 
 ## 会話の要約
 
-### 虐待防止・身体拘束適正化委員会議事録作成（GH Ao）
-- Geminiの会議メモ・詳細議事録MD・GH Aoテンプレートdocxの3ファイルを元に議事録を作成
-- 確認事項（終了時間・欠席・議決・身体拘束件数・入居者数・周知方法・次回日程）を1問1答で凜から確認
-- 回答：14:30終了・欠席なし・全会一致・0件・3名・回覧・R9.2.18
-- テンプレートをアンパック→Python編集→パックして完成docx作成
-- 保存先：`デスクトップ/GH委員会/虐待及び身体拘束委員会/R8/R8.4.23 GH_議事録_完成.docx`
+### Obsidian MCP 動作確認・修正
+- 新規セッション（Claude Code再起動後）にObsidian MCPのツールが読み込まれていない問題を調査
+- 原因：`mcp-obsidian` パッケージの現バージョンが vault directory を引数として必要とするが、`.mcp.json` に引数が未指定だった
+  - `Usage: mcp-obsidian <vault-directory>` というエラーで即終了→ツール未登録
+- 修正：`C:\Users\rinrin\.mcp.json` の obsidian サーバー設定に `C:\\Users\\rinrin\\凜保管` を引数として追加
+- 修正後の動作確認：`MCP Obsidian Server running on stdio`・`read_notes`/`search_notes` ツール登録を確認
+- **次回セッション開始時に有効化確認が必要**（再起動済みのため次回「よろ～」で確認予定）
 
-### 虐待防止・身体拘束適正化委員会議事録作成（相談Ao）
-- 同じ会議内容で相談Ao用テンプレートにも記入
-- 品田→才木弘一、尾亦祥→柳沼久美、グループホーム→相談支援事業所に置換
-- 身体拘束欄は相談Ao用（モニタリング訪問・連携先把握）に対応
-- 保存先：`デスクトップ/相談委員会/虐待及び身体拘束委員会/虐待及び身体拘束/R8.4.23_相談Ao_議事録_完成.docx`
-
-### Obsidian Local REST API MCP設定
-- Obsidian に Git・Local REST API プラグインを導入済みとのこと
-- 設定ファイル（data.json）からポート27124・APIキーを確認
-- API接続テスト成功・mcp-obsidianパッケージ確認済み
-- `.mcp.json` に `obsidian` サーバーを追加（要Claude Code再起動）
-
-### 黒流常駐ルール再確認
-- 「よろ～」〜「おつ～」の間、他エージェント指名がない限り黒流が対応するルールを再確認
-- セッション序盤で黒流として動いていなかった点を凜に指摘された・以後修正
+### google-sheets MCP 障害調査
+- `mcp-gsheets@latest`（v1.8.0）が MCP initialize メッセージに応答しない問題を調査
+- 原因：Node.js v24.14.1 と ESM top-level await の互換性問題
+- Google Sheets API 自体は Python（service account）経由で正常動作を確認済み
+- 対応：Python スクリプト（`invoice_drive.py` / `shift_drive.py`）で代替。実害なし
 
 ## 決定事項
-- GH Ao議事録・相談Ao議事録ともに作成完了
-- Obsidian MCP設定追加済み（再起動で有効化）
-- 黒流常駐ルールを徹底する
+- `.mcp.json` obsidian サーバーに vault path 引数を追加（修正済み）
+- google-sheets MCP は Node.js v24 互換性問題のため引き続き Python 代替で運用
+- 次回「よろ～」時に Obsidian MCP ツールが正常ロードされているか確認する
 
 ## 次回への引き継ぎ
-- Claude Code再起動後にObsidian MCPの動作確認が必要
-- PC直下の不要ファイル整理が引き続き未対応：
+- **Obsidian MCP の有効化確認**：次回セッション開始時に `mcp__obsidian__*` ツールがデフォルトで読み込まれているか確認する
+- PC直下の不要ファイル整理が未対応：
   - `update_iinkai_*.py` × 8本
   - `roudousha_raw.txt`
   - `感染対策研修_参加チェック.html`
+- GitHub の古いHTMLファイル残存：`menu_20260420.html` / `menu_20260427.html` / `shopping_20260420.html`
 - `update-claude-md` ブランチが放置中（削除候補）
-- 古い献立ファイル（menu_20260420.html等）がmainに残存
 - 新規入居者（柿岡・伊藤）の初回請求：2026年6月1日
 - 感染対策研修チェックリスト：2026年8月ごろ作成予定
